@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragma | Alessandro Bacci</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem var(--padding-page);
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
+            mix-blend-mode: difference;
+            color: #ffffff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        nav a:hover { opacity: 0.6; }
+
+        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
+        .project-hero {
+            width: 100%;
+            height: 100vh; /* 100% dell'altezza dello schermo */
+            overflow: hidden;
+        }
+
+        .project-hero img, 
+        .project-hero video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
+            display: block;
+        }
+
+        /* --- 2. INTRODUZIONE (Testo grande) --- */
+        .project-intro {
+            padding: 15vh var(--padding-page);
+            max-width: 85%; /* Lascia un po' di respiro a destra */
+        }
+
+        .project-intro p {
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
+        .project-gallery {
+            padding: 0 var(--padding-page);
+            display: flex;
+            flex-direction: column;
+            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
+            margin-bottom: 15vh;
+        }
+
+        .project-gallery img, 
+        .project-gallery video {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
+       taglio delle foto in caso di proporzioni leggermente diverse */
+        object-fit: cover; 
+        }
+
+        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
+        .project-credits {
+            padding: 5vh var(--padding-page) 15vh;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
+            gap: 2rem;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10vh;
+        }
+
+        .credit-col {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            line-height: 1.6;
+        }
+
+        .credit-col strong {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .credit-col p {
+            margin-bottom: 2rem;
+        }
+
+        /* --- FOOTER (Link al progetto successivo) --- */
+        .next-project {
+            padding: 10vh var(--padding-page);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(2rem, 4vw, 4rem);
+            transition: background-color 0.3s;
+        }
+
+        .next-project:hover {
+            background-color: #333333;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
+            .project-gallery { gap: 5vh; }
+            .project-credits {
+                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">← Torna all'indice</a>
+        <div>Alessandro Bacci</div>
+    </nav>
+
+    <header class="project-hero">
+        <img src="foto copia/Medusound/hor.png" alt="Fragma">
+    </header>
+
+    <section class="project-intro">
+        <p>Sound Morphology è un’esperienza web
+sperimentale che risponde alla sfida di
+creare uno spazio digitale per l’identità
+di un artista, costruendo un archivio
+intimo e immersivo a 360 gradi per
+GNMR (Gianmaria Coccoluto), DJ
+e producer romano.</p>
+        <p>Si tratta di un
+viaggio dentro ad un ecosistema
+che mappa l’intera costellazione
+della sua vita: dalla discografia alle
+tappe dei tour, fino alle radici della
+sua ispirazione, intrecciando legami
+personali e reference visive dal mondo
+del cinema e dei videogiochi.</p>
+        <p>L’utente
+può scendere in profondità in modo
+analitico, filtrando un menù testuale
+fino all’unità minima del ricordo, oppure
+abbandonarsi a un’esplorazione visiva e
+spaziale attraverso la rappresentazione
+di una medusa composta da migliaia
+di particelle luminose.</p>
+        <p>Simbolo vitale
+per l’artista, la medusa funge sia da
+ambiente immersivo che da reale
+mappa di navigazione. Interagendo con
+essa, l’esperienza utente diventa l’eco
+visiva della musica di GNMR: un’onda
+morbida, fluida e carica di energia</p>
+    </section>
+
+    <section class="project-gallery">
+        <img src="foto copia/Medusound/medusahome.png" alt="Dettaglio Fragma 1">
+        <img src="foto copia/Medusound/eraserhead.png" alt="Dettaglio Fragma 2">
+        <img src="foto copia/Medusound/ricordi.png" alt="Dettaglio Fragma 3">
+    </section>
+
+    <section class="project-credits">
+        <div class="credit-col">
+            <strong>Progetto</strong>
+            <p>Sound Morphology<br>Web Design</p>
+
+            <strong>Anno / Luogo</strong>
+            <p>2025<br>Politecnico di Milano</p>
+        </div>
+
+        <div class="credit-col">
+            <strong>Team</strong>
+            <p>
+                Allen Jonathan Marco <br>
+                De Sensi Aurora <br>
+                Micucci Mattia <br>
+                Salvi Alessandro <br>
+                Villa Eleonora 
+            </p>
+        </div>
+
+        <div class="credit-col">
+            <strong>Ruolo</strong>
+            <p>
+                Coding <br>
+                User Interface <br>
+                UX 
+            </p>
+        </div>
+        <div class="credit-col">
+            <strong>Link</strong>
+            <p>
+                linkqui.com
+            </p>
+        </div>
+    </section>
+
+    <a href="futbol.html" class="next-project">
+        <span>Next Project</span>
+        <span>Futbol →</span>
+    </a>
+
+</body>
+</html>
