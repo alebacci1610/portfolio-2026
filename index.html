@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alessandro Bacci | Portfolio</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -151,10 +153,12 @@
 </head>
 <body>
 
+    <div class="lang-switch lang-switch--floating" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
+
     <section class="home-layout">
         <div class="center-block">
             <div class="bio-text">
-                <p>Sono Alessandro, ho 22 anni, vengo<br>
+                <p lang="it">Sono Alessandro, ho 22 anni, vengo<br>
                 da Riccione e studio Design della<br>
                 Comunicazione al Politecnico di Milano.<br>
                 Sono un designer guidato da<br>
@@ -167,6 +171,19 @@
                 pragmatico: amo risolvere problemi<br>
                 complessi e trasformare un'idea in una<br>
                 soluzione d'impatto visivo e funzionale.</p>
+                <p lang="en">I'm Alessandro, I'm 22, I come from<br>
+                Riccione and I study Communication<br>
+                Design at Politecnico di Milano.<br>
+                I'm a designer driven by strong<br>
+                curiosity and by the search for<br>
+                the right balance between physical<br>
+                matter and digital ecosystems.<br>
+                I combine creativity, critical thinking<br>
+                and precision to develop solid,<br>
+                cross-disciplinary concepts. My approach<br>
+                is pragmatic: I love solving complex<br>
+                problems and turning an idea into a<br>
+                solution with visual and functional impact.</p>
             </div>
             <div class="bio-image">
                 <img src="foto copia/foto mia/IMG_2347.jpg" alt="Alessandro Bacci">
@@ -180,18 +197,19 @@
         </div>
 
         <div class="quote">
-            <p>Sono solo un romagnolo a cui piace <i>“spataccare”</i></p>
+            <p lang="it">Sono solo un romagnolo a cui piace <i>“spataccare”</i></p>
+            <p lang="en">I'm just a guy from Romagna who likes to <i>“spataccare”</i></p>
         </div>
     </section>
 
     <section class="indice-layout">
-        <h2 class="indice-title">Progetti</h2>
+        <h2 class="indice-title"><span lang="it">Progetti</span><span lang="en">Projects</span></h2>
         
         <div class="project-list">
             <a href="fragma.html" class="project-item" data-img="Fragma.png">Fragma</a>
             <a href="sound-morphology.html" class="project-item" data-img="sound1.png">Sound Morphology</a>
             <a href="futbol.html" class="project-item" data-img="futbol1.png">Futbol</a>
-            <a href="space-debris.html" class="project-item" data-img="debris1.png">Space debris</a>
+            <a href="space-debris.html" class="project-item" data-img="debris1.png">Space Debris</a>
             <a href="esplorami.html" class="project-item" data-img="esplora1.png">EsploraMi</a>
             <a href="gestures.html" class="project-item" data-img="gestures1.jpg">Gestures</a>
         </div>

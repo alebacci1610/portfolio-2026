@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,23 +150,23 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
-        <img src="foto copia/Medusound/hor.png" alt="Fragma">
+        <img src="foto copia/Medusound/hor.png" alt="Sound Morphology">
     </header>
 
     <section class="project-intro">
-        <p>Sound Morphology è un’esperienza web
+        <p lang="it">Sound Morphology è un’esperienza web
 sperimentale che risponde alla sfida di
 creare uno spazio digitale per l’identità
 di un artista, costruendo un archivio
 intimo e immersivo a 360 gradi per
 GNMR (Gianmaria Coccoluto), DJ
 e producer romano.</p>
-        <p>Si tratta di un
+        <p lang="it">Si tratta di un
 viaggio dentro ad un ecosistema
 che mappa l’intera costellazione
 della sua vita: dalla discografia alle
@@ -171,7 +174,7 @@ tappe dei tour, fino alle radici della
 sua ispirazione, intrecciando legami
 personali e reference visive dal mondo
 del cinema e dei videogiochi.</p>
-        <p>L’utente
+        <p lang="it">L’utente
 può scendere in profondità in modo
 analitico, filtrando un menù testuale
 fino all’unità minima del ricordo, oppure
@@ -179,27 +182,31 @@ abbandonarsi a un’esplorazione visiva e
 spaziale attraverso la rappresentazione
 di una medusa composta da migliaia
 di particelle luminose.</p>
-        <p>Simbolo vitale
+        <p lang="it">Simbolo vitale
 per l’artista, la medusa funge sia da
 ambiente immersivo che da reale
 mappa di navigazione. Interagendo con
 essa, l’esperienza utente diventa l’eco
 visiva della musica di GNMR: un’onda
-morbida, fluida e carica di energia</p>
+morbida, fluida e carica di energia.</p>
+        <p lang="en">Sound Morphology is an experimental web experience that takes on the challenge of creating a digital space for an artist’s identity, building an intimate, immersive 360° archive for GNMR (Gianmaria Coccoluto), a DJ and producer from Rome.</p>
+        <p lang="en">It is a journey through an ecosystem that maps the whole constellation of his life: from his discography and tour stops to the roots of his inspiration, weaving together personal connections and visual references from film and video games.</p>
+        <p lang="en">Users can dig deep analytically, filtering a text menu down to the smallest unit of memory, or let themselves drift through a visual, spatial exploration of a jellyfish made of thousands of glowing particles.</p>
+        <p lang="en">A vital symbol for the artist, the jellyfish works both as an immersive environment and as an actual navigation map. Through it, the user experience becomes the visual echo of GNMR’s music: a soft, fluid wave, charged with energy.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/Medusound/medusahome.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/Medusound/eraserhead.png" alt="Dettaglio Fragma 2">
-        <img src="foto copia/Medusound/ricordi.png" alt="Dettaglio Fragma 3">
+        <img src="foto copia/Medusound/medusahome.png" alt="Sound Morphology – 1">
+        <img src="foto copia/Medusound/eraserhead.png" alt="Sound Morphology – 2">
+        <img src="foto copia/Medusound/ricordi.png" alt="Sound Morphology – 3">
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
             <p>Sound Morphology<br>Web Design</p>
 
-            <strong>Anno / Luogo</strong>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
             <p>2025<br>Politecnico di Milano</p>
         </div>
 
@@ -215,7 +222,7 @@ morbida, fluida e carica di energia</p>
         </div>
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
                 Coding <br>
                 User Interface <br>
@@ -233,7 +240,7 @@ morbida, fluida e carica di energia</p>
     </section>
 
     <a href="futbol.html" class="next-project">
-        <span>Next Project</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>Futbol →</span>
     </a>
 

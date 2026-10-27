@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,16 +150,16 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.09.png" alt="Fragma">
+        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.09.png" alt="Space Debris">
     </header>
 
     <section class="project-intro">
-        <p>Space Debris è un progetto di data
+        <p lang="it">Space Debris è un progetto di data
 visualization interattiva che porta
 alla luce il silenzioso ma allarmante
 accumulo di rifiuti nell’orbita terrestre.
@@ -165,12 +168,12 @@ di oltre 15.000 record, il progetto
 mappa l’origine, la tipologia (dai
 frammenti di razzi ai satelliti inattivi) e
 il volume dei detriti.</p>
-        <p>Questo enorme
+        <p lang="it">Questo enorme
 flusso di dati prende forma all’interno
 di un’interfaccia web esplorativa,
 caratterizzata da un’estetica illustrativa in
 bianco e nero dal forte impatto grafico.</p>
-        <p>Attraverso una navigazione dinamica,
+        <p lang="it">Attraverso una navigazione dinamica,
 l’utente può interagire direttamente con
 i dati, filtrandoli per nazione, dimensione
 e altitudine. Scorrendo la linea del
@@ -180,20 +183,23 @@ rifiuti spaziali e le precise responsabilità
 geopolitiche, trasformando numeri
 complessi in una presa
 di coscienza tangibile.</p>
+        <p lang="en">Space Debris is an interactive data visualization project that brings to light the silent yet alarming build-up of waste in Earth’s orbit. Processing a dataset of more than 15,000 records, the project maps the origin, type (from rocket fragments to inactive satellites) and volume of the debris.</p>
+        <p lang="en">This huge flow of data takes shape in an exploratory web interface with a bold, black-and-white illustrative style.</p>
+        <p lang="en">Through dynamic navigation, users can interact directly with the data, filtering it by country, size and altitude. Scrolling along the interactive timeline, the project visually exposes the relentless growth of space debris and the precise geopolitical responsibilities behind it, turning complex numbers into tangible awareness.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.20.08.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.51.png" alt="Dettaglio Fragma 2">
-        <img src="foto copia/Space Debrys/Screenshot 2026-05-12 alle 17.14.40.png" alt="Dettaglio Fragma 3">
+        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.20.08.png" alt="Space Debris – 1">
+        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.51.png" alt="Space Debris – 2">
+        <img src="foto copia/Space Debrys/Screenshot 2026-05-12 alle 17.14.40.png" alt="Space Debris – 3">
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
-            <p>Space debris<br>Infographic</p>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
+            <p>Space Debris<br>Infographic</p>
 
-            <strong>Anno / Luogo</strong>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
             <p>2024<br>Politecnico di Milano</p>
         </div>
 
@@ -209,9 +215,9 @@ di coscienza tangibile.</p>
         </div>
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
-                Dataset building <br>
+                <span lang="it">Costruzione del dataset</span><span lang="en">Dataset building</span> <br>
                 User Interface <br>
                 Coding 
             </p>
@@ -220,14 +226,14 @@ di coscienza tangibile.</p>
     <strong>Link</strong>
     <p>
         <a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            SPACE DEBRYS INFOGRAPHICS
+            SPACE DEBRIS INFOGRAPHIC
         </a>
     </p>
 </div>
     </section>
 
     <a href="esplorami.html" class="next-project">
-        <span>Next Project</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>EsploraMi →</span>
     </a>
 

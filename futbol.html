@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,8 +150,8 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
@@ -156,18 +159,18 @@
     </header>
 
     <section class="project-intro">
-        <p>Nato da un profondo legame personale
+        <p lang="it">Nato da un profondo legame personale
 con la cultura calcistica, Futbol è un
 progetto di web design che celebra
 le maglie più significative della storia
 di questo sport.</p>
-        <p>L’archivio digitale è
+        <p lang="it">L’archivio digitale è
 stato concepito per raccontare come
 questi capi trascendano la loro funzione
 puramente atletica, trasformandosi in
 veri e propri artefatti culturali carichi di
 memoria, identità e valore emotivo.</p>
-        <p>Sviluppato come un accurato esercizio
+        <p lang="it">Sviluppato come un accurato esercizio
 di stile, il sito unisce rigore estetico
 e navigazione fluida. L’esplorazione si
 apre su una homepage strutturata a
@@ -175,34 +178,38 @@ griglia con infinite scroll, studiata per
 massimizzare l’impatto visivo e guidare
 l’utente verso schede tecniche ricche
 di dettagli. </p>
-        <p>L’esperienza culmina in una
+        <p lang="it">L’esperienza culmina in una
 sezione interattiva “tailor-made”:
 un percorso dinamico che fa scoprire
 all’utente quale, tra i pezzi storici
 dell’archivio, rappresenta al meglio
 la sua anima calcistica e il suo stile
 personale.</p>
+        <p lang="en">Born from a deep personal bond with football culture, Futbol is a web design project celebrating the most significant shirts in the history of the sport.</p>
+        <p lang="en">The digital archive was conceived to show how these garments go beyond their purely athletic function, becoming true cultural artifacts loaded with memory, identity and emotional value.</p>
+        <p lang="en">Developed as a careful exercise in style, the site combines aesthetic rigor with fluid navigation. Exploration opens on an infinite-scroll grid homepage, designed to maximize visual impact and lead users to richly detailed shirt pages.</p>
+        <p lang="en">The experience culminates in an interactive, “tailor-made” section: a dynamic path that reveals which of the archive’s historic pieces best represents the user’s football soul and personal style.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.51.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.40.png" alt="Dettaglio Fragma 2">
-        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.53.19.png" alt="Dettaglio Fragma 3">
-        <img src="foto copia/Futbol/Screenshot 2026-05-12 alle 17.04.26.png" alt="Dettaglio Fragma 3">
+        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.51.png" alt="Futbol – 1">
+        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.40.png" alt="Futbol – 2">
+        <img src="foto copia/Futbol/Screenshot 2026-04-09 alle 11.53.19.png" alt="Futbol – 3">
+        <img src="foto copia/Futbol/Screenshot 2026-05-12 alle 17.04.26.png" alt="Futbol – 4">
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
             <p>Futbol<br>Web Design</p>
 
-            <strong>Anno / Luogo</strong>
-            <p>2026<br>Personal Project</p>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
+            <p>2026<br><span lang="it">Progetto personale</span><span lang="en">Personal project</span></p>
         </div>
 
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
                 Coding <br>
                 User Interface <br>
@@ -220,8 +227,8 @@ personale.</p>
     </section>
 
     <a href="space-debris.html" class="next-project">
-        <span>Next project</span>
-        <span>Space debris →</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
+        <span>Space Debris →</span>
     </a>
 
 </body>

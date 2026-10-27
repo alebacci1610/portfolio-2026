@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,8 +150,8 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
@@ -156,31 +159,35 @@
     </header>
 
     <section class="project-intro">
-        <p>Fragma è un progetto di speculative design che esplora il ruolo del linguaggio all'interno della "Guerra Cognitiva", conflitto contemporaneo in cui il campo di battaglia diventa la mente umana.</p>
-        <p>Immaginato come un'azienda fittizia di ingegneria semantica, il progetto simula la fornitura di "armi linguistiche" a enti e governi per stabilire la propria sovranità narrativa.</p>
-        <p>Il cuore dell’esperienza è Syntax F-1 un’installazione interattiva analogicodigitale. L’utente manovra fisicamente delle pedine su una plancia di controllo per manipolare sei parametri linguistici e ad ogni spostamento, un LLM custom riscrive istantaneamente una notizia proiettata a schermo, alterandone la forma attraverso precisi artifici retorici.</p>
-        <p>Interagendo con la macchina, l’utente è spinto a riflettere sul peso tangibile delle parole e sul loro impatto nella diffusione delle notizie. Fragma svela come il modo in cui gli eventi vengono raccontati permetta di distorcere la realtà a proprio piacimento, mettendo l’osservatore di fronte alla vulnerabilità del proprio senso critico.</p>
+        <p lang="it">Fragma è un progetto di speculative design che esplora il ruolo del linguaggio all'interno della "Guerra Cognitiva", conflitto contemporaneo in cui il campo di battaglia diventa la mente umana.</p>
+        <p lang="it">Immaginato come un'azienda fittizia di ingegneria semantica, il progetto simula la fornitura di "armi linguistiche" a enti e governi per stabilire la propria sovranità narrativa.</p>
+        <p lang="it">Il cuore dell’esperienza è Syntax F-1 un’installazione interattiva analogicodigitale. L’utente manovra fisicamente delle pedine su una plancia di controllo per manipolare sei parametri linguistici e ad ogni spostamento, un LLM custom riscrive istantaneamente una notizia proiettata a schermo, alterandone la forma attraverso precisi artifici retorici.</p>
+        <p lang="it">Interagendo con la macchina, l’utente è spinto a riflettere sul peso tangibile delle parole e sul loro impatto nella diffusione delle notizie. Fragma svela come il modo in cui gli eventi vengono raccontati permetta di distorcere la realtà a proprio piacimento, mettendo l’osservatore di fronte alla vulnerabilità del proprio senso critico.</p>
+        <p lang="en">Fragma is a speculative design project exploring the role of language in “Cognitive Warfare”, a contemporary conflict in which the battlefield is the human mind.</p>
+        <p lang="en">Imagined as a fictional semantic engineering company, the project simulates the supply of “linguistic weapons” to institutions and governments seeking to establish their own narrative sovereignty.</p>
+        <p lang="en">At the heart of the experience is Syntax F-1, an interactive installation that bridges analog and digital. Users physically move pieces across a control board to manipulate six linguistic parameters; with every move, a custom LLM instantly rewrites a news story shown on screen, reshaping it through specific rhetorical devices.</p>
+        <p lang="en">By interacting with the machine, users are led to reflect on the tangible weight of words and their impact on how news spreads. Fragma reveals how the way events are told can bend reality at will, confronting viewers with the vulnerability of their own critical thinking.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b4.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b1.png" alt="Dettaglio Fragma 2">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b6.png" alt="Dettaglio Fragma 3">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b13.png" alt="Dettaglio Fragma 5">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b14.png" alt="Dettaglio Fragma 3">
-        <img src="foto copia/Fragma/fragma- foto ale salvi/b12.png" alt="Dettaglio Fragma 4">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b4.png" alt="Fragma – 1">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b1.png" alt="Fragma – 2">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b6.png" alt="Fragma – 3">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b13.png" alt="Fragma – 4">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b14.png" alt="Fragma – 5">
+        <img src="foto copia/Fragma/fragma- foto ale salvi/b12.png" alt="Fragma – 6">
         <video autoplay loop muted playsinline>
         <source src="foto copia/Fragma/fragma.mp4" type="video/mp4">
-        Il tuo browser non supporta il tag video.
+        <span lang="it">Il tuo browser non supporta i video.</span><span lang="en">Your browser does not support video.</span>
     </video>
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
             <p>Fragma<br>Speculative Design</p>
 
-            <strong>Anno / Luogo</strong>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
             <p>2025/2026<br>Politecnico di Milano</p>
         </div>
 
@@ -196,11 +203,11 @@
         </div>
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
-                Prototipazione <br>
+                <span lang="it">Prototipazione</span><span lang="en">Prototyping</span> <br>
                 Coding <br>
-                Interazione 
+                <span lang="it">Interazione</span><span lang="en">Interaction</span>
             </p>
         </div>
         
@@ -215,7 +222,7 @@
     </section>
 
     <a href="sound-morphology.html" class="next-project">
-        <span>Next Project</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>Sound Morphology →</span>
     </a>
 

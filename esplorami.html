@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,27 +150,27 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
-        <img src="foto copia/EsploraMI/Tokyo Subway Poster Mockup.jpg" alt="Fragma">
+        <img src="foto copia/EsploraMI/Tokyo Subway Poster Mockup.jpg" alt="EsploraMi">
     </header>
 
     <section class="project-intro">
-        <p>EsploraMi affronta il problema
+        <p lang="it">EsploraMi affronta il problema
 dell’overtourism e del disorientamento
 che molti viaggiatori provano di fronte
 a itinerari standardizzati. Il servizio
 accompagna l’utente a 360 gradi, dalla
 pianificazione fino al post-viaggio.</p>
-        <p> Tutto
+        <p lang="it"> Tutto
 inizia con un’accurata profilazione dei
 gusti del turista, che permette al sistema
 di generare un calendario interattivo
 e una mappa con proposte su misura.</p>
-        <p>L’innovazione chiave è l’ottimizzazione
+        <p lang="it">L’innovazione chiave è l’ottimizzazione
 temporale: integrando dati sui
 flussi urbani (grazie allo studio con
 IGPDecaux), EsploraMi suggerisce gli
@@ -175,35 +178,48 @@ orari migliori per evitare la congestione.
 Il risultato è un’esperienza più autentica
 per il viaggiatore e un turismo più
 sostenibile per la città.</p>
+        <p lang="en">EsploraMi tackles overtourism and the disorientation many travelers feel when faced with standardized itineraries. The service supports users end to end, from planning to the post-trip.</p>
+        <p lang="en">It all starts with a careful profiling of the traveler’s tastes, which lets the system generate an interactive calendar and a map of tailored suggestions.</p>
+        <p lang="en">Its key innovation is time optimization: by integrating urban flow data (thanks to the study with IGPDecaux), EsploraMi suggests the best times to avoid crowds. The result is a more authentic experience for travelers and more sustainable tourism for the city.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/EsploraMI/mockup instagram flyer.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/EsploraMI/Screenshot 2026-04-10 alle 13.29.55.png" alt="Dettaglio Fragma 2">
-        <img src="foto copia/EsploraMI/Screenshot 2026-05-12 alle 17.23.21.png" alt="Dettaglio Fragma 2">
+        <img src="foto copia/EsploraMI/mockup instagram flyer.png" alt="EsploraMi – 1">
+        <img src="foto copia/EsploraMI/Screenshot 2026-04-10 alle 13.29.55.png" alt="EsploraMi – 2">
+        <img src="foto copia/EsploraMI/Screenshot 2026-05-12 alle 17.23.21.png" alt="EsploraMi – 3">
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
-            <p>Gestures<br>Web design</p>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
+            <p>EsploraMi<br>Service Design</p>
 
-            <strong>Anno / Luogo</strong>
-            <p>2026<br>Personal project</p>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
+            <p>2025<br>Politecnico di Milano</p>
         </div>
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong>Team</strong>
+            <p>
+                Frigeni Lara <br>
+                Guerra Matteo <br>
+                Marrone Lorenzo <br>
+                Villa Eleonora
+            </p>
+        </div>
+
+        <div class="credit-col">
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
                 Coding <br>
                 User Interface <br>
-                Photo editing
+                UX
             </p>
         </div>
     </section>
 
     <a href="gestures.html" class="next-project">
-        <span>Next Project</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>Gestures →</span>
     </a>
 

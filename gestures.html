@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fragma | Alessandro Bacci</title>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
     
     <style>
         :root {
@@ -43,6 +45,7 @@
         }
 
         nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
         /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
         .project-hero {
@@ -147,26 +150,26 @@
 <body>
 
     <nav>
-        <a href="index.html">← Torna all'indice</a>
-        <div>Alessandro Bacci</div>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
     </nav>
 
     <header class="project-hero">
-        <img src="foto copia/Gestures/mockup iphone.jpg" alt="Fragma">
+        <img src="foto copia/Gestures/mockup iphone.jpg" alt="Gestures">
     </header>
 
     <section class="project-intro">
-        <p>Nato quasi per gioco, Gestures è un progetto di
+        <p lang="it">Nato quasi per gioco, Gestures è un progetto di
 web design che esplora con ironia le “leggi non
-scritte” della società quei comportamenti taciti
+scritte” della società: quei comportamenti taciti
 e universali, come il non sapere dove guardare
 in ascensore per evitare il contatto visivo con
 uno sconosciuto.</p>
-        <p> Il tema è affrontato attraverso
+        <p lang="it"> Il tema è affrontato attraverso
 un espediente narrativo inaspettato: una cornice
 fittizia in stile giallo poliziesco, in cui l’utente è
 chiamato a “indagare” sulle dinamiche sociali.</p>
-        <p>Sviluppato interamente su un’unica landing
+        <p lang="it">Sviluppato interamente su un’unica landing
 page, il sito detta il ritmo del racconto giocando
 con la navigazione. L’interfaccia alterna infatti
 in modo fluido sezioni a scroll verticale
@@ -174,24 +177,27 @@ e orizzontale, creando un’esperienza dinamica
 che accompagna la lettura e trasforma un
 semplice insight quotidiano in un’interazione
 divertente e memorabile.</p>
+        <p lang="en">Born almost as a game, Gestures is a web design project that ironically explores society’s “unwritten rules”: those tacit, universal behaviors, like not knowing where to look in an elevator to avoid eye contact with a stranger.</p>
+        <p lang="en">The theme is approached through an unexpected narrative device: a fictional detective-story frame in which users are called on to “investigate” social dynamics.</p>
+        <p lang="en">Built entirely on a single landing page, the site sets the pace of the story by playing with navigation. The interface smoothly alternates vertical and horizontal scrolling sections, creating a dynamic experience that accompanies the reading and turns a simple everyday insight into a fun, memorable interaction.</p>
     </section>
 
     <section class="project-gallery">
-        <img src="foto copia/Gestures/Screenshot 2026-04-06 alle 21.04.18.png" alt="Dettaglio Fragma 1">
-        <img src="foto copia/Gestures/Screenshot 2026-05-12 alle 17.28.53.png" alt="Dettaglio Fragma 2">
+        <img src="foto copia/Gestures/Screenshot 2026-04-06 alle 21.04.18.png" alt="Gestures – 1">
+        <img src="foto copia/Gestures/Screenshot 2026-05-12 alle 17.28.53.png" alt="Gestures – 2">
     </section>
 
     <section class="project-credits">
         <div class="credit-col">
-            <strong>Progetto</strong>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
             <p>Gestures<br>Web design</p>
 
-            <strong>Anno / Luogo</strong>
-            <p>2026<br>Personal project</p>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
+            <p>2026<br><span lang="it">Progetto personale</span><span lang="en">Personal project</span></p>
         </div>
 
         <div class="credit-col">
-            <strong>Ruolo</strong>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
             <p>
                 Coding <br>
                 User Interface <br>
@@ -209,7 +215,7 @@ divertente e memorabile.</p>
     </section>
 
     <a href="fragma.html" class="next-project">
-        <span>Next Project</span>
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>FRAGMA →</span>
     </a>
 
