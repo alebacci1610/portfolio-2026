@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
     <script src="fx.js" defer></script>
+    <script type="module" src="warp.js"></script>
     <script type="module" src="scene.js"></script>
 </head>
 <body>
@@ -27,7 +28,7 @@
     <section class="stage" aria-label="Apertura">
         <canvas id="scene" aria-hidden="true"></canvas>
         <div class="claim">
-            <h1 class="display" data-swap><span lang="it">Progetto cose che si toccano, si cliccano e ogni tanto si rompono.</span><span lang="en">I design things you can touch, click and occasionally break.</span></h1>
+            <h1 class="display" data-swap data-tilt><span lang="it">Progetto cose che si toccano, si cliccano e ogni tanto si rompono.</span><span lang="en">I design things you can touch, click and occasionally break.</span></h1>
             <p class="label hint" data-scramble><span lang="it">Trascina per ruotare gli oggetti. Clicca per entrare in un progetto.</span><span lang="en">Drag to rotate the objects. Click one to open a project.</span></p>
         </div>
     </section>
@@ -36,7 +37,7 @@
 
     <main>
         <div class="section-head" id="progetti">
-            <h2 class="display" data-swap><span lang="it">Progetti</span><span lang="en">Projects</span></h2>
+            <h2 class="display" data-swap data-tilt><span lang="it">Progetti</span><span lang="en">Projects</span></h2>
             <div class="filters" role="group" aria-label="Filtra per disciplina">
                 <button type="button" data-filter="all" aria-pressed="true"><span lang="it">Tutti</span><span lang="en">All</span></button>
                 <button type="button" data-filter="Speculative design" aria-pressed="false"><span lang="it">Speculative design</span><span lang="en">Speculative design</span></button>
@@ -46,81 +47,81 @@
             </div>
         </div>
         <div class="works">
-        <a class="work" href="fragma.html" data-type="Speculative design" data-accent="magenta">
-            <div class="frame bend" data-bend><video data-auto src="video/fragma.mp4#t=9" poster="img/fragma/b2-6c6ac0-hero.webp" muted loop playsinline preload="auto" aria-label="Fragma"></video></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>Fragma</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Speculative design</span><span lang="en">Speculative design</span></span>
-                    <p><span lang="it">Una macchina che riscrive le notizie mentre sposti le pedine: un’installazione sul potere delle parole.</span><span lang="en">A machine that rewrites the news as you move the pieces: an installation about the power of words.</span></p>
-                    <span class="label">2025/26, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
-                </div>
+        <a class="work" href="fragma.html" data-type="Speculative design" data-accent="magenta" aria-label="Fragma">
+            <div class="band">
+                <div class="frame bend" data-bend><video data-auto src="video/fragma.mp4#t=9" poster="img/fragma/b2-6c6ac0-hero.webp" muted loop playsinline preload="auto" aria-label="Fragma"></video></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>Fragma</span><span class="display" data-swap aria-hidden="true">Fragma</span><span class="display" data-swap aria-hidden="true">Fragma</span><span class="display" data-swap aria-hidden="true">Fragma</span><span class="display" data-swap aria-hidden="true">Fragma</span><span class="display" data-swap aria-hidden="true">Fragma</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Speculative design</span><span lang="en">Speculative design</span></span>
+                <p><span lang="it">Una macchina che riscrive le notizie mentre sposti le pedine: un’installazione sul potere delle parole.</span><span lang="en">A machine that rewrites the news as you move the pieces: an installation about the power of words.</span></p>
+                <span class="label">2025/26, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
             </div>
         </a>
-        <a class="work" href="sound-morphology.html" data-type="Web design" data-accent="violet">
-            <div class="frame bend" data-bend><video data-auto src="video/sound-morphology.mp4" poster="video/sound-morphology.webp" muted loop playsinline preload="metadata" aria-label="Sound Morphology"></video></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>Sound Morphology</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
-                    <p><span lang="it">Un archivio web immersivo per il DJ GNMR, da esplorare dentro una medusa fatta di particelle.</span><span lang="en">An immersive web archive for DJ GNMR, explored inside a jellyfish made of particles.</span></p>
-                    <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
-                </div>
+        <a class="work" href="sound-morphology.html" data-type="Web design" data-accent="violet" aria-label="Sound Morphology">
+            <div class="band">
+                <div class="frame bend" data-bend><video data-auto src="video/sound-morphology.mp4" poster="video/sound-morphology.webp" muted loop playsinline preload="metadata" aria-label="Sound Morphology"></video></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>Sound Morphology</span><span class="display" data-swap aria-hidden="true">Sound Morphology</span><span class="display" data-swap aria-hidden="true">Sound Morphology</span><span class="display" data-swap aria-hidden="true">Sound Morphology</span><span class="display" data-swap aria-hidden="true">Sound Morphology</span><span class="display" data-swap aria-hidden="true">Sound Morphology</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                <p><span lang="it">Un archivio web immersivo per il DJ GNMR, da esplorare dentro una medusa fatta di particelle.</span><span lang="en">An immersive web archive for DJ GNMR, explored inside a jellyfish made of particles.</span></p>
+                <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
             </div>
         </a>
-        <a class="work" href="futbol.html" data-type="Web design" data-accent="lime">
-            <div class="frame bend" data-bend><video data-auto src="video/futbol.mp4" poster="video/futbol.webp" muted loop playsinline preload="metadata" aria-label="Futbol"></video></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>Futbol</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
-                    <p><span lang="it">Un archivio delle maglie che hanno fatto la storia del calcio, con un quiz per scoprire la tua.</span><span lang="en">An archive of the shirts that made football history, with a quiz to find yours.</span></p>
-                    <span class="label">2026, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
-                </div>
+        <a class="work" href="futbol.html" data-type="Web design" data-accent="lime" aria-label="Futbol">
+            <div class="band">
+                <div class="frame bend" data-bend><video data-auto src="video/futbol.mp4" poster="video/futbol.webp" muted loop playsinline preload="metadata" aria-label="Futbol"></video></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>Futbol</span><span class="display" data-swap aria-hidden="true">Futbol</span><span class="display" data-swap aria-hidden="true">Futbol</span><span class="display" data-swap aria-hidden="true">Futbol</span><span class="display" data-swap aria-hidden="true">Futbol</span><span class="display" data-swap aria-hidden="true">Futbol</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                <p><span lang="it">Un archivio delle maglie che hanno fatto la storia del calcio, con un quiz per scoprire la tua.</span><span lang="en">An archive of the shirts that made football history, with a quiz to find yours.</span></p>
+                <span class="label">2026, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
             </div>
         </a>
-        <a class="work" href="space-debris.html" data-type="Data visualization" data-accent="magenta">
-            <div class="frame bend" data-bend><video data-auto src="video/space-debris.mp4" poster="video/space-debris.webp" muted loop playsinline preload="metadata" aria-label="Space Debris"></video></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>Space Debris</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Data visualization</span><span lang="en">Data visualization</span></span>
-                    <p><span lang="it">Oltre 15.000 detriti in orbita, resi esplorabili per paese, dimensione e altitudine.</span><span lang="en">More than 15,000 pieces of orbital debris, explorable by country, size and altitude.</span></p>
-                    <span class="label">2024, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
-                </div>
+        <a class="work" href="space-debris.html" data-type="Data visualization" data-accent="magenta" aria-label="Space Debris">
+            <div class="band">
+                <div class="frame bend" data-bend><video data-auto src="video/space-debris.mp4" poster="video/space-debris.webp" muted loop playsinline preload="metadata" aria-label="Space Debris"></video></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>Space Debris</span><span class="display" data-swap aria-hidden="true">Space Debris</span><span class="display" data-swap aria-hidden="true">Space Debris</span><span class="display" data-swap aria-hidden="true">Space Debris</span><span class="display" data-swap aria-hidden="true">Space Debris</span><span class="display" data-swap aria-hidden="true">Space Debris</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Data visualization</span><span lang="en">Data visualization</span></span>
+                <p><span lang="it">Oltre 15.000 detriti in orbita, resi esplorabili per paese, dimensione e altitudine.</span><span lang="en">More than 15,000 pieces of orbital debris, explorable by country, size and altitude.</span></p>
+                <span class="label">2024, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
             </div>
         </a>
-        <a class="work" href="esplorami.html" data-type="Service design" data-accent="violet">
-            <div class="frame bend slides" data-bend data-slides><img src="img/esplorami/tokyo-subway-poster-mockup-37bfed.webp" width="1600" height="1200" alt="EsploraMi" class="is-on" loading="lazy" decoding="async"><img src="img/esplorami/mockup-instagram-flyer-70cbfb.webp" width="1300" height="975" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-05-12-alle-17-23-21-7b0d4f.webp" width="1524" height="1458" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-04-10-alle-13-35-55-48cbea.webp" width="1400" height="700" alt="" loading="lazy" decoding="async"></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>EsploraMi</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Service design</span><span lang="en">Service design</span></span>
-                    <p><span lang="it">Un servizio che ti porta nei posti giusti di Milano, all’ora giusta, lontano dalla folla.</span><span lang="en">A service that takes you to the right places in Milan at the right time, away from the crowds.</span></p>
-                    <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
-                </div>
+        <a class="work" href="esplorami.html" data-type="Service design" data-accent="violet" aria-label="EsploraMi">
+            <div class="band">
+                <div class="frame bend slides" data-bend data-slides><img src="img/esplorami/tokyo-subway-poster-mockup-37bfed.webp" width="1600" height="1200" alt="EsploraMi" class="is-on" loading="lazy" decoding="async"><img src="img/esplorami/mockup-instagram-flyer-70cbfb.webp" width="1300" height="975" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-05-12-alle-17-23-21-7b0d4f.webp" width="1524" height="1458" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-04-10-alle-13-35-55-48cbea.webp" width="1400" height="700" alt="" loading="lazy" decoding="async"></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>EsploraMi</span><span class="display" data-swap aria-hidden="true">EsploraMi</span><span class="display" data-swap aria-hidden="true">EsploraMi</span><span class="display" data-swap aria-hidden="true">EsploraMi</span><span class="display" data-swap aria-hidden="true">EsploraMi</span><span class="display" data-swap aria-hidden="true">EsploraMi</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Service design</span><span lang="en">Service design</span></span>
+                <p><span lang="it">Un servizio che ti porta nei posti giusti di Milano, all’ora giusta, lontano dalla folla.</span><span lang="en">A service that takes you to the right places in Milan at the right time, away from the crowds.</span></p>
+                <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
             </div>
         </a>
-        <a class="work" href="gestures.html" data-type="Web design" data-accent="lime">
-            <div class="frame bend slides" data-bend data-slides><img src="img/gestures/mockup-iphone-301cee.webp" width="1600" height="1200" alt="Gestures" class="is-on" loading="lazy" decoding="async"><img src="img/gestures/home-abf15f.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-03-6737cc.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-30-b42a97.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-06-46-c9d24a.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"></div>
-            <div class="work-info">
-                <h3 class="display" data-swap>Gestures</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
-                    <p><span lang="it">Un’indagine ironica sulle regole non scritte della vita sociale, tutta su una landing page.</span><span lang="en">A tongue-in-cheek investigation into the unwritten rules of social life, on a single landing page.</span></p>
-                    <span class="label">2025, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
-                </div>
+        <a class="work" href="gestures.html" data-type="Web design" data-accent="lime" aria-label="Gestures">
+            <div class="band">
+                <div class="frame bend slides" data-bend data-slides><img src="img/gestures/mockup-iphone-301cee.webp" width="1600" height="1200" alt="Gestures" class="is-on" loading="lazy" decoding="async"><img src="img/gestures/home-abf15f.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-03-6737cc.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-30-b42a97.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-06-46-c9d24a.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"></div>
+                <div class="marq"><div class="marq-track"><span class="display" data-swap>Gestures</span><span class="display" data-swap aria-hidden="true">Gestures</span><span class="display" data-swap aria-hidden="true">Gestures</span><span class="display" data-swap aria-hidden="true">Gestures</span><span class="display" data-swap aria-hidden="true">Gestures</span><span class="display" data-swap aria-hidden="true">Gestures</span></div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                <p><span lang="it">Un’indagine ironica sulle regole non scritte della vita sociale, tutta su una landing page.</span><span lang="en">A tongue-in-cheek investigation into the unwritten rules of social life, on a single landing page.</span></p>
+                <span class="label">2025, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
             </div>
         </a>
         </div>
 
         <section class="field info" id="info" data-accent="lime">
-            <h2 class="display" data-swap>Info</h2>
-            <div class="bio">
+            <h2 class="display" data-swap data-tilt>Info</h2>
+            <div class="bio" data-tilt>
                 <p><span lang="it">Sono Alessandro, ho 22 anni, vengo da Riccione e studio Design della Comunicazione al Politecnico di Milano. Lavoro dove il fisico incontra il digitale: progetto l’idea, poi la costruisco, in codice o con le mani.</span><span lang="en">I’m Alessandro, I’m 22, I come from Riccione and I study Communication Design at Politecnico di Milano. I work where physical meets digital: I design the idea, then I build it, in code or by hand.</span></p>
                 <p><span lang="it">Sono solo un romagnolo a cui piace <i>spataccare</i>: metterci le mani, smontare, provare.</span><span lang="en">I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, take things apart and try.</span></p>
             </div>
-            <div class="side">
+            <div class="side" data-tilt>
                 <img src="img/about/img-2347-ef4049.webp" width="600" height="800" alt="Ritratto di Alessandro Bacci" loading="lazy" decoding="async">
                 <address>
                     <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br>

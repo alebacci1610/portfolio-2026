@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
     <script src="fx.js" defer></script>
+    <script type="module" src="warp.js"></script>
 </head>
 <body data-accent="magenta">
     <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
@@ -24,70 +25,66 @@
     </header>
 
     <main id="contenuto">
-    <div class="hero">
-        <div class="frame bend" data-bend><video data-auto src="video/fragma.mp4#t=9" poster="img/fragma/b2-6c6ac0-hero.webp" muted loop playsinline preload="auto" aria-label="Fragma"></video></div>
-    </div>
+    <header>
+        <div class="hero">
+            <div class="frame bend" data-bend><video data-auto src="video/fragma.mp4#t=9" poster="img/fragma/b2-6c6ac0-hero.webp" muted loop playsinline preload="auto" aria-label="Fragma"></video></div>
+        </div>
+        <div class="field hero-title">
+            <div class="stack label" data-tilt>
+                <span data-scramble><span lang="it">Speculative design</span><span lang="en">Speculative design</span></span>
+                <span data-scramble>2025/26</span>
+                <span data-scramble><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
+            </div>
+            <h1 class="display" data-swap data-tilt>Fragma</h1>
+        </div>
+    </header>
 
-    <div class="title-block">
-        <div class="stack label">
-            <span data-scramble><span lang="it">Speculative design</span><span lang="en">Speculative design</span></span>
-            <span data-scramble>2025/26</span>
-            <span data-scramble><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
-        </div>
-        <h1 class="display" data-swap>Fragma</h1>
-        <p class="pitch"><span lang="it">Una macchina che riscrive le notizie mentre sposti le pedine: un’installazione sul potere delle parole.</span><span lang="en">A machine that rewrites the news as you move the pieces: an installation about the power of words.</span></p>
-    </div>
+    <section class="intro">
+        <p lang="it" data-tilt>Fragma è un progetto di speculative design che esplora il ruolo del linguaggio all'interno della "Guerra Cognitiva", conflitto contemporaneo in cui il campo di battaglia diventa la mente umana.</p>
+        <p lang="en" data-tilt>Fragma is a speculative design project exploring the role of language in “Cognitive Warfare”, a contemporary conflict in which the battlefield is the human mind.</p>
+        <p lang="it" data-tilt>Immaginato come un'azienda fittizia di ingegneria semantica, il progetto simula la fornitura di "armi linguistiche" a enti e governi per stabilire la propria sovranità narrativa.</p>
+        <p lang="en" data-tilt>Imagined as a fictional semantic engineering company, the project simulates the supply of “linguistic weapons” to institutions and governments seeking to establish their own narrative sovereignty.</p>
+        <p lang="it" data-tilt>Il cuore dell’esperienza è Syntax F-1, un’installazione interattiva tra analogico e digitale. L’utente manovra fisicamente delle pedine su una plancia di controllo per manipolare sei parametri linguistici e, a ogni spostamento, un LLM custom riscrive istantaneamente una notizia proiettata a schermo, alterandone la forma attraverso precisi artifici retorici.</p>
+        <p lang="en" data-tilt>At the heart of the experience is Syntax F-1, an interactive installation that bridges analog and digital. Users physically move pieces across a control board to manipulate six linguistic parameters; with every move, a custom LLM instantly rewrites a news story shown on screen, reshaping it through specific rhetorical devices.</p>
+        <p lang="it" data-tilt>Interagendo con la macchina, l’utente è spinto a riflettere sul peso tangibile delle parole e sul loro impatto nella diffusione delle notizie. Fragma svela come il modo in cui gli eventi vengono raccontati permetta di distorcere la realtà a proprio piacimento, mettendo l’osservatore di fronte alla vulnerabilità del proprio senso critico.</p>
+        <p lang="en" data-tilt>By interacting with the machine, users are led to reflect on the tangible weight of words and their impact on how news spreads. Fragma reveals how the way events are told can bend reality at will, confronting viewers with the vulnerability of their own critical thinking.</p>
+    </section>
 
-    <dl class="field facts">
-            <div><dt>Team</dt><dd><ul><li>Allen Jonathan Marco</li><li>Micucci Mattia</li><li>Salvi Alessandro</li><li>Schiavi Carlotta</li><li>Villa Eleonora</li></ul></dd></div>
-            <div><dt><span lang="it">Il mio ruolo</span><span lang="en">My role</span></dt><dd><ul><li class="me"><span lang="it">Prototipazione</span><span lang="en">Prototyping</span></li><li class="me"><span lang="it">Coding</span><span lang="en">Coding</span></li><li class="me"><span lang="it">Interazione</span><span lang="en">Interaction</span></li></ul></dd></div>
-            <div><dt><span lang="it">Contesto</span><span lang="en">Context</span></dt><dd><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span><br>2025/26</dd></div>
-            <div><dt><span lang="it">Sito del progetto</span><span lang="en">Project website</span></dt><dd><a href="https://alebacci1610.github.io/FRAGMA/" target="_blank" rel="noopener">alebacci1610.github.io/FRAGMA ↗</a></dd></div>
-    </dl>
-
-    <div class="story">
-        <div class="story-text">
-            <h2><span lang="it">Il tema</span><span lang="en">The theme</span></h2>
-            <p lang="it">Fragma è un progetto di speculative design che esplora il ruolo del linguaggio all'interno della "Guerra Cognitiva", conflitto contemporaneo in cui il campo di battaglia diventa la mente umana.</p>
-            <p lang="en">Fragma is a speculative design project exploring the role of language in “Cognitive Warfare”, a contemporary conflict in which the battlefield is the human mind.</p>
-        </div>
-        <div class="media-wide"><figure><div class="bend" data-bend><img src="img/fragma/b6-e15129.webp" width="2000" height="1410" alt="Fragma" loading="lazy" decoding="async"></div></figure></div>
-        <div class="story-text">
-            <h2><span lang="it">Il concept</span><span lang="en">The concept</span></h2>
-            <p lang="it">Immaginato come un'azienda fittizia di ingegneria semantica, il progetto simula la fornitura di "armi linguistiche" a enti e governi per stabilire la propria sovranità narrativa.</p>
-            <p lang="en">Imagined as a fictional semantic engineering company, the project simulates the supply of “linguistic weapons” to institutions and governments seeking to establish their own narrative sovereignty.</p>
-        </div>
-        <div class="media-wide"><figure><div class="bend" data-bend><img src="img/fragma/frg2-8d3150.webp" width="2000" height="1125" alt="Fragma" loading="lazy" decoding="async"></div><figcaption><span lang="it">Ogni pedina controlla un parametro linguistico.</span><span lang="en">Each piece controls one linguistic parameter.</span></figcaption></figure></div>
-        <div class="story-text">
-            <h2><span lang="it">L’installazione</span><span lang="en">The installation</span></h2>
-            <p lang="it">Il cuore dell’esperienza è Syntax F-1, un’installazione interattiva tra analogico e digitale. L’utente manovra fisicamente delle pedine su una plancia di controllo per manipolare sei parametri linguistici e, a ogni spostamento, un LLM custom riscrive istantaneamente una notizia proiettata a schermo, alterandone la forma attraverso precisi artifici retorici.</p>
-            <p lang="en">At the heart of the experience is Syntax F-1, an interactive installation that bridges analog and digital. Users physically move pieces across a control board to manipulate six linguistic parameters; with every move, a custom LLM instantly rewrites a news story shown on screen, reshaping it through specific rhetorical devices.</p>
-        </div>
+    <section class="gallery">
+        <figure><div class="bend" data-bend><img src="img/fragma/b6-e15129.webp" width="2000" height="1410" alt="Fragma" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="bend" data-bend><img src="img/fragma/frg2-8d3150.webp" width="2000" height="1125" alt="Fragma" loading="lazy" decoding="async"></div><figcaption><span lang="it">Ogni pedina controlla un parametro linguistico.</span><span lang="en">Each piece controls one linguistic parameter.</span></figcaption></figure>
         <div class="media-pair"><figure><div class="bend" data-bend><img src="img/fragma/b5-b74744.webp" width="912" height="1300" alt="Fragma" loading="lazy" decoding="async"></div></figure><figure><div class="bend" data-bend><img src="img/fragma/b3-9d743e.webp" width="971" height="1300" alt="Fragma" loading="lazy" decoding="async"></div></figure></div>
-        <div class="story-text">
-            <h2><span lang="it">Perché conta</span><span lang="en">Why it matters</span></h2>
-            <p lang="it">Interagendo con la macchina, l’utente è spinto a riflettere sul peso tangibile delle parole e sul loro impatto nella diffusione delle notizie. Fragma svela come il modo in cui gli eventi vengono raccontati permetta di distorcere la realtà a proprio piacimento, mettendo l’osservatore di fronte alla vulnerabilità del proprio senso critico.</p>
-            <p lang="en">By interacting with the machine, users are led to reflect on the tangible weight of words and their impact on how news spreads. Fragma reveals how the way events are told can bend reality at will, confronting viewers with the vulnerability of their own critical thinking.</p>
-        </div>
-        <div class="media-wide"><figure><div class="bend" data-bend><img src="img/fragma/macchina-in-studio-8427ea.webp" width="2000" height="1125" alt="Fragma" loading="lazy" decoding="async"></div></figure></div>
-        <div class="media-wide"><figure><div class="bend" data-bend><img src="img/fragma/whatsapp-image-2026-02-03-at-13-08-54-9fd04b.webp" width="2000" height="1500" alt="Fragma" loading="lazy" decoding="async"></div><figcaption><span lang="it">Syntax F-1 in uso.</span><span lang="en">Syntax F-1 in use.</span></figcaption></figure></div>
-        <div class="media-wide"><figure><div class="bend" data-bend><img src="img/fragma/poster-1-dd987a.webp" width="2000" height="1500" alt="Fragma" loading="lazy" decoding="async"></div></figure></div>
-    </div>
-
-    <div class="chapter-head">
-        <h2 class="display" data-swap><span lang="it">Dietro le quinte</span><span lang="en">Behind the scenes</span></h2>
-        <p><span lang="it">Ricerca, schizzi e prototipi: come ci siamo arrivati.</span><span lang="en">Research, sketches and prototypes: how we got there.</span></p>
-    </div>
-    <div class="process">
+        <figure><div class="bend" data-bend><img src="img/fragma/macchina-in-studio-8427ea.webp" width="2000" height="1125" alt="Fragma" loading="lazy" decoding="async"></div></figure>
+        <figure><div class="bend" data-bend><img src="img/fragma/whatsapp-image-2026-02-03-at-13-08-54-9fd04b.webp" width="2000" height="1500" alt="Fragma" loading="lazy" decoding="async"></div><figcaption><span lang="it">Syntax F-1 in uso.</span><span lang="en">Syntax F-1 in use.</span></figcaption></figure>
+        <figure><div class="bend" data-bend><img src="img/fragma/poster-1-dd987a.webp" width="2000" height="1500" alt="Fragma" loading="lazy" decoding="async"></div></figure>
         <figure><div class="bend" data-bend><img src="img/fragma/whatsapp-image-2026-01-31-at-15-25-51-709ef0.webp" width="1050" height="1400" alt="Fragma, processo" loading="lazy" decoding="async"></div><figcaption><span lang="it">Il primo prototipo della plancia, tra legno, cavi e sensori.</span><span lang="en">The first prototype of the board: wood, wires and sensors.</span></figcaption></figure>
         <figure><div class="bend" data-bend><img src="img/fragma/1-conflitto-linguistico-1-3ea9b5.webp" width="1041" height="1400" alt="Fragma, processo" loading="lazy" decoding="async"></div><figcaption><span lang="it">Ricerca: i livelli del conflitto cognitivo.</span><span lang="en">Research: the levels of cognitive warfare.</span></figcaption></figure>
         <figure><div class="bend" data-bend><img src="img/fragma/1-conflitto-linguistico-4-c92ccc.webp" width="1400" height="1271" alt="Fragma, processo" loading="lazy" decoding="async"></div><figcaption><span lang="it">Lo schema del sistema AI che guida l’installazione.</span><span lang="en">A breakdown of the AI system behind the installation.</span></figcaption></figure>
-    </div>
+    </section>
+
+    <section class="field credits">
+        <div data-tilt>
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
+            <p>Fragma<br><span lang="it">Speculative design</span><span lang="en">Speculative design</span></p>
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
+            <p>2025/26<br><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></p>
+        </div>
+        <div data-tilt>
+            <strong>Team</strong>
+            <ul><li>Allen Jonathan Marco</li><li>Micucci Mattia</li><li>Salvi Alessandro</li><li>Schiavi Carlotta</li><li>Villa Eleonora</li></ul>
+        </div>
+        <div data-tilt>
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
+            <ul><li class="me"><span lang="it">Prototipazione</span><span lang="en">Prototyping</span></li><li class="me"><span lang="it">Coding</span><span lang="en">Coding</span></li><li class="me"><span lang="it">Interazione</span><span lang="en">Interaction</span></li></ul>
+            <strong><span lang="it">Sito del progetto</span><span lang="en">Project website</span></strong>
+            <p><a href="https://alebacci1610.github.io/FRAGMA/" target="_blank" rel="noopener">alebacci1610.github.io/FRAGMA ↗</a></p>
+        </div>
+    </section>
     </main>
 
     <a class="field next" href="sound-morphology.html" data-accent="violet">
         <span class="label" data-scramble><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
-        <strong class="display" data-swap>Sound Morphology</strong>
+        <strong class="display" data-swap data-tilt>Sound Morphology</strong>
     </a>
     <footer class="foot">
         <span>Alessandro Bacci, 2026</span>
