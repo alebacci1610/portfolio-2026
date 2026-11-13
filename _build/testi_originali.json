@@ -1,0 +1,153 @@
+{
+ "fragma": {
+  "hero": "foto copia/Fragma/fragma- foto ale salvi/b2.png",
+  "it": [
+   "Fragma è un progetto di speculative design che esplora il ruolo del linguaggio all'interno della \"Guerra Cognitiva\", conflitto contemporaneo in cui il campo di battaglia diventa la mente umana.",
+   "Immaginato come un'azienda fittizia di ingegneria semantica, il progetto simula la fornitura di \"armi linguistiche\" a enti e governi per stabilire la propria sovranità narrativa.",
+   "Il cuore dell’esperienza è Syntax F-1 un’installazione interattiva analogicodigitale. L’utente manovra fisicamente delle pedine su una plancia di controllo per manipolare sei parametri linguistici e ad ogni spostamento, un LLM custom riscrive istantaneamente una notizia proiettata a schermo, alterandone la forma attraverso precisi artifici retorici.",
+   "Interagendo con la macchina, l’utente è spinto a riflettere sul peso tangibile delle parole e sul loro impatto nella diffusione delle notizie. Fragma svela come il modo in cui gli eventi vengono raccontati permetta di distorcere la realtà a proprio piacimento, mettendo l’osservatore di fronte alla vulnerabilità del proprio senso critico."
+  ],
+  "en": [
+   "Fragma is a speculative design project exploring the role of language in “Cognitive Warfare”, a contemporary conflict in which the battlefield is the human mind.",
+   "Imagined as a fictional semantic engineering company, the project simulates the supply of “linguistic weapons” to institutions and governments seeking to establish their own narrative sovereignty.",
+   "At the heart of the experience is Syntax F-1, an interactive installation that bridges analog and digital. Users physically move pieces across a control board to manipulate six linguistic parameters; with every move, a custom LLM instantly rewrites a news story shown on screen, reshaping it through specific rhetorical devices.",
+   "By interacting with the machine, users are led to reflect on the tangible weight of words and their impact on how news spreads. Fragma reveals how the way events are told can bend reality at will, confronting viewers with the vulnerability of their own critical thinking."
+  ],
+  "gallery": [
+   "foto copia/Fragma/fragma- foto ale salvi/b4.png",
+   "foto copia/Fragma/fragma- foto ale salvi/b1.png",
+   "foto copia/Fragma/fragma- foto ale salvi/b6.png",
+   "foto copia/Fragma/fragma- foto ale salvi/b13.png",
+   "foto copia/Fragma/fragma- foto ale salvi/b14.png",
+   "foto copia/Fragma/fragma- foto ale salvi/b12.png",
+   "VIDEO:foto copia/Fragma/fragma.mp4"
+  ],
+  "credits": "| | | Progetto | | Project | | | Fragma | Speculative Design | | | Anno / Luogo | | Year / Place | | | 2025/2026 | Politecnico di Milano | | | | Team | | Allen Jonathan Marco | Micucci Mattia | Salvi Alessandro | Schiavi Carlotta | Villa Eleonora | | | | | Ruolo | | Role | | | | Prototipazione | | Prototyping | | Coding | | Interazione | | Interaction | | | | | Link | | | FRAGMA WEBSITE | | |",
+  "link": [
+   "https://alebacci1610.github.io/FRAGMA/",
+   "FRAGMA WEBSITE"
+  ],
+  "hero_extra": ""
+ },
+ "sound-morphology": {
+  "hero": "foto copia/Medusound/hor.png",
+  "it": [
+   "Sound Morphology è un’esperienza web sperimentale che risponde alla sfida di creare uno spazio digitale per l’identità di un artista, costruendo un archivio intimo e immersivo a 360 gradi per GNMR (Gianmaria Coccoluto), DJ e producer romano.",
+   "Si tratta di un viaggio dentro ad un ecosistema che mappa l’intera costellazione della sua vita: dalla discografia alle tappe dei tour, fino alle radici della sua ispirazione, intrecciando legami personali e reference visive dal mondo del cinema e dei videogiochi.",
+   "L’utente può scendere in profondità in modo analitico, filtrando un menù testuale fino all’unità minima del ricordo, oppure abbandonarsi a un’esplorazione visiva e spaziale attraverso la rappresentazione di una medusa composta da migliaia di particelle luminose.",
+   "Simbolo vitale per l’artista, la medusa funge sia da ambiente immersivo che da reale mappa di navigazione. Interagendo con essa, l’esperienza utente diventa l’eco visiva della musica di GNMR: un’onda morbida, fluida e carica di energia."
+  ],
+  "en": [
+   "Sound Morphology is an experimental web experience that takes on the challenge of creating a digital space for an artist’s identity, building an intimate, immersive 360° archive for GNMR (Gianmaria Coccoluto), a DJ and producer from Rome.",
+   "It is a journey through an ecosystem that maps the whole constellation of his life: from his discography and tour stops to the roots of his inspiration, weaving together personal connections and visual references from film and video games.",
+   "Users can dig deep analytically, filtering a text menu down to the smallest unit of memory, or let themselves drift through a visual, spatial exploration of a jellyfish made of thousands of glowing particles.",
+   "A vital symbol for the artist, the jellyfish works both as an immersive environment and as an actual navigation map. Through it, the user experience becomes the visual echo of GNMR’s music: a soft, fluid wave, charged with energy."
+  ],
+  "gallery": [
+   "foto copia/Medusound/medusahome.png",
+   "foto copia/Medusound/eraserhead.png",
+   "foto copia/Medusound/ricordi.png"
+  ],
+  "credits": "| | | Progetto | | Project | | | Sound Morphology | Web Design | | | Anno / Luogo | | Year / Place | | | 2025 | Politecnico di Milano | | | | Team | | Allen Jonathan Marco | De Sensi Aurora | Micucci Mattia | Salvi Alessandro | Villa Eleonora | | | | | Ruolo | | Role | | | Coding | User Interface | UX | | | | Link | | | SOUND MORPHOLOGY WEBSITE EXPERIENCE | | |",
+  "link": [
+   "https://wddc-cintaincoccodrillo.webflow.io",
+   "SOUND MORPHOLOGY WEBSITE EXPERIENCE"
+  ],
+  "hero_extra": ""
+ },
+ "futbol": {
+  "hero": "foto copia/Futbol/Screenshot 2026-04-09 alle 12.12.39.png",
+  "it": [
+   "Nato da un profondo legame personale con la cultura calcistica, Futbol è un progetto di web design che celebra le maglie più significative della storia di questo sport.",
+   "L’archivio digitale è stato concepito per raccontare come questi capi trascendano la loro funzione puramente atletica, trasformandosi in veri e propri artefatti culturali carichi di memoria, identità e valore emotivo.",
+   "Sviluppato come un accurato esercizio di stile, il sito unisce rigore estetico e navigazione fluida. L’esplorazione si apre su una homepage strutturata a griglia con infinite scroll, studiata per massimizzare l’impatto visivo e guidare l’utente verso schede tecniche ricche di dettagli.",
+   "L’esperienza culmina in una sezione interattiva “tailor-made”: un percorso dinamico che fa scoprire all’utente quale, tra i pezzi storici dell’archivio, rappresenta al meglio la sua anima calcistica e il suo stile personale."
+  ],
+  "en": [
+   "Born from a deep personal bond with football culture, Futbol is a web design project celebrating the most significant shirts in the history of the sport.",
+   "The digital archive was conceived to show how these garments go beyond their purely athletic function, becoming true cultural artifacts loaded with memory, identity and emotional value.",
+   "Developed as a careful exercise in style, the site combines aesthetic rigor with fluid navigation. Exploration opens on an infinite-scroll grid homepage, designed to maximize visual impact and lead users to richly detailed shirt pages.",
+   "The experience culminates in an interactive, “tailor-made” section: a dynamic path that reveals which of the archive’s historic pieces best represents the user’s football soul and personal style."
+  ],
+  "gallery": [
+   "foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.51.png",
+   "foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.40.png",
+   "foto copia/Futbol/Screenshot 2026-04-09 alle 11.53.19.png",
+   "foto copia/Futbol/Screenshot 2026-05-12 alle 17.04.26.png"
+  ],
+  "credits": "| | | Progetto | | Project | | | Futbol | Web Design | | | Anno / Luogo | | Year / Place | | | 2026 | | Progetto personale | | Personal project | | | | | | Ruolo | | Role | | | Coding | User Interface | Photo editing | | | | Link | | | FUTBOL WEBSITE | | |",
+  "link": [
+   "https://alebacci1610.github.io/futbol/",
+   "FUTBOL WEBSITE"
+  ],
+  "hero_extra": ""
+ },
+ "space-debris": {
+  "hero": "foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.09.png",
+  "it": [
+   "Space Debris è un progetto di data visualization interattiva che porta alla luce il silenzioso ma allarmante accumulo di rifiuti nell’orbita terrestre. Elaborando un massiccio dataset di oltre 15.000 record, il progetto mappa l’origine, la tipologia (dai frammenti di razzi ai satelliti inattivi) e il volume dei detriti.",
+   "Questo enorme flusso di dati prende forma all’interno di un’interfaccia web esplorativa, caratterizzata da un’estetica illustrativa in bianco e nero dal forte impatto grafico.",
+   "Attraverso una navigazione dinamica, l’utente può interagire direttamente con i dati, filtrandoli per nazione, dimensione e altitudine. Scorrendo la linea del tempo interattiva, il progetto denuncia visivamente l’inesorabile aumento dei rifiuti spaziali e le precise responsabilità geopolitiche, trasformando numeri complessi in una presa di coscienza tangibile."
+  ],
+  "en": [
+   "Space Debris is an interactive data visualization project that brings to light the silent yet alarming build-up of waste in Earth’s orbit. Processing a dataset of more than 15,000 records, the project maps the origin, type (from rocket fragments to inactive satellites) and volume of the debris.",
+   "This huge flow of data takes shape in an exploratory web interface with a bold, black-and-white illustrative style.",
+   "Through dynamic navigation, users can interact directly with the data, filtering it by country, size and altitude. Scrolling along the interactive timeline, the project visually exposes the relentless growth of space debris and the precise geopolitical responsibilities behind it, turning complex numbers into tangible awareness."
+  ],
+  "gallery": [
+   "foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.20.08.png",
+   "foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.51.png",
+   "foto copia/Space Debrys/Screenshot 2026-05-12 alle 17.14.40.png"
+  ],
+  "credits": "| | | Progetto | | Project | | | Space Debris | Infographic | | | Anno / Luogo | | Year / Place | | | 2024 | Politecnico di Milano | | | | Team | | Frigeni Lara | Leonardi Jacopo | Raimondo Sofia | Villa Eleonora | Zanchetta Francesco | | | | | Ruolo | | Role | | | | Costruzione del dataset | | Dataset building | | User Interface | Coding | | | | Link | | | SPACE DEBRIS INFOGRAPHIC | | |",
+  "link": [
+   "https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/",
+   "SPACE DEBRIS INFOGRAPHIC"
+  ],
+  "hero_extra": ""
+ },
+ "esplorami": {
+  "hero": "foto copia/EsploraMI/Tokyo Subway Poster Mockup.jpg",
+  "it": [
+   "EsploraMi affronta il problema dell’overtourism e del disorientamento che molti viaggiatori provano di fronte a itinerari standardizzati. Il servizio accompagna l’utente a 360 gradi, dalla pianificazione fino al post-viaggio.",
+   "Tutto inizia con un’accurata profilazione dei gusti del turista, che permette al sistema di generare un calendario interattivo e una mappa con proposte su misura.",
+   "L’innovazione chiave è l’ottimizzazione temporale: integrando dati sui flussi urbani (grazie allo studio con IGPDecaux), EsploraMi suggerisce gli orari migliori per evitare la congestione. Il risultato è un’esperienza più autentica per il viaggiatore e un turismo più sostenibile per la città."
+  ],
+  "en": [
+   "EsploraMi tackles overtourism and the disorientation many travelers feel when faced with standardized itineraries. The service supports users end to end, from planning to the post-trip.",
+   "It all starts with a careful profiling of the traveler’s tastes, which lets the system generate an interactive calendar and a map of tailored suggestions.",
+   "Its key innovation is time optimization: by integrating urban flow data (thanks to the study with IGPDecaux), EsploraMi suggests the best times to avoid crowds. The result is a more authentic experience for travelers and more sustainable tourism for the city."
+  ],
+  "gallery": [
+   "foto copia/EsploraMI/mockup instagram flyer.png",
+   "foto copia/EsploraMI/Screenshot 2026-04-10 alle 13.29.55.png",
+   "foto copia/EsploraMI/Screenshot 2026-05-12 alle 17.23.21.png"
+  ],
+  "credits": "| | | Progetto | | Project | | | EsploraMi | Service Design | | | Anno / Luogo | | Year / Place | | | 2025 | Politecnico di Milano | | | | Team | | Frigeni Lara | Guerra Matteo | Marrone Lorenzo | Villa Eleonora | | | | | Ruolo | | Role | | | Coding | User Interface | UX | |",
+  "link": null,
+  "hero_extra": ""
+ },
+ "gestures": {
+  "hero": "foto copia/Gestures/mockup iphone.jpg",
+  "it": [
+   "Nato quasi per gioco, Gestures è un progetto di web design che esplora con ironia le “leggi non scritte” della società: quei comportamenti taciti e universali, come il non sapere dove guardare in ascensore per evitare il contatto visivo con uno sconosciuto.",
+   "Il tema è affrontato attraverso un espediente narrativo inaspettato: una cornice fittizia in stile giallo poliziesco, in cui l’utente è chiamato a “indagare” sulle dinamiche sociali.",
+   "Sviluppato interamente su un’unica landing page, il sito detta il ritmo del racconto giocando con la navigazione. L’interfaccia alterna infatti in modo fluido sezioni a scroll verticale e orizzontale, creando un’esperienza dinamica che accompagna la lettura e trasforma un semplice insight quotidiano in un’interazione divertente e memorabile."
+  ],
+  "en": [
+   "Born almost as a game, Gestures is a web design project that ironically explores society’s “unwritten rules”: those tacit, universal behaviors, like not knowing where to look in an elevator to avoid eye contact with a stranger.",
+   "The theme is approached through an unexpected narrative device: a fictional detective-story frame in which users are called on to “investigate” social dynamics.",
+   "Built entirely on a single landing page, the site sets the pace of the story by playing with navigation. The interface smoothly alternates vertical and horizontal scrolling sections, creating a dynamic experience that accompanies the reading and turns a simple everyday insight into a fun, memorable interaction."
+  ],
+  "gallery": [
+   "foto copia/Gestures/Screenshot 2026-04-06 alle 21.04.18.png",
+   "foto copia/Gestures/Screenshot 2026-05-12 alle 17.28.53.png"
+  ],
+  "credits": "| | | Progetto | | Project | | | Gestures | Web design | | | Anno / Luogo | | Year / Place | | | 2025 | | Progetto personale | | Personal project | | | | | | Ruolo | | Role | | | Coding | User Interface | Photo editing | | | | Link | | | GESTURES WEBSITE | | |",
+  "link": [
+   "https://gestures.webflow.io",
+   "GESTURES WEBSITE"
+  ],
+  "hero_extra": ""
+ }
+}

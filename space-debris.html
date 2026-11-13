@@ -3,239 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragma | Alessandro Bacci</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Space Debris, Alessandro Bacci</title>
+    <meta name="description" content="Oltre 15.000 detriti in orbita, resi esplorabili per paese, dimensione e altitudine.">
+    <meta name="theme-color" content="#2f5e4f">
+    <link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem var(--padding-page);
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
-            mix-blend-mode: difference;
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        nav a:hover { opacity: 0.6; }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
-        .project-hero {
-            width: 100%;
-            height: 100vh; /* 100% dell'altezza dello schermo */
-            overflow: hidden;
-        }
-
-        .project-hero img, 
-        .project-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
-            display: block;
-        }
-
-        /* --- 2. INTRODUZIONE (Testo grande) --- */
-        .project-intro {
-            padding: 15vh var(--padding-page);
-            max-width: 85%; /* Lascia un po' di respiro a destra */
-        }
-
-        .project-intro p {
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-        }
-
-        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
-        .project-gallery {
-            padding: 0 var(--padding-page);
-            display: flex;
-            flex-direction: column;
-            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
-            margin-bottom: 15vh;
-        }
-
-        .project-gallery img, 
-        .project-gallery video {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
-       taglio delle foto in caso di proporzioni leggermente diverse */
-        object-fit: cover; 
-        }
-
-        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
-        .project-credits {
-            padding: 5vh var(--padding-page) 15vh;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
-            gap: 2rem;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10vh;
-        }
-
-        .credit-col {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .credit-col strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .credit-col p {
-            margin-bottom: 2rem;
-        }
-
-        /* --- FOOTER (Link al progetto successivo) --- */
-        .next-project {
-            padding: 10vh var(--padding-page);
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(2rem, 4vw, 4rem);
-            transition: background-color 0.3s;
-        }
-
-        .next-project:hover {
-            background-color: #333333;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
-            .project-gallery { gap: 5vh; }
-            .project-credits {
-                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
-                gap: 3rem;
-            }
-        }
-    </style>
+    <script src="table.js" defer></script>
 </head>
-<body>
+<body class="project">
+    <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
 
-    <nav>
-        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
-        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
-    </nav>
-
-    <header class="project-hero">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.09.png" alt="Space Debris">
+    <header class="mat band" id="banco">
+        <div class="topbar">
+            <a href="index.html"><span lang="it">← Torna al tavolo</span><span lang="en">← Back to the table</span></a>
+            <div class="right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
+        </div>
+        <div class="print print--hero" data-drag data-mx="0.94" data-my="0.3" data-r="-2.5">
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-09-5f5fa2-hero.webp" width="1800" height="998" alt="Space Debris" style="view-transition-name: hero">
+        </div>
+        <div class="band-title">
+            <h1>Space Debris</h1>
+            <p><span lang="it">Data visualization</span><span lang="en">Data visualization</span>, 2024</p>
+        </div>
     </header>
 
-    <section class="project-intro">
-        <p lang="it">Space Debris è un progetto di data
-visualization interattiva che porta
-alla luce il silenzioso ma allarmante
-accumulo di rifiuti nell’orbita terrestre.
-Elaborando un massiccio dataset
-di oltre 15.000 record, il progetto
-mappa l’origine, la tipologia (dai
-frammenti di razzi ai satelliti inattivi) e
-il volume dei detriti.</p>
-        <p lang="it">Questo enorme
-flusso di dati prende forma all’interno
-di un’interfaccia web esplorativa,
-caratterizzata da un’estetica illustrativa in
-bianco e nero dal forte impatto grafico.</p>
-        <p lang="it">Attraverso una navigazione dinamica,
-l’utente può interagire direttamente con
-i dati, filtrandoli per nazione, dimensione
-e altitudine. Scorrendo la linea del
-tempo interattiva, il progetto denuncia
-visivamente l’inesorabile aumento dei
-rifiuti spaziali e le precise responsabilità
-geopolitiche, trasformando numeri
-complessi in una presa
-di coscienza tangibile.</p>
-        <p lang="en">Space Debris is an interactive data visualization project that brings to light the silent yet alarming build-up of waste in Earth’s orbit. Processing a dataset of more than 15,000 records, the project maps the origin, type (from rocket fragments to inactive satellites) and volume of the debris.</p>
-        <p lang="en">This huge flow of data takes shape in an exploratory web interface with a bold, black-and-white illustrative style.</p>
-        <p lang="en">Through dynamic navigation, users can interact directly with the data, filtering it by country, size and altitude. Scrolling along the interactive timeline, the project visually exposes the relentless growth of space debris and the precise geopolitical responsibilities behind it, turning complex numbers into tangible awareness.</p>
-    </section>
+    <main class="sheet" id="contenuto">
+        <p class="pitch"><span lang="it">Oltre 15.000 detriti in orbita, resi esplorabili per paese, dimensione e altitudine.</span><span lang="en">More than 15,000 pieces of orbital debris, explorable by country, size and altitude.</span></p>
 
-    <section class="project-gallery">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.20.08.png" alt="Space Debris – 1">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.51.png" alt="Space Debris – 2">
-        <img src="foto copia/Space Debrys/Screenshot 2026-05-12 alle 17.14.40.png" alt="Space Debris – 3">
-    </section>
-
-    <section class="project-credits">
-        <div class="credit-col">
-            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
-            <p>Space Debris<br>Infographic</p>
-
-            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
-            <p>2024<br>Politecnico di Milano</p>
+        <div class="brief">
+            <dl class="facts">
+                <div><dt><span lang="it">Tipo</span><span lang="en">Type</span></dt><dd><span lang="it">Data visualization</span><span lang="en">Data visualization</span></dd></div>
+                <div><dt><span lang="it">Anno</span><span lang="en">Year</span></dt><dd>2024</dd></div>
+                <div><dt><span lang="it">Contesto</span><span lang="en">Context</span></dt><dd><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></dd></div>
+                <div><dt>Team</dt><dd><ul><li>Frigeni Lara</li><li>Leonardi Jacopo</li><li>Raimondo Sofia</li><li>Villa Eleonora</li><li>Zanchetta Francesco</li></ul></dd></div>
+                <div><dt><span lang="it">Il mio ruolo</span><span lang="en">My role</span></dt><dd><ul><li class="me"><span lang="it">Costruzione del dataset</span><span lang="en">Dataset building</span></li><li class="me"><span lang="it">User interface</span><span lang="en">User interface</span></li><li class="me"><span lang="it">Coding</span><span lang="en">Coding</span></li></ul></dd></div>
+                <div><dt>Link</dt><dd><a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener">lcg-infodesign.github.io</a></dd></div>
+            </dl>
+            <div class="story">
+            <section>
+                <h2><span lang="it">Il tema</span><span lang="en">The topic</span></h2>
+                <p lang="it">Space Debris è un progetto di data visualization interattiva che porta alla luce il silenzioso ma allarmante accumulo di rifiuti nell’orbita terrestre. Elaborando un massiccio dataset di oltre 15.000 record, il progetto mappa l’origine, la tipologia (dai frammenti di razzi ai satelliti inattivi) e il volume dei detriti.</p>
+                <p lang="en">Space Debris is an interactive data visualization project that brings to light the silent yet alarming build-up of waste in Earth’s orbit. Processing a dataset of more than 15,000 records, the project maps the origin, type (from rocket fragments to inactive satellites) and volume of the debris.</p>
+            </section>
+            <section>
+                <h2><span lang="it">Il linguaggio visivo</span><span lang="en">Visual language</span></h2>
+                <p lang="it">Questo enorme flusso di dati prende forma all’interno di un’interfaccia web esplorativa, caratterizzata da un’estetica illustrativa in bianco e nero dal forte impatto grafico.</p>
+                <p lang="en">This huge flow of data takes shape in an exploratory web interface with a bold, black-and-white illustrative style.</p>
+            </section>
+            <section>
+                <h2><span lang="it">L’interazione</span><span lang="en">Interaction</span></h2>
+                <p lang="it">Attraverso una navigazione dinamica, l’utente può interagire direttamente con i dati, filtrandoli per nazione, dimensione e altitudine. Scorrendo la linea del tempo interattiva, il progetto denuncia visivamente l’inesorabile aumento dei rifiuti spaziali e le precise responsabilità geopolitiche, trasformando numeri complessi in una presa di coscienza tangibile.</p>
+                <p lang="en">Through dynamic navigation, users can interact directly with the data, filtering it by country, size and altitude. Scrolling along the interactive timeline, the project visually exposes the relentless growth of space debris and the precise geopolitical responsibilities behind it, turning complex numbers into tangible awareness.</p>
+            </section>
+            </div>
         </div>
 
-        <div class="credit-col">
-            <strong>Team</strong>
-            <p>
-                Frigeni Lara <br>
-                Leonardi Jacopo <br>
-                Raimondo Sofia <br>
-                Villa Eleonora <br>
-                Zanchetta Francesco
-            </p>
+    <section class="chapter" aria-labelledby="h-process">
+        <h2 id="h-process"><span lang="it">Dietro le quinte</span><span lang="en">Behind the scenes</span></h2>
+        <p class="lead"><span lang="it">Ricerca, schizzi e prototipi: come ci siamo arrivati.</span><span lang="en">Research, sketches and prototypes: how we got there.</span></p>
+        <div class="process">
+        <figure>
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-23-36-84b7d6.webp" width="1400" height="863" alt="Space Debris, processo" loading="lazy" decoding="async">
+            <figcaption><span lang="it">Il dataset in lavorazione.</span><span lang="en">Working on the dataset.</span></figcaption>
+        </figure>
         </div>
-
-        <div class="credit-col">
-            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
-            <p>
-                <span lang="it">Costruzione del dataset</span><span lang="en">Dataset building</span> <br>
-                User Interface <br>
-                Coding 
-            </p>
+    </section>
+    <section class="chapter" aria-labelledby="h-result">
+        <h2 id="h-result"><span lang="it">Il risultato</span><span lang="en">The result</span></h2>
+        <div class="gallery">
+        <figure>
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-20-08-f5a928.webp" width="2000" height="1108" alt="Space Debris" loading="lazy" decoding="async">
+            <figcaption><span lang="it">La timeline mostra la crescita dei detriti anno dopo anno.</span><span lang="en">The timeline shows the debris growing year after year.</span></figcaption>
+        </figure>
+        <figure>
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-51-a2e047.webp" width="2000" height="1108" alt="Space Debris" loading="lazy" decoding="async">
+        </figure>
+        <div class="row-pair">
+            <figure>
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-27-0eb3d6.webp" width="1300" height="721" alt="Space Debris" loading="lazy" decoding="async">
+        </figure>
+            <figure>
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-45-e3a69c.webp" width="1300" height="804" alt="Space Debris" loading="lazy" decoding="async">
+        </figure>
         </div>
-         <div class="credit-col">
-    <strong>Link</strong>
-    <p>
-        <a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            SPACE DEBRIS INFOGRAPHIC
-        </a>
-    </p>
-</div>
+        <figure>
+            <img src="img/space-debris/screenshot-2026-04-08-alle-22-49-38-7ff4f6.webp" width="2000" height="1111" alt="Space Debris" loading="lazy" decoding="async">
+        </figure>
+        </div>
     </section>
 
-    <a href="esplorami.html" class="next-project">
-        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
-        <span>EsploraMi →</span>
+    <div class="visit">
+        <a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener"><span lang="it">Visita il sito del progetto ↗</span><span lang="en">Visit the project website ↗</span></a>
+        <span>lcg-infodesign.github.io</span>
+    </div>
+    </main>
+
+    <a class="mat next" href="esplorami.html">
+        <span class="print" style="left: auto; right: max(28px, 10vw); top: 64px;">
+            <img src="img/esplorami/tokyo-subway-poster-mockup-37bfed-card.webp" width="900" height="675" alt="" loading="lazy" decoding="async">
+        </span>
+        <span class="band-title">
+            <p><span lang="it">Prossimo sul tavolo</span><span lang="en">Next on the table</span></p>
+            <h2>EsploraMi</h2>
+        </span>
     </a>
+    <footer class="footer-line">
+        <span>Alessandro Bacci</span>
+        <span><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a></span>
+        <span><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></span>
+    </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var band = document.getElementById('banco');
+        var board = new Tavolo.Board(band, { key: 'space-debris' });
+        if (board.restore() !== true) board.setMode('messy', false);
+        [band, document.querySelector('.next')].forEach(Tavolo.drawRulers);
+        var t;
+        window.addEventListener('resize', function () {
+            clearTimeout(t);
+            t = setTimeout(function () { board.refit(); [band, document.querySelector('.next')].forEach(Tavolo.drawRulers); }, 150);
+        });
+    });
+    </script>
 </body>
 </html>

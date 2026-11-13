@@ -3,221 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragma | Alessandro Bacci</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Gestures, Alessandro Bacci</title>
+    <meta name="description" content="Un’indagine ironica sulle regole non scritte della vita sociale, tutta su una landing page.">
+    <meta name="theme-color" content="#2f5e4f">
+    <link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem var(--padding-page);
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
-            mix-blend-mode: difference;
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        nav a:hover { opacity: 0.6; }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
-        .project-hero {
-            width: 100%;
-            height: 100vh; /* 100% dell'altezza dello schermo */
-            overflow: hidden;
-        }
-
-        .project-hero img, 
-        .project-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
-            display: block;
-        }
-
-        /* --- 2. INTRODUZIONE (Testo grande) --- */
-        .project-intro {
-            padding: 15vh var(--padding-page);
-            max-width: 85%; /* Lascia un po' di respiro a destra */
-        }
-
-        .project-intro p {
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-        }
-
-        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
-        .project-gallery {
-            padding: 0 var(--padding-page);
-            display: flex;
-            flex-direction: column;
-            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
-            margin-bottom: 15vh;
-        }
-
-        .project-gallery img, 
-        .project-gallery video {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
-       taglio delle foto in caso di proporzioni leggermente diverse */
-        object-fit: cover; 
-        }
-
-        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
-        .project-credits {
-            padding: 5vh var(--padding-page) 15vh;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
-            gap: 2rem;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10vh;
-        }
-
-        .credit-col {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .credit-col strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .credit-col p {
-            margin-bottom: 2rem;
-        }
-
-        /* --- FOOTER (Link al progetto successivo) --- */
-        .next-project {
-            padding: 10vh var(--padding-page);
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(2rem, 4vw, 4rem);
-            transition: background-color 0.3s;
-        }
-
-        .next-project:hover {
-            background-color: #333333;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
-            .project-gallery { gap: 5vh; }
-            .project-credits {
-                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
-                gap: 3rem;
-            }
-        }
-    </style>
+    <script src="table.js" defer></script>
 </head>
-<body>
+<body class="project">
+    <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
 
-    <nav>
-        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
-        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
-    </nav>
-
-    <header class="project-hero">
-        <img src="foto copia/Gestures/mockup iphone.jpg" alt="Gestures">
+    <header class="mat band" id="banco">
+        <div class="topbar">
+            <a href="index.html"><span lang="it">← Torna al tavolo</span><span lang="en">← Back to the table</span></a>
+            <div class="right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
+        </div>
+        <div class="print print--hero" data-drag data-mx="0.94" data-my="0.3" data-r="-2.5">
+            <img src="img/gestures/mockup-iphone-301cee-hero.webp" width="1800" height="1350" alt="Gestures" style="view-transition-name: hero">
+        </div>
+        <div class="band-title">
+            <h1>Gestures</h1>
+            <p><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</p>
+        </div>
     </header>
 
-    <section class="project-intro">
-        <p lang="it">Nato quasi per gioco, Gestures è un progetto di
-web design che esplora con ironia le “leggi non
-scritte” della società: quei comportamenti taciti
-e universali, come il non sapere dove guardare
-in ascensore per evitare il contatto visivo con
-uno sconosciuto.</p>
-        <p lang="it"> Il tema è affrontato attraverso
-un espediente narrativo inaspettato: una cornice
-fittizia in stile giallo poliziesco, in cui l’utente è
-chiamato a “indagare” sulle dinamiche sociali.</p>
-        <p lang="it">Sviluppato interamente su un’unica landing
-page, il sito detta il ritmo del racconto giocando
-con la navigazione. L’interfaccia alterna infatti
-in modo fluido sezioni a scroll verticale
-e orizzontale, creando un’esperienza dinamica
-che accompagna la lettura e trasforma un
-semplice insight quotidiano in un’interazione
-divertente e memorabile.</p>
-        <p lang="en">Born almost as a game, Gestures is a web design project that ironically explores society’s “unwritten rules”: those tacit, universal behaviors, like not knowing where to look in an elevator to avoid eye contact with a stranger.</p>
-        <p lang="en">The theme is approached through an unexpected narrative device: a fictional detective-story frame in which users are called on to “investigate” social dynamics.</p>
-        <p lang="en">Built entirely on a single landing page, the site sets the pace of the story by playing with navigation. The interface smoothly alternates vertical and horizontal scrolling sections, creating a dynamic experience that accompanies the reading and turns a simple everyday insight into a fun, memorable interaction.</p>
-    </section>
+    <main class="sheet" id="contenuto">
+        <p class="pitch"><span lang="it">Un’indagine ironica sulle regole non scritte della vita sociale, tutta su una landing page.</span><span lang="en">A tongue-in-cheek investigation into the unwritten rules of social life, on a single landing page.</span></p>
 
-    <section class="project-gallery">
-        <img src="foto copia/Gestures/Screenshot 2026-04-06 alle 21.04.18.png" alt="Gestures – 1">
-        <img src="foto copia/Gestures/Screenshot 2026-05-12 alle 17.28.53.png" alt="Gestures – 2">
-    </section>
-
-    <section class="project-credits">
-        <div class="credit-col">
-            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
-            <p>Gestures<br>Web design</p>
-
-            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
-            <p>2025<br><span lang="it">Progetto personale</span><span lang="en">Personal project</span></p>
+        <div class="brief">
+            <dl class="facts">
+                <div><dt><span lang="it">Tipo</span><span lang="en">Type</span></dt><dd><span lang="it">Web design</span><span lang="en">Web design</span></dd></div>
+                <div><dt><span lang="it">Anno</span><span lang="en">Year</span></dt><dd>2025</dd></div>
+                <div><dt><span lang="it">Contesto</span><span lang="en">Context</span></dt><dd><span lang="it">Progetto personale</span><span lang="en">Personal project</span></dd></div>
+                <div><dt><span lang="it">Il mio ruolo</span><span lang="en">My role</span></dt><dd><ul><li class="me"><span lang="it">Coding</span><span lang="en">Coding</span></li><li class="me"><span lang="it">User interface</span><span lang="en">User interface</span></li><li class="me"><span lang="it">Fotoritocco</span><span lang="en">Photo editing</span></li></ul></dd></div>
+                <div><dt>Link</dt><dd><a href="https://gestures.webflow.io" target="_blank" rel="noopener">gestures.webflow.io</a></dd></div>
+            </dl>
+            <div class="story">
+            <section>
+                <h2><span lang="it">Il tema</span><span lang="en">The topic</span></h2>
+                <p lang="it">Nato quasi per gioco, Gestures è un progetto di web design che esplora con ironia le “leggi non scritte” della società: quei comportamenti taciti e universali, come il non sapere dove guardare in ascensore per evitare il contatto visivo con uno sconosciuto.</p>
+                <p lang="en">Born almost as a game, Gestures is a web design project that ironically explores society’s “unwritten rules”: those tacit, universal behaviors, like not knowing where to look in an elevator to avoid eye contact with a stranger.</p>
+            </section>
+            <section>
+                <h2><span lang="it">Il racconto</span><span lang="en">The story</span></h2>
+                <p lang="it">Il tema è affrontato attraverso un espediente narrativo inaspettato: una cornice fittizia in stile giallo poliziesco, in cui l’utente è chiamato a “indagare” sulle dinamiche sociali.</p>
+                <p lang="en">The theme is approached through an unexpected narrative device: a fictional detective-story frame in which users are called on to “investigate” social dynamics.</p>
+            </section>
+            <section>
+                <h2><span lang="it">La navigazione</span><span lang="en">Navigation</span></h2>
+                <p lang="it">Sviluppato interamente su un’unica landing page, il sito detta il ritmo del racconto giocando con la navigazione. L’interfaccia alterna infatti in modo fluido sezioni a scroll verticale e orizzontale, creando un’esperienza dinamica che accompagna la lettura e trasforma un semplice insight quotidiano in un’interazione divertente e memorabile.</p>
+                <p lang="en">Built entirely on a single landing page, the site sets the pace of the story by playing with navigation. The interface smoothly alternates vertical and horizontal scrolling sections, creating a dynamic experience that accompanies the reading and turns a simple everyday insight into a fun, memorable interaction.</p>
+            </section>
+            </div>
         </div>
 
-        <div class="credit-col">
-            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
-            <p>
-                Coding <br>
-                User Interface <br>
-                Photo editing
-            </p>
+    <section class="chapter" aria-labelledby="h-process">
+        <h2 id="h-process"><span lang="it">Dietro le quinte</span><span lang="en">Behind the scenes</span></h2>
+        <p class="lead"><span lang="it">Ricerca, schizzi e prototipi: come ci sono arrivato.</span><span lang="en">Research, sketches and prototypes: how I got there.</span></p>
+        <div class="process">
+        <figure>
+            <img src="img/gestures/screenshot-2026-04-06-alle-21-08-27-50b628.webp" width="1400" height="750" alt="Gestures, processo" loading="lazy" decoding="async">
+            <figcaption><span lang="it">La costruzione in Webflow.</span><span lang="en">Building it in Webflow.</span></figcaption>
+        </figure>
         </div>
-        <div class="credit-col">
-    <strong>Link</strong>
-    <p>
-        <a href="https://gestures.webflow.io" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            GESTURES WEBSITE
-        </a>
-    </p>
-</div>
+    </section>
+    <section class="chapter" aria-labelledby="h-result">
+        <h2 id="h-result"><span lang="it">Il risultato</span><span lang="en">The result</span></h2>
+        <div class="gallery">
+        <figure>
+            <img src="img/gestures/home-abf15f.webp" width="2000" height="1071" alt="Gestures" loading="lazy" decoding="async">
+        </figure>
+        <figure>
+            <img src="img/gestures/screenshot-2026-04-06-alle-21-05-03-6737cc.webp" width="2000" height="1071" alt="Gestures" loading="lazy" decoding="async">
+        </figure>
+        <div class="row-pair">
+            <figure>
+            <img src="img/gestures/screenshot-2026-04-06-alle-21-05-30-b42a97.webp" width="1300" height="696" alt="Gestures" loading="lazy" decoding="async">
+        </figure>
+            <figure>
+            <img src="img/gestures/screenshot-2026-04-06-alle-21-06-46-c9d24a.webp" width="1300" height="696" alt="Gestures" loading="lazy" decoding="async">
+        </figure>
+        </div>
+        </div>
     </section>
 
-    <a href="fragma.html" class="next-project">
-        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
-        <span>FRAGMA →</span>
+    <div class="visit">
+        <a href="https://gestures.webflow.io" target="_blank" rel="noopener"><span lang="it">Visita il sito del progetto ↗</span><span lang="en">Visit the project website ↗</span></a>
+        <span>gestures.webflow.io</span>
+    </div>
+    </main>
+
+    <a class="mat next" href="fragma.html">
+        <span class="print" style="left: auto; right: max(28px, 10vw); top: 64px;">
+            <img src="img/fragma/b2-6c6ac0-card.webp" width="900" height="634" alt="" loading="lazy" decoding="async">
+        </span>
+        <span class="band-title">
+            <p><span lang="it">Prossimo sul tavolo</span><span lang="en">Next on the table</span></p>
+            <h2>Fragma</h2>
+        </span>
     </a>
+    <footer class="footer-line">
+        <span>Alessandro Bacci</span>
+        <span><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a></span>
+        <span><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></span>
+    </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var band = document.getElementById('banco');
+        var board = new Tavolo.Board(band, { key: 'gestures' });
+        if (board.restore() !== true) board.setMode('messy', false);
+        [band, document.querySelector('.next')].forEach(Tavolo.drawRulers);
+        var t;
+        window.addEventListener('resize', function () {
+            clearTimeout(t);
+            t = setTimeout(function () { board.refit(); [band, document.querySelector('.next')].forEach(Tavolo.drawRulers); }, 150);
+        });
+    });
+    </script>
 </body>
 </html>

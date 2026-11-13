@@ -3,246 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragma | Alessandro Bacci</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Sound Morphology, Alessandro Bacci</title>
+    <meta name="description" content="Un archivio web immersivo per il DJ GNMR, da esplorare dentro una medusa fatta di particelle.">
+    <meta name="theme-color" content="#2f5e4f">
+    <link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem var(--padding-page);
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
-            mix-blend-mode: difference;
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        nav a:hover { opacity: 0.6; }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
-        .project-hero {
-            width: 100%;
-            height: 100vh; /* 100% dell'altezza dello schermo */
-            overflow: hidden;
-        }
-
-        .project-hero img, 
-        .project-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
-            display: block;
-        }
-
-        /* --- 2. INTRODUZIONE (Testo grande) --- */
-        .project-intro {
-            padding: 15vh var(--padding-page);
-            max-width: 85%; /* Lascia un po' di respiro a destra */
-        }
-
-        .project-intro p {
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-        }
-
-        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
-        .project-gallery {
-            padding: 0 var(--padding-page);
-            display: flex;
-            flex-direction: column;
-            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
-            margin-bottom: 15vh;
-        }
-
-        .project-gallery img, 
-        .project-gallery video {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
-       taglio delle foto in caso di proporzioni leggermente diverse */
-        object-fit: cover; 
-        }
-
-        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
-        .project-credits {
-            padding: 5vh var(--padding-page) 15vh;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
-            gap: 2rem;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10vh;
-        }
-
-        .credit-col {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .credit-col strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .credit-col p {
-            margin-bottom: 2rem;
-        }
-
-        /* --- FOOTER (Link al progetto successivo) --- */
-        .next-project {
-            padding: 10vh var(--padding-page);
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(2rem, 4vw, 4rem);
-            transition: background-color 0.3s;
-        }
-
-        .next-project:hover {
-            background-color: #333333;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
-            .project-gallery { gap: 5vh; }
-            .project-credits {
-                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
-                gap: 3rem;
-            }
-        }
-    </style>
+    <script src="table.js" defer></script>
 </head>
-<body>
+<body class="project">
+    <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
 
-    <nav>
-        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
-        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
-    </nav>
-
-    <header class="project-hero">
-        <img src="foto copia/Medusound/hor.png" alt="Sound Morphology">
+    <header class="mat band" id="banco">
+        <div class="topbar">
+            <a href="index.html"><span lang="it">← Torna al tavolo</span><span lang="en">← Back to the table</span></a>
+            <div class="right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
+        </div>
+        <div class="print print--hero" data-drag data-mx="0.94" data-my="0.3" data-r="-2.5">
+            <img src="img/sound-morphology/hor-2c3fd3-hero.webp" width="1800" height="999" alt="Sound Morphology" style="view-transition-name: hero">
+        </div>
+        <div class="band-title">
+            <h1>Sound Morphology</h1>
+            <p><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</p>
+        </div>
     </header>
 
-    <section class="project-intro">
-        <p lang="it">Sound Morphology è un’esperienza web
-sperimentale che risponde alla sfida di
-creare uno spazio digitale per l’identità
-di un artista, costruendo un archivio
-intimo e immersivo a 360 gradi per
-GNMR (Gianmaria Coccoluto), DJ
-e producer romano.</p>
-        <p lang="it">Si tratta di un
-viaggio dentro ad un ecosistema
-che mappa l’intera costellazione
-della sua vita: dalla discografia alle
-tappe dei tour, fino alle radici della
-sua ispirazione, intrecciando legami
-personali e reference visive dal mondo
-del cinema e dei videogiochi.</p>
-        <p lang="it">L’utente
-può scendere in profondità in modo
-analitico, filtrando un menù testuale
-fino all’unità minima del ricordo, oppure
-abbandonarsi a un’esplorazione visiva e
-spaziale attraverso la rappresentazione
-di una medusa composta da migliaia
-di particelle luminose.</p>
-        <p lang="it">Simbolo vitale
-per l’artista, la medusa funge sia da
-ambiente immersivo che da reale
-mappa di navigazione. Interagendo con
-essa, l’esperienza utente diventa l’eco
-visiva della musica di GNMR: un’onda
-morbida, fluida e carica di energia.</p>
-        <p lang="en">Sound Morphology is an experimental web experience that takes on the challenge of creating a digital space for an artist’s identity, building an intimate, immersive 360° archive for GNMR (Gianmaria Coccoluto), a DJ and producer from Rome.</p>
-        <p lang="en">It is a journey through an ecosystem that maps the whole constellation of his life: from his discography and tour stops to the roots of his inspiration, weaving together personal connections and visual references from film and video games.</p>
-        <p lang="en">Users can dig deep analytically, filtering a text menu down to the smallest unit of memory, or let themselves drift through a visual, spatial exploration of a jellyfish made of thousands of glowing particles.</p>
-        <p lang="en">A vital symbol for the artist, the jellyfish works both as an immersive environment and as an actual navigation map. Through it, the user experience becomes the visual echo of GNMR’s music: a soft, fluid wave, charged with energy.</p>
-    </section>
+    <main class="sheet" id="contenuto">
+        <p class="pitch"><span lang="it">Un archivio web immersivo per il DJ GNMR, da esplorare dentro una medusa fatta di particelle.</span><span lang="en">An immersive web archive for DJ GNMR, explored inside a jellyfish made of particles.</span></p>
 
-    <section class="project-gallery">
-        <img src="foto copia/Medusound/medusahome.png" alt="Sound Morphology – 1">
-        <img src="foto copia/Medusound/eraserhead.png" alt="Sound Morphology – 2">
-        <img src="foto copia/Medusound/ricordi.png" alt="Sound Morphology – 3">
-    </section>
-
-    <section class="project-credits">
-        <div class="credit-col">
-            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
-            <p>Sound Morphology<br>Web Design</p>
-
-            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
-            <p>2025<br>Politecnico di Milano</p>
+        <div class="brief">
+            <dl class="facts">
+                <div><dt><span lang="it">Tipo</span><span lang="en">Type</span></dt><dd><span lang="it">Web design</span><span lang="en">Web design</span></dd></div>
+                <div><dt><span lang="it">Anno</span><span lang="en">Year</span></dt><dd>2025</dd></div>
+                <div><dt><span lang="it">Contesto</span><span lang="en">Context</span></dt><dd><span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></dd></div>
+                <div><dt>Team</dt><dd><ul><li>Allen Jonathan Marco</li><li>De Sensi Aurora</li><li>Micucci Mattia</li><li>Salvi Alessandro</li><li>Villa Eleonora</li></ul></dd></div>
+                <div><dt><span lang="it">Il mio ruolo</span><span lang="en">My role</span></dt><dd><ul><li class="me"><span lang="it">Coding</span><span lang="en">Coding</span></li><li class="me"><span lang="it">User interface</span><span lang="en">User interface</span></li><li class="me"><span lang="it">UX</span><span lang="en">UX</span></li></ul></dd></div>
+                <div><dt>Link</dt><dd><a href="https://wddc-cintaincoccodrillo.webflow.io" target="_blank" rel="noopener">wddc-cintaincoccodrillo.webflow.io</a></dd></div>
+            </dl>
+            <div class="story">
+            <section>
+                <h2><span lang="it">La sfida</span><span lang="en">The challenge</span></h2>
+                <p lang="it">Sound Morphology è un’esperienza web sperimentale che risponde alla sfida di creare uno spazio digitale per l’identità di un artista, costruendo un archivio intimo e immersivo a 360 gradi per GNMR (Gianmaria Coccoluto), DJ e producer romano.</p>
+                <p lang="en">Sound Morphology is an experimental web experience that takes on the challenge of creating a digital space for an artist’s identity, building an intimate, immersive 360° archive for GNMR (Gianmaria Coccoluto), a DJ and producer from Rome.</p>
+            </section>
+            <section>
+                <h2><span lang="it">Il contenuto</span><span lang="en">The content</span></h2>
+                <p lang="it">Si tratta di un viaggio dentro ad un ecosistema che mappa l’intera costellazione della sua vita: dalla discografia alle tappe dei tour, fino alle radici della sua ispirazione, intrecciando legami personali e reference visive dal mondo del cinema e dei videogiochi.</p>
+                <p lang="en">It is a journey through an ecosystem that maps the whole constellation of his life: from his discography and tour stops to the roots of his inspiration, weaving together personal connections and visual references from film and video games.</p>
+            </section>
+            <section>
+                <h2><span lang="it">Due modi di esplorare</span><span lang="en">Two ways to explore</span></h2>
+                <p lang="it">L’utente può scendere in profondità in modo analitico, filtrando un menù testuale fino all’unità minima del ricordo, oppure abbandonarsi a un’esplorazione visiva e spaziale attraverso la rappresentazione di una medusa composta da migliaia di particelle luminose.</p>
+                <p lang="en">Users can dig deep analytically, filtering a text menu down to the smallest unit of memory, or let themselves drift through a visual, spatial exploration of a jellyfish made of thousands of glowing particles.</p>
+            </section>
+            <section>
+                <h2><span lang="it">La medusa</span><span lang="en">The jellyfish</span></h2>
+                <p lang="it">Simbolo vitale per l’artista, la medusa funge sia da ambiente immersivo che da reale mappa di navigazione. Interagendo con essa, l’esperienza utente diventa l’eco visiva della musica di GNMR: un’onda morbida, fluida e carica di energia.</p>
+                <p lang="en">A vital symbol for the artist, the jellyfish works both as an immersive environment and as an actual navigation map. Through it, the user experience becomes the visual echo of GNMR’s music: a soft, fluid wave, charged with energy.</p>
+            </section>
+            </div>
         </div>
 
-        <div class="credit-col">
-            <strong>Team</strong>
-            <p>
-                Allen Jonathan Marco <br>
-                De Sensi Aurora <br>
-                Micucci Mattia <br>
-                Salvi Alessandro <br>
-                Villa Eleonora 
-            </p>
+    <section class="chapter" aria-labelledby="h-process">
+        <h2 id="h-process"><span lang="it">Dietro le quinte</span><span lang="en">Behind the scenes</span></h2>
+        <p class="lead"><span lang="it">Ricerca, schizzi e prototipi: come ci siamo arrivati.</span><span lang="en">Research, sketches and prototypes: how we got there.</span></p>
+        <div class="process">
+        <figure>
+            <img src="img/sound-morphology/screenshot-2026-04-06-alle-21-21-53-0c4653.webp" width="1400" height="866" alt="Sound Morphology, processo" loading="lazy" decoding="async">
+            <figcaption><span lang="it">Sviluppo: il codice accanto all’anteprima del sito.</span><span lang="en">Development: the code next to a live preview of the site.</span></figcaption>
+        </figure>
         </div>
-
-        <div class="credit-col">
-            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
-            <p>
-                Coding <br>
-                User Interface <br>
-                UX 
-            </p>
+    </section>
+    <section class="chapter" aria-labelledby="h-result">
+        <h2 id="h-result"><span lang="it">Il risultato</span><span lang="en">The result</span></h2>
+        <div class="gallery">
+        <figure>
+            <img src="img/sound-morphology/medusahome-11cda4.webp" width="2000" height="1110" alt="Sound Morphology" loading="lazy" decoding="async">
+            <figcaption><span lang="it">La medusa è anche la mappa di navigazione.</span><span lang="en">The jellyfish doubles as the navigation map.</span></figcaption>
+        </figure>
+        <figure>
+            <img src="img/sound-morphology/cinema-4d971a.webp" width="2000" height="1110" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+        <div class="row-pair">
+            <figure>
+            <img src="img/sound-morphology/eraserhead-22d7cf.webp" width="1300" height="721" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+            <figure>
+            <img src="img/sound-morphology/seoul-6a6861.webp" width="1300" height="722" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
         </div>
-        <div class="credit-col">
-    <strong>Link</strong>
-    <p>
-        <a href="https://wddc-cintaincoccodrillo.webflow.io" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            SOUND MORPHOLOGY WEBSITE EXPERIENCE
-        </a>
-    </p>
-</div>
+        <figure>
+            <img src="img/sound-morphology/about-728de4.webp" width="2000" height="1110" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+        <div class="row-pair">
+            <figure>
+            <img src="img/sound-morphology/screenshot-2026-04-08-alle-22-43-01-23aaff.webp" width="656" height="1300" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+            <figure>
+            <img src="img/sound-morphology/screenshot-2026-04-08-alle-22-43-24-4c6ce1.webp" width="656" height="1300" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+        </div>
+        <figure>
+            <img src="img/sound-morphology/hands-iphones-preview-1-e5c82f2363-703abf.webp" width="1800" height="1348" alt="Sound Morphology" loading="lazy" decoding="async">
+        </figure>
+        </div>
     </section>
 
-    <a href="futbol.html" class="next-project">
-        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
-        <span>Futbol →</span>
+    <div class="visit">
+        <a href="https://wddc-cintaincoccodrillo.webflow.io" target="_blank" rel="noopener"><span lang="it">Visita il sito del progetto ↗</span><span lang="en">Visit the project website ↗</span></a>
+        <span>wddc-cintaincoccodrillo.webflow.io</span>
+    </div>
+    </main>
+
+    <a class="mat next" href="futbol.html">
+        <span class="print" style="left: auto; right: max(28px, 10vw); top: 64px;">
+            <img src="img/futbol/screenshot-2026-04-09-alle-12-12-39-75b702-card.webp" width="900" height="500" alt="" loading="lazy" decoding="async">
+        </span>
+        <span class="band-title">
+            <p><span lang="it">Prossimo sul tavolo</span><span lang="en">Next on the table</span></p>
+            <h2>Futbol</h2>
+        </span>
     </a>
+    <footer class="footer-line">
+        <span>Alessandro Bacci</span>
+        <span><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a></span>
+        <span><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></span>
+    </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var band = document.getElementById('banco');
+        var board = new Tavolo.Board(band, { key: 'sound-morphology' });
+        if (board.restore() !== true) board.setMode('messy', false);
+        [band, document.querySelector('.next')].forEach(Tavolo.drawRulers);
+        var t;
+        window.addEventListener('resize', function () {
+            clearTimeout(t);
+            t = setTimeout(function () { board.refit(); [band, document.querySelector('.next')].forEach(Tavolo.drawRulers); }, 150);
+        });
+    });
+    </script>
 </body>
 </html>

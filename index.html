@@ -3,244 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alessandro Bacci | Portfolio</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Alessandro Bacci, portfolio</title>
+    <meta name="description" content="Portfolio di Alessandro Bacci, interaction e communication designer a Milano.">
+    <meta name="theme-color" content="#2f5e4f">
+    <link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 4rem; 
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; transition: opacity 0.3s ease; }
-
-        /* --- 1. SEZIONE HOME --- */
-        .home-layout {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: 1fr auto;
-            min-height: 100vh;
-            padding: var(--padding-page);
-            gap: 2rem;
-        }
-
-        .center-block {
-            grid-column: 1 / 13; 
-            grid-row: 1;
-            align-self: center; 
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            align-items: end; 
-        }
-
-        .bio-text {
-            grid-column: 1 / 5;
-            font-size: clamp(1rem, 1.4vw, 1.4rem);
-            margin-bottom: -0.2em; 
-        }
-
-        .bio-image { grid-column: 5 / 8; }
-        .bio-image img { width: 100%; filter: grayscale(100%); }
-
-        .contacts {
-            grid-column: 1 / 6;
-            grid-row: 2;
-            align-self: end;
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-            font-size: clamp(0.9rem, 1.2vw, 1.2rem);
-        }
-        
-        .contacts a:hover { opacity: 0.5; }
-
-        .quote {
-            grid-column: 7 / 13;
-            grid-row: 2;
-            align-self: end;
-            text-align: right;
-            font-size: clamp(1rem, 1.3vw, 1.3rem);
-            opacity: 0;
-            transform: translateY(15px);
-            animation: fadeSlideUp 1s ease-out 2s forwards;
-        }
-
-        @keyframes fadeSlideUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* --- 2. SEZIONE PROGETTI (Stile List + Hover Image) --- */
-        .indice-layout {
-            min-height: 100vh;
-            padding: 2rem var(--padding-page) var(--padding-page); 
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .indice-title {
-            font-size: clamp(1.2rem, 2vw, 2rem);
-            font-weight: 400;
-            margin-bottom: 2rem; 
-        }
-
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            /* Questo regola lo spazio in verticale tra i titoli */
-            gap: 0.5rem; 
-        }
-
-        .project-item {
-            /* Testo enorme e fluido */
-            font-size: clamp(3rem, 6vw, 6rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--text-color);
-            transition: color 0.3s ease;
-            position: relative;
-            z-index: 10; /* Tiene i testi sopra l'immagine flottante */
-            width: max-content;
-        }
-
-        .project-item:hover {
-            color: #888888; /* Il testo diventa grigio quando ci passi sopra */
-            opacity: 1;
-        }
-
-        /* --- IMMAGINE FLOTTANTE (CURSOR FOLLOW) --- */
-        .cursor-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 450px; /* Grandezza dell'immagine che appare */
-            height: auto;
-            pointer-events: none; /* Fondamentale: impedisce all'immagine di bloccare il mouse */
-            opacity: 0;
-            z-index: 5; /* Sta sotto i testi ma sopra lo sfondo */
-            transform: translate(-50%, -50%); /* Centra l'immagine esattamente sulla punta del mouse */
-            transition: opacity 0.3s ease; /* Anima solo l'apparizione, non il movimento */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .home-layout, .indice-layout { padding: 2rem; }
-            .center-block { grid-template-columns: 1fr; align-items: start; gap: 2rem; }
-            .bio-text, .bio-image { grid-column: 1 / -1; }
-            .bio-image { max-width: 400px; }
-            .contacts, .quote { grid-column: 1 / -1; align-self: start; text-align: left; }
-            .quote { grid-row: 3; margin-top: 2rem; }
-            
-            .project-item { font-size: clamp(2.5rem, 8vw, 3.5rem); white-space: normal; width: 100%;}
-            /* Su mobile disattiviamo l'immagine che segue il cursore (non esiste l'hover touch) */
-            .cursor-image { display: none !important; }
-        }
-    </style>
+    <script src="table.js" defer></script>
 </head>
-<body>
+<body class="home">
+    <a class="skip" href="#progetti"><span lang="it">Vai ai progetti</span><span lang="en">Skip to projects</span></a>
 
-    <div class="lang-switch lang-switch--floating" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
-
-    <section class="home-layout">
-        <div class="center-block">
-            <div class="bio-text">
-                <p lang="it">Sono Alessandro, ho 22 anni, vengo<br>
-                da Riccione e studio Design della<br>
-                Comunicazione al Politecnico di Milano.<br>
-                Sono un designer guidato da<br>
-                una forte curiosità e dalla ricerca<br>
-                del perfetto equilibrio tra materia fisica<br>
-                ed ecosistemi digitali.<br>
-                Unisco creatività, pensiero critico<br>
-                e precisione per sviluppare concept<br>
-                solidi e trasversali. Il mio approccio è<br>
-                pragmatico: amo risolvere problemi<br>
-                complessi e trasformare un'idea in una<br>
-                soluzione d'impatto visivo e funzionale.</p>
-                <p lang="en">I'm Alessandro, I'm 22, I come from<br>
-                Riccione and I study Communication<br>
-                Design at Politecnico di Milano.<br>
-                I'm a designer driven by strong<br>
-                curiosity and by the search for<br>
-                the right balance between physical<br>
-                matter and digital ecosystems.<br>
-                I combine creativity, critical thinking<br>
-                and precision to develop solid,<br>
-                cross-disciplinary concepts. My approach<br>
-                is pragmatic: I love solving complex<br>
-                problems and turning an idea into a<br>
-                solution with visual and functional impact.</p>
-            </div>
-            <div class="bio-image">
-                <img src="foto copia/foto mia/IMG_2347.jpg" alt="Alessandro Bacci">
-            </div>
+    <main class="mat table" id="tavolo">
+        <div class="imprint imprint--name">
+            <h1 class="name">Alessandro Bacci</h1>
+            <p class="role"><span lang="it">Interaction &amp; communication designer, Milano</span><span lang="en">Interaction &amp; communication designer, Milan</span></p>
         </div>
 
-        <div class="contacts">
-            <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a>
-            <a href="tel:+393346700302">+39 3346700302</a>
-            <a href="https://instagram.com/burdeldesignstudio" target="_blank">@burdeldesignstudio</a>
+        <div class="controls">
+            <button type="button" class="tidy-btn" aria-pressed="false"><span class="when-messy"><span lang="it">Metti in ordine</span><span lang="en">Tidy up</span></span><span class="when-tidy" hidden><span lang="it">Spataccia</span><span lang="en">Mess it up</span></span></button>
+            <div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
         </div>
 
-        <div class="quote">
-            <p lang="it">Sono solo un romagnolo a cui piace <i>“spataccare”</i></p>
-            <p lang="en">I'm just a guy from Romagna who likes to <i>“spataccare”</i></p>
-        </div>
-    </section>
+        <p class="imprint imprint--contacts"><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br><a href="tel:+393346700302">+39 334 670 0302</a><br><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></p>
 
-    <section class="indice-layout">
-        <h2 class="indice-title"><span lang="it">Progetti</span><span lang="en">Projects</span></h2>
-        
-        <div class="project-list">
-            <a href="fragma.html" class="project-item" data-img="Fragma.png">Fragma</a>
-            <a href="sound-morphology.html" class="project-item" data-img="sound1.png">Sound Morphology</a>
-            <a href="futbol.html" class="project-item" data-img="futbol1.png">Futbol</a>
-            <a href="space-debris.html" class="project-item" data-img="debris1.png">Space Debris</a>
-            <a href="esplorami.html" class="project-item" data-img="esplora1.png">EsploraMi</a>
-            <a href="gestures.html" class="project-item" data-img="gestures1.jpg">Gestures</a>
+        <div class="imprint imprint--motto">
+            <p><span lang="it">Sono solo un romagnolo a cui piace <i>spataccare</i>.</span><span lang="en">I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, to make a glorious mess.</span></p>
+            <p class="hint"><span lang="it">Trascina le stampe, lanciale, cliccane una per aprirla.</span><span lang="en">Drag the prints, throw them, click one to open it.</span></p>
         </div>
-        
-        <img src="" alt="" id="cursor-image" class="cursor-image">
-    </section>
+
+        <nav id="progetti" aria-label="Progetti">
+        <a class="print print--project" href="fragma.html" data-drag data-kind="project" data-mx="0.33" data-my="0.4" data-r="-5">
+            <img src="img/fragma/b2-6c6ac0-card.webp" width="900" height="634" alt="">
+            <span class="print-label"><span class="print-title">Fragma</span><span class="print-meta"><span lang="it">Speculative design</span><span lang="en">Speculative design</span>, 2025/26</span></span>
+        </a>
+        <a class="print print--project" href="sound-morphology.html" data-drag data-kind="project" data-mx="0.6" data-my="0.22" data-r="4">
+            <img src="img/sound-morphology/hor-2c3fd3-card.webp" width="900" height="499" alt="">
+            <span class="print-label"><span class="print-title">Sound Morphology</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</span></span>
+        </a>
+        <a class="print print--project" href="futbol.html" data-drag data-kind="project" data-mx="0.9" data-my="0.47" data-r="-3">
+            <img src="img/futbol/screenshot-2026-04-09-alle-12-12-39-75b702-card.webp" width="900" height="500" alt="">
+            <span class="print-label"><span class="print-title">Futbol</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2026</span></span>
+        </a>
+        <a class="print print--project" href="space-debris.html" data-drag data-kind="project" data-mx="0.2" data-my="0.96" data-r="6">
+            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-09-5f5fa2-card.webp" width="900" height="499" alt="">
+            <span class="print-label"><span class="print-title">Space Debris</span><span class="print-meta"><span lang="it">Data visualization</span><span lang="en">Data visualization</span>, 2024</span></span>
+        </a>
+        <a class="print print--project" href="esplorami.html" data-drag data-kind="project" data-mx="0.5" data-my="0.8" data-r="-7">
+            <img src="img/esplorami/tokyo-subway-poster-mockup-37bfed-card.webp" width="900" height="675" alt="">
+            <span class="print-label"><span class="print-title">EsploraMi</span><span class="print-meta"><span lang="it">Service design</span><span lang="en">Service design</span>, 2025</span></span>
+        </a>
+        <a class="print print--project" href="gestures.html" data-drag data-kind="project" data-mx="0.76" data-my="0.98" data-r="5">
+            <img src="img/gestures/mockup-iphone-301cee-card.webp" width="900" height="675" alt="">
+            <span class="print-label"><span class="print-title">Gestures</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</span></span>
+        </a>
+        </nav>
+
+        <div class="print print--photo" data-drag data-kind="photo" data-mx="0.985" data-my="0.06" data-r="3">
+            <img src="img/about/img-2347-ef4049.webp" width="600" height="800" alt="Ritratto di Alessandro Bacci">
+            <span class="print-label"><span class="print-title"><span lang="it">Ciao, sono io</span><span lang="en">Hi, that’s me</span></span><span class="print-meta">Riccione, Milano</span></span>
+        </div>
+
+        <div class="print print--note" data-drag data-kind="note" data-mx="0.0" data-my="0.62" data-r="-2">
+            <p lang="it">Sono Alessandro, ho 22 anni, vengo da Riccione e studio Design della Comunicazione al Politecnico di Milano. Sono un designer guidato da una forte curiosità e dalla ricerca del perfetto equilibrio tra materia fisica ed ecosistemi digitali. Unisco creatività, pensiero critico e precisione per sviluppare concept solidi e trasversali. Il mio approccio è pragmatico: amo risolvere problemi complessi e trasformare un’idea in una soluzione d’impatto visivo e funzionale.</p>
+            <p lang="en">I’m Alessandro, I’m 22, I come from Riccione and I study Communication Design at Politecnico di Milano. I’m a designer driven by strong curiosity and by the search for the right balance between physical matter and digital ecosystems. I combine creativity, critical thinking and precision to develop solid, cross-disciplinary concepts. My approach is pragmatic: I love solving complex problems and turning an idea into a solution with visual and functional impact.</p>
+        </div>
+    </main>
 
     <script>
-        const projectItems = document.querySelectorAll('.project-item');
-        const cursorImage = document.getElementById('cursor-image');
+    document.addEventListener('DOMContentLoaded', function () {
+        var mat = document.getElementById('tavolo');
+        var btn = document.querySelector('.tidy-btn');
+        var body = document.body;
+        var mobile = function () { return window.innerWidth < 860; };
+        var snap = function (v, e, g) { return e + Math.round((v - e) / g) * g; };
 
-        projectItems.forEach(item => {
-            // Quando il mouse entra nel testo
-            item.addEventListener('mouseenter', () => {
-                const imgSrc = item.getAttribute('data-img');
-                cursorImage.src = imgSrc; // Cambia la sorgente dell'immagine
-                cursorImage.style.opacity = 1; // La rende visibile
-            });
-            
-            // Quando il mouse esce dal testo
-            item.addEventListener('mouseleave', () => {
-                cursorImage.style.opacity = 0; // La nasconde
-            });
-            
-            // Segue il movimento del mouse finché sei sopra al testo
-            item.addEventListener('mousemove', (e) => {
-                cursorImage.style.left = e.clientX + 'px';
-                cursorImage.style.top = e.clientY + 'px';
-            });
+        // calcola la disposizione ordinata e l'altezza del tavolo
+        function slots(board) {
+            var css = getComputedStyle(document.documentElement);
+            var g = parseFloat(css.getPropertyValue('--grid')), e = parseFloat(css.getPropertyValue('--edge'));
+            var W = mat.clientWidth;
+            var gap = g;
+            var name = document.querySelector('.imprint--name');
+            var y0 = snap(name.offsetTop + name.offsetHeight + 36, e, g);
+            var x0 = snap(e + 8, e, g);
+            var photo = board.items.filter(function (i) { return i.el.dataset.kind === 'photo'; })[0];
+            var note = board.items.filter(function (i) { return i.el.dataset.kind === 'note'; })[0];
+            var projects = board.items.filter(function (i) { return i.el.dataset.kind === 'project'; });
+            var out = new Map(), bottom = 0;
+            if (!mobile()) {
+                out.set(photo, [x0, y0]);
+                out.set(note, [x0, snap(y0 + photo.el.offsetHeight + gap, e, g)]);
+                var gx = snap(x0 + note.el.offsetWidth + g * 3, e, g);
+                var cw = projects[0].el.offsetWidth;
+                var cols = Math.max(1, Math.min(3, Math.floor((W - 28 - gx + gap) / (cw + gap))));
+                var y = y0, rowH = 0;
+                projects.forEach(function (it, i) {
+                    var c = i % cols;
+                    if (c === 0 && i) { y = snap(y + rowH + gap, e, g); rowH = 0; }
+                    out.set(it, [gx + c * (cw + gap), y]);
+                    rowH = Math.max(rowH, it.el.offsetHeight);
+                });
+                bottom = Math.max(y + rowH, out.get(note)[1] + note.el.offsetHeight);
+            } else {
+                // su telefono prima i progetti, poi chi sono
+                var y = y0;
+                var cw = projects[0].el.offsetWidth;
+                var cols = W >= 560 ? 2 : 1, rowH = 0;
+                projects.forEach(function (it, i) {
+                    var c = i % cols;
+                    if (c === 0 && i) { y = snap(y + rowH + gap, e, g); rowH = 0; }
+                    out.set(it, [x0 + c * (cw + gap), y]);
+                    rowH = Math.max(rowH, it.el.offsetHeight);
+                });
+                y = snap(y + rowH + gap * 2, e, g);
+                out.set(photo, [x0, y]); y = snap(y + photo.el.offsetHeight + gap, e, g);
+                out.set(note, [x0, y]);
+                bottom = y + note.el.offsetHeight;
+            }
+            return { map: out, height: bottom + (mobile() ? 170 : 110) };
+        }
+
+        function fitHeight(h) {
+            var scroll = h > window.innerHeight;
+            body.classList.toggle('is-scroll', scroll);
+            mat.style.setProperty('--table-h', Math.max(h, window.innerHeight) + 'px');
+        }
+
+        var board = new Tavolo.Board(mat, {
+            key: 'home',
+            tidy: function (b, sizeOnly) {
+                var s = slots(b);
+                fitHeight(s.height);
+                if (sizeOnly) return;
+                b.items.forEach(function (it) { var p = s.map.get(it); it.x = p[0]; it.y = p[1]; it.r = 0; });
+            },
+            beforeMessy: function (b) { fitHeight(mobile() ? slots(b).height : 0); },
+            onMode: function (mode) {
+                body.classList.toggle('is-tidy', mode === 'tidy');
+                btn.setAttribute('aria-pressed', mode === 'tidy' ? 'true' : 'false');
+                btn.querySelector('.when-messy').hidden = mode === 'tidy';
+                btn.querySelector('.when-tidy').hidden = mode !== 'tidy';
+            }
         });
-    </script>
 
+        btn.addEventListener('click', function () {
+            var next = board.mode === 'tidy' ? 'messy' : 'tidy';
+            body.classList.toggle('is-tidy', next === 'tidy');
+            board.setMode(next, true);
+            Tavolo.drawRulers(mat);
+        });
+
+        try { var saved = JSON.parse(sessionStorage.getItem('tavolo:home') || 'null'); } catch (err) { var saved = null; }
+        body.classList.toggle('is-tidy', saved ? saved.mode === 'tidy' : mobile());
+        var restored = board.restore();
+        if (restored !== true) {
+            board.setMode(typeof restored === 'string' ? restored : (mobile() ? 'tidy' : 'messy'), false);
+            if (!restored) board.drop();
+        }
+        Tavolo.drawRulers(mat);
+
+        var t;
+        window.addEventListener('resize', function () {
+            clearTimeout(t);
+            t = setTimeout(function () { board.refit(); Tavolo.drawRulers(mat); }, 150);
+        });
+        document.fonts && document.fonts.ready.then(function () { board.refit(); Tavolo.drawRulers(mat); });
+    });
+    </script>
 </body>
 </html>

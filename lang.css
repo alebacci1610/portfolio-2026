@@ -10,52 +10,16 @@ html:not([data-lang="en"]) [lang="en"] {
     display: inline-flex;
     align-items: center;
     gap: 0.35em;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
-
 .lang-switch button {
     background: none;
     border: none;
-    padding: 0.25em 0.1em;
     font: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
     color: inherit;
     cursor: pointer;
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
 }
-
-.lang-switch button:hover { opacity: 0.7; }
-.lang-switch button[aria-pressed="true"] { opacity: 1; }
-
-.lang-switch button:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 2px;
-}
-
-.lang-switch .lang-sep { opacity: 0.4; }
-
-/* Versione flottante per la home (che non ha la navbar) */
-.lang-switch--floating {
-    position: fixed;
-    top: 1.5rem;
-    right: 4rem;
-    z-index: 100;
-    mix-blend-mode: difference;
-    color: #ffffff;
-}
-
-@media (max-width: 900px) {
-    .lang-switch--floating { right: 2rem; }
-}
-
-/* Navbar delle pagine progetto: allinea e alleggerisci su mobile */
-nav { align-items: center; }
-nav, .nav-right { white-space: nowrap; }
-
-@media (max-width: 600px) {
-    .nav-right .nav-name { display: none; }
-}
+.lang-switch button:hover { opacity: 0.75; }
+.lang-switch button[aria-pressed="true"] { opacity: 1; font-weight: 700; }
+.lang-switch .lang-sep { opacity: 0.45; }
