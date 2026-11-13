@@ -78,7 +78,8 @@ def head(title, desc, module=False):
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    <script src="fx.js" defer></script>{extra}
+    <script src="fx.js" defer></script>
+    <script type="module" src="warp.js"></script>{extra}
 </head>"""
 
 
@@ -144,15 +145,17 @@ def build_home():
 
     works = []
     for i, p in enumerate(PROJECTS):
-        works.append(f"""        <a class="work" href="{p['slug']}.html" data-type="{E(p['type'][1])}" data-accent="{ACCENT[p['slug']]}">
-            {media(p, lazy=i > 0)}
-            <div class="work-info">
-                <h3 class="display" data-swap>{E(p['title'])}</h3>
-                <div class="work-meta">
-                    <span class="tag" data-scramble>{bi(*p['type'])}</span>
-                    <p>{bi(E(p['pitch'][0]), E(p['pitch'][1]))}</p>
-                    <span class="label">{p['year']}, {bi(*p['context'])}</span>
-                </div>
+        title = E(p['title'])
+        reps = "".join(f'<span class="display" data-swap{"" if k == 0 else " aria-hidden=\"true\""}>{title}</span>' for k in range(6))
+        works.append(f"""        <a class="work" href="{p['slug']}.html" data-type="{E(p['type'][1])}" data-accent="{ACCENT[p['slug']]}" aria-label="{title}">
+            <div class="band">
+                {media(p, lazy=i > 0)}
+                <div class="marq"><div class="marq-track">{reps}</div></div>
+            </div>
+            <div class="work-meta" data-tilt>
+                <span class="tag" data-scramble>{bi(*p['type'])}</span>
+                <p>{bi(E(p['pitch'][0]), E(p['pitch'][1]))}</p>
+                <span class="label">{p['year']}, {bi(*p['context'])}</span>
             </div>
         </a>""")
 
@@ -167,7 +170,7 @@ def build_home():
     <section class="stage" aria-label="{E('Apertura')}">
         <canvas id="scene" aria-hidden="true"></canvas>
         <div class="claim">
-            <h1 class="display" data-swap>{bi(E(CLAIM[0]), E(CLAIM[1]))}</h1>
+            <h1 class="display" data-swap data-tilt>{bi(E(CLAIM[0]), E(CLAIM[1]))}</h1>
             <p class="label hint" data-scramble>{bi('Trascina per ruotare gli oggetti. Clicca per entrare in un progetto.', 'Drag to rotate the objects. Click one to open a project.')}</p>
         </div>
     </section>
@@ -176,7 +179,7 @@ def build_home():
 
     <main>
         <div class="section-head" id="progetti">
-            <h2 class="display" data-swap>{bi('Progetti', 'Projects')}</h2>
+            <h2 class="display" data-swap data-tilt>{bi('Progetti', 'Projects')}</h2>
             <div class="filters" role="group" aria-label="{E('Filtra per disciplina')}">
                 {chr(10).join('                ' + f for f in filters).strip()}
             </div>
@@ -186,12 +189,12 @@ def build_home():
         </div>
 
         <section class="field info" id="info" data-accent="lime">
-            <h2 class="display" data-swap>Info</h2>
-            <div class="bio">
+            <h2 class="display" data-swap data-tilt>Info</h2>
+            <div class="bio" data-tilt>
                 <p>{bi(E(BIO_SHORT[0]), E(BIO_SHORT[1]))}</p>
                 <p>{bi('Sono solo un romagnolo a cui piace <i>spataccare</i>: metterci le mani, smontare, provare.', 'I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, take things apart and try.')}</p>
             </div>
-            <div class="side">
+            <div class="side" data-tilt>
                 {img_tag(ph, pw, phh, 'Ritratto di Alessandro Bacci')}
                 <address>
                     <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br>
@@ -214,7 +217,7 @@ def result_block(p, layout, imgs):
     slug = p["slug"]
     if layout == "wide":
         s, a, b = imgs[0]
-        return f'<div class="media-wide">{figure(slug, s, a, b, p["title"])}</div>'
+        return figure(slug, s, a, b, p["title"])
     if layout == "pair":
         return '<div class="media-pair">' + "".join(figure(slug, s, a, b, p["title"], max_w=1300) for s, a, b in imgs) + "</div>"
     tags = []
@@ -226,46 +229,21 @@ def result_block(p, layout, imgs):
 
 
 def build_project(i):
+    """Stessa impostazione del sito originale: schermo intero, testo grande, galleria, crediti."""
     p = PROJECTS[i]
     nxt = PROJECTS[(i + 1) % len(PROJECTS)]
     slug = p["slug"]
     t = TEXTS[slug]
 
-    rows = []
-    if p["team"]:
-        rows.append(("Team", "<ul>" + "".join(f"<li>{E(n)}</li>" for n in p["team"]) + "</ul>"))
-    rows.append((bi("Il mio ruolo", "My role"), "<ul>" + "".join(f'<li class="me">{bi(a, b)}</li>' for a, b in zip(*p["role"])) + "</ul>"))
-    rows.append((bi("Contesto", "Context"), f'{bi(*p["context"])}<br>{p["year"]}'))
-    if p["link"]:
-        rows.append((bi("Sito del progetto", "Project website"), f'<a href="{E(p["link"][0])}" target="_blank" rel="noopener">{E(p["link"][1])} ↗</a>'))
-    facts = "\n".join(f"            <div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows)
+    intro = "\n".join(f'        <p lang="it" data-tilt>{fix(a)}</p>\n        <p lang="en" data-tilt>{fix(b)}</p>' for a, b in zip(t["it"], t["en"]))
 
-    # racconto: testo e immagini si alternano
-    blocks = [result_block(p, layout, imgs) for layout, imgs in p["result"]]
-    story = []
-    for k, (pit, pen) in enumerate(zip(t["it"], t["en"])):
-        story.append(f"""        <div class="story-text">
-            <h2>{bi(p['headings'][0][k], p['headings'][1][k])}</h2>
-            <p lang="it">{fix(pit)}</p>
-            <p lang="en">{fix(pen)}</p>
-        </div>""")
-        if blocks:
-            story.append("        " + blocks.pop(0))
-    story += ["        " + b for b in blocks]
+    gallery = [result_block(p, layout, imgs) for layout, imgs in p["result"]]
+    gallery += [figure(slug, s, a, b, f"{p['title']}, processo", max_w=2000) for s, a, b in p["process"]]
 
-    process = ""
-    if p["process"]:
-        figs = "\n        ".join(figure(slug, s, a, b, f"{p['title']}, processo", max_w=1400) for s, a, b in p["process"])
-        lead = (bi("Ricerca, schizzi e prototipi: come ci siamo arrivati.", "Research, sketches and prototypes: how we got there.") if p["team"]
-                else bi("Ricerca, schizzi e prototipi: come ci sono arrivato.", "Research, sketches and prototypes: how I got there."))
-        process = f"""
-    <div class="chapter-head">
-        <h2 class="display" data-swap>{bi('Dietro le quinte', 'Behind the scenes')}</h2>
-        <p>{lead}</p>
-    </div>
-    <div class="process">
-        {figs}
-    </div>"""
+    team = ("<strong>Team</strong>\n            <ul>" + "".join(f"<li>{E(n)}</li>" for n in p["team"]) + "</ul>") if p["team"] else \
+        f'<strong>Team</strong>\n            <p>{bi("Progetto individuale", "Solo project")}</p>'
+    link = (f'\n            <strong>{bi("Sito del progetto", "Project website")}</strong>\n            '
+            f'<p><a href="{E(p["link"][0])}" target="_blank" rel="noopener">{E(p["link"][1])} ↗</a></p>') if p["link"] else ""
 
     page = head(f"{p['title']}, Alessandro Bacci", p["pitch"][0]) + f"""
 <body data-accent="{ACCENT[slug]}">
@@ -273,33 +251,48 @@ def build_project(i):
 {bar()}
 
     <main id="contenuto">
-    <div class="hero">
-        {media(p, lazy=False, size=2000)}
-    </div>
-
-    <div class="title-block">
-        <div class="stack label">
-            <span data-scramble>{bi(*p['type'])}</span>
-            <span data-scramble>{p['year']}</span>
-            <span data-scramble>{bi(*p['context'])}</span>
+    <header>
+        <div class="hero">
+            {media(p, lazy=False, size=2000)}
         </div>
-        <h1 class="display" data-swap>{E(p['title'])}</h1>
-        <p class="pitch">{bi(E(p['pitch'][0]), E(p['pitch'][1]))}</p>
-    </div>
+        <div class="field hero-title">
+            <div class="stack label" data-tilt>
+                <span data-scramble>{bi(*p['type'])}</span>
+                <span data-scramble>{p['year']}</span>
+                <span data-scramble>{bi(*p['context'])}</span>
+            </div>
+            <h1 class="display" data-swap data-tilt>{E(p['title'])}</h1>
+        </div>
+    </header>
 
-    <dl class="field facts">
-{facts}
-    </dl>
+    <section class="intro">
+{intro}
+    </section>
 
-    <div class="story">
-{chr(10).join(story)}
-    </div>
-{process}
+    <section class="gallery">
+        {(chr(10) + '        ').join(gallery)}
+    </section>
+
+    <section class="field credits">
+        <div data-tilt>
+            <strong>{bi('Progetto', 'Project')}</strong>
+            <p>{E(p['title'])}<br>{bi(*p['type'])}</p>
+            <strong>{bi('Anno / Luogo', 'Year / Place')}</strong>
+            <p>{p['year']}<br>{bi(*p['context'])}</p>
+        </div>
+        <div data-tilt>
+            {team}
+        </div>
+        <div data-tilt>
+            <strong>{bi('Ruolo', 'Role')}</strong>
+            <ul>{"".join(f'<li class="me">{bi(a, b)}</li>' for a, b in zip(*p["role"]))}</ul>{link}
+        </div>
+    </section>
     </main>
 
     <a class="field next" href="{nxt['slug']}.html" data-accent="{ACCENT[nxt['slug']]}">
         <span class="label" data-scramble>{bi('Progetto successivo', 'Next project')}</span>
-        <strong class="display" data-swap>{E(nxt['title'])}</strong>
+        <strong class="display" data-swap data-tilt>{E(nxt['title'])}</strong>
     </a>
 {foot()}
 </body>

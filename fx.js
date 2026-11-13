@@ -1,6 +1,6 @@
 /*
  * Effetti del sito.
- *  1. [data-bend]      immagini e video che si curvano e si inclinano mentre scorri
+ *  1. [data-bend] [data-tilt]  tutta la pagina si curva mentre scorri (i media in WebGL: warp.js)
  *  2. [data-swap]      lettere dei titoli che cambiano carattere vicino al mouse
  *  3. [data-scramble]  etichette che si rimescolano e si ricompongono
  *  4. video e sequenze di immagini che partono solo quando sono visibili
@@ -25,45 +25,83 @@
     return seen;
   }
 
-  /* ---------- 1. curvatura allo scroll ---------- */
+  /* ---------- 1. tutta la pagina si curva mentre scorri ----------
+     La pagina si comporta come un foglio che resta indietro al centro:
+     spostamento = k * AMP * cos(pi * x / larghezza).
+     - immagini e video: deformati davvero in WebGL da warp.js (su computer)
+     - testi e blocchi [data-tilt]: spostati e ruotati lungo la stessa curva
+     - su telefono, o senza WebGL: i media piegano solo i bordi (ripiego)      */
+  var FX = window.FX = { k: 0, amp: 120, gl: false, reduce: reduce, touch: touch };
+
   function initBend() {
-    var els = $$('[data-bend]');
-    if (!els.length || reduce) return;
-    var visible = watch(els);
-    var lastY = window.scrollY, lastT = performance.now(), vel = 0, k = 0, dirty = false;
+    if (reduce) return;
+    var media = $$('[data-bend]');
+    var blocks = $$('[data-tilt]');
+    var seenMedia = watch(media), seenBlocks = watch(blocks);
+    var lastY = window.scrollY, lastT = performance.now(), vel = 0, dirty = false;
 
     function frame(now) {
-      var dt = Math.max(8, now - lastT);
-      var y = window.scrollY;
-      var v = (y - lastY) / dt;                 // px per millisecondo
+      var dt = Math.max(8, now - lastT), y = window.scrollY;
+      var v = (y - lastY) / dt;                  // px per millisecondo
       lastY = y; lastT = now;
-      vel += (v - vel) * 0.25;
-      var target = Math.max(-1, Math.min(1, vel / 3.2));
-      k += (target - k) * 0.14;
+      vel += (v - vel) * 0.22;
+      var target = Math.max(-1, Math.min(1, vel / 2.6));
+      FX.k += (target - FX.k) * 0.12;
+      var k = FX.k;
 
-      if (Math.abs(k) > 0.004) {
+      if (Math.abs(k) > 0.003) {
         dirty = true;
-        var vw = window.innerWidth;
-        visible.forEach(function (el) {
+        var W = window.innerWidth;
+        seenBlocks.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          var x = (r.left + r.width / 2 - W / 2) / W;                 // da -0.5 a 0.5
+          var dy = k * FX.amp * Math.cos(Math.PI * x);
+          var rot = Math.atan(-k * FX.amp * Math.PI / W * Math.sin(Math.PI * x)) * 180 / Math.PI;
+          el.style.transform = 'translate3d(0,' + dy.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg) perspective(900px) rotateX(' + (-k * 16).toFixed(2) + 'deg) scaleY(' + (1 + Math.abs(k) * 0.12).toFixed(3) + ')';
+        });
+        if (!FX.gl) seenMedia.forEach(function (el) {
           var w = el.offsetWidth, h = el.offsetHeight;
           if (!w || !h) return;
-          var c = k * Math.min(h * 0.11, 70);    // quanto si incurvano i bordi
-          var tE = Math.max(c, 0), tM = Math.max(-c, 0);
-          var bE = h - Math.max(-c, 0), bM = h - Math.max(c, 0);
+          var c = k * Math.min(h * 0.11, 70);
+          var tE = Math.max(c, 0), tM = Math.max(-c, 0), bE = h - Math.max(-c, 0), bM = h - Math.max(c, 0);
           el.style.clipPath = 'path("M0,' + tE.toFixed(1) + ' Q' + (w / 2) + ',' + (2 * tM - tE).toFixed(1) + ' ' + w + ',' + tE.toFixed(1) +
             ' L' + w + ',' + bE.toFixed(1) + ' Q' + (w / 2) + ',' + (2 * bM - bE).toFixed(1) + ' 0,' + bE.toFixed(1) + ' Z")';
-          // chi sta a sinistra si gira da una parte, chi sta a destra dall'altra
-          var r = el.getBoundingClientRect();
-          var side = ((r.left + w / 2) - vw / 2) / (vw / 2);
-          el.style.transform = 'perspective(1400px) rotateX(' + (-k * 9).toFixed(2) + 'deg) rotateY(' + (-side * Math.abs(k) * 10).toFixed(2) + 'deg) scale(' + (1 - Math.abs(k) * 0.035).toFixed(4) + ')';
+          el.style.transform = 'perspective(1400px) rotateX(' + (-k * 9).toFixed(2) + 'deg)';
         });
       } else if (dirty) {
-        dirty = false; k = 0;
-        els.forEach(function (el) { el.style.clipPath = ''; el.style.transform = ''; });
+        dirty = false; FX.k = 0;
+        blocks.forEach(function (el) { el.style.transform = ''; });
+        if (!FX.gl) media.forEach(function (el) { el.style.clipPath = ''; el.style.transform = ''; });
       }
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
+  }
+
+  /* ---------- 1b. titoli giganti che scorrono a nastro ---------- */
+  function initMarquee() {
+    var tracks = $$('.marq-track');
+    if (!tracks.length) return;
+    var seen = watch(tracks.map(function (t) { return t.parentNode; }), '10% 0px');
+    var state = tracks.map(function (t, i) { return { el: t, x: 0, dir: i % 2 ? 1 : -1, unit: 0 }; });
+    function measure() { state.forEach(function (s) { var first = s.el.children[0]; s.unit = first ? first.offsetWidth : 0; }); }
+    measure();
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    if (reduce) return;
+    var last = performance.now();
+    (function tick(now) {
+      var dt = Math.min(50, now - last); last = now;
+      state.forEach(function (s) {
+        if (!seen.has(s.el.parentNode) || !s.unit) return;
+        // velocità di base, più una spinta quando scorri la pagina
+        s.x += s.dir * dt * (0.09 + Math.abs(FX.k) * 1.6) * (FX.k < -0.05 ? -1 : 1);
+        if (s.x <= -s.unit) s.x += s.unit;
+        if (s.x > 0) s.x -= s.unit;
+        s.el.style.transform = 'translate3d(' + s.x.toFixed(1) + 'px,0,0)';
+      });
+      requestAnimationFrame(tick);
+    })(last);
   }
 
   /* ---------- 2. lettere che cambiano carattere ---------- */
@@ -225,6 +263,7 @@
     initSwap();
     initScramble();
     initBend();
+    initMarquee();
     initMedia();
     initFilters();
     initStrips();
