@@ -162,10 +162,13 @@ function start() {
     const hit = new THREE.Mesh(new THREE.SphereGeometry(1.15, 10, 8), new THREE.MeshBasicMaterial({ visible: false }));
     pivot.add(hit);
     scene.add(pivot);
-    return { p, pivot, spin, model, hit, scale: 1, phase: i * 1.7 };
+    const a = i * 2.4 + 0.6;                    // direzione di partenza, diversa per ognuno
+    return { p, pivot, spin, model, hit, scale: 1, phase: i * 1.7, vx: Math.cos(a), vy: Math.sin(a), rs: (i % 2 ? -1 : 1) * (0.12 + i * 0.03), placed: false };
   });
 
   let W = 1, H = 1, unit = 1;
+  const box = { x: 1, top: 1, bottom: -1 };
+  const SPEED = 0.6, GAP = 2.5;                 // unità al secondo, distanza minima tra due modelli
   function layout() {
     W = stage.clientWidth; H = stage.clientHeight;
     renderer.setSize(W, H, false);
@@ -178,10 +181,15 @@ function start() {
     camera.top = H / 2 / unit; camera.bottom = -H / 2 / unit;
     camera.updateProjectionMatrix();
     const cy = (H * (bottom - top)) / 2 / unit;       // centro dell'area utile
+    // confini dentro cui i modelli vagano
+    box.x = Math.max(0.2, W / 2 / unit - 1.25);
+    box.top = H / 2 / unit - (H * top) / unit - 1.1;
+    box.bottom = -H / 2 / unit + (H * bottom) / unit + 1.0;
     items.forEach((it, i) => {
       const c = i % cols, r = Math.floor(i / cols);
       const spreadX = Math.min(W / cols / unit, 4.6);
-      it.pivot.position.set((c - (cols - 1) / 2) * spreadX, cy + ((rows - 1) / 2 - r) * 2.7, 0);
+      if (!it.placed || reduce) it.pivot.position.set((c - (cols - 1) / 2) * spreadX, cy + ((rows - 1) / 2 - r) * 2.7, 0);
+      it.placed = true;
     });
   }
 
@@ -242,6 +250,7 @@ function start() {
   /* ciclo */
   let running = true, visible = true;
   const clock = new THREE.Clock();
+  let last = performance.now();
   function frame() {
     if (!running) return;
     requestAnimationFrame(frame);
@@ -254,8 +263,36 @@ function start() {
       rotX += (0.3 - rotX) * 0.01;                 // torna piano all'inclinazione di partenza
     }
     rotX = Math.max(-1.2, Math.min(1.2, rotX));
+    const now = performance.now();
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    if (!reduce) {
+      // i modelli girano da soli per la pagina: rimbalzano sui bordi e si evitano
+      items.forEach((it) => {
+        if (it === hot) return;                       // quello sotto il mouse si ferma, così lo puoi cliccare
+        const pos = it.pivot.position;
+        pos.x += it.vx * SPEED * dt; pos.y += it.vy * SPEED * dt;
+        if (pos.x > box.x) { pos.x = box.x; it.vx = -Math.abs(it.vx); }
+        if (pos.x < -box.x) { pos.x = -box.x; it.vx = Math.abs(it.vx); }
+        if (pos.y > box.top) { pos.y = box.top; it.vy = -Math.abs(it.vy); }
+        if (pos.y < box.bottom) { pos.y = box.bottom; it.vy = Math.abs(it.vy); }
+      });
+      for (let a = 0; a < items.length; a++) for (let b = a + 1; b < items.length; b++) {
+        const A = items[a], B = items[b];
+        const dx = B.pivot.position.x - A.pivot.position.x, dy = B.pivot.position.y - A.pivot.position.y;
+        const d = Math.hypot(dx, dy) || 0.001;
+        if (d < GAP) {
+          const nx = dx / d, ny = dy / d, push = (GAP - d) * 0.12;
+          A.vx -= nx * push; A.vy -= ny * push; B.vx += nx * push; B.vy += ny * push;
+          const half = (GAP - d) * 0.06;            // e si scostano subito, così non si sovrappongono
+          if (A !== hot) { A.pivot.position.x -= nx * half; A.pivot.position.y -= ny * half; }
+          if (B !== hot) { B.pivot.position.x += nx * half; B.pivot.position.y += ny * half; }
+        }
+      }
+      items.forEach((it) => { const m = Math.hypot(it.vx, it.vy) || 1; it.vx /= m; it.vy /= m; });
+    }
     items.forEach((it) => {
-      it.spin.rotation.set(rotX, rotY + it.phase * 0.08, 0);
+      it.spin.rotation.set(rotX + Math.sin(t * 0.4 + it.phase) * 0.18, rotY + it.phase * 0.08 + t * it.rs, 0);
       const target = it === hot ? 1.22 : 1;
       it.scale += (target - it.scale) * 0.14;
       it.pivot.scale.setScalar(it.scale);
