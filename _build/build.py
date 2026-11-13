@@ -30,6 +30,30 @@ SLIDES = {
                  FC + "Gestures/Screenshot 2026-04-06 alle 21.05.30.png", FC + "Gestures/Screenshot 2026-04-06 alle 21.06.46.png"],
 }
 
+# Pagine progetto: stessa selezione di immagini del sito originale.
+# tipi: photo (tutta larghezza), browser (finestra), small (stretta, al centro), pair (due affiancate),
+#       rec (registrazione del prototipo dentro una finestra, su campo colorato), video (tutta larghezza)
+_F, _M, _U, _S, _X, _G = (FC + "Fragma/fragma- foto ale salvi/", FC + "Medusound/", FC + "Futbol/",
+                          FC + "Space Debrys/", FC + "EsploraMI/", FC + "Gestures/")
+ORIG = {
+    "fragma": (_F + "b2.png", [("photo", _F + "b4.png"), ("photo", _F + "b1.png"), ("photo", _F + "b6.png"),
+                               ("photo", _F + "b13.png"), ("photo", _F + "b14.png"), ("photo", _F + "b12.png"), ("video", "fragma")]),
+    "sound-morphology": (_M + "hor.png", [("rec", "sound-morphology"), ("browser", _M + "medusahome.png"),
+                                          ("browser", _M + "eraserhead.png"), ("browser", _M + "ricordi.png")]),
+    "futbol": (_U + "Screenshot 2026-04-09 alle 12.12.39.png", [
+        ("rec", "futbol"), ("browser", _U + "Screenshot 2026-04-09 alle 11.52.51.png"),
+        ("browser", _U + "Screenshot 2026-04-09 alle 11.52.40.png"), ("browser", _U + "Screenshot 2026-04-09 alle 11.53.19.png"),
+        ("small", _U + "Screenshot 2026-05-12 alle 17.04.26.png")]),
+    "space-debris": (_S + "Screenshot 2026-04-07 alle 15.21.09.png", [
+        ("rec", "space-debris"), ("browser", _S + "Screenshot 2026-04-07 alle 15.20.08.png"),
+        ("browser", _S + "Screenshot 2026-04-07 alle 15.21.51.png"), ("small", _S + "Screenshot 2026-05-12 alle 17.14.40.png")]),
+    "esplorami": (_X + "Tokyo Subway Poster Mockup.jpg", [
+        ("photo", _X + "mockup instagram flyer.png"),
+        ("pair", (_X + "Screenshot 2026-04-10 alle 13.29.55.png", _X + "Screenshot 2026-05-12 alle 17.23.21.png"))]),
+    "gestures": (_G + "mockup iphone.jpg", [
+        ("field", _G + "Screenshot 2026-04-06 alle 21.04.18.png"), ("small", _G + "Screenshot 2026-05-12 alle 17.28.53.png")]),
+}
+
 # piccole correzioni ai testi originali
 FIXES = {
     "Syntax F-1 un’installazione interattiva analogicodigitale. L’utente": "Syntax F-1, un’installazione interattiva tra analogico e digitale. L’utente",
@@ -228,6 +252,39 @@ def result_block(p, layout, imgs):
             f'<p class="label" style="margin-top:10px">{bi("Il prototipo, schermata per schermata. Trascina o scorri di lato.", "The prototype, screen by screen. Drag or scroll sideways.")}</p></div>')
 
 
+def window(inner, url):
+    return (f'<div class="win"><div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>{E(url)}</span></div>{inner}</div>')
+
+
+def gallery_block(p, kind, src, n):
+    slug, alt = p["slug"], f"{p['title']}, {n}"
+    url = p["link"][1] if p["link"] else p["title"]
+    if kind == "photo":
+        ip, w, h = web_image(src, slug, max_w=2000, max_h=2000)
+        return f'<figure><div class="bend" data-bend>{img_tag(ip, w, h, alt)}</div></figure>'
+    if kind == "video":
+        return (f'<figure><div class="bend" data-bend><video data-auto src="video/{src}.mp4" muted loop playsinline '
+                f'preload="metadata" aria-label="{E(p["title"])}"></video></div></figure>')
+    if kind == "rec":
+        v = (f'<video data-auto src="video/{src}.mp4" poster="video/{src}.webp" muted loop playsinline '
+             f'preload="metadata" aria-label="{E(p["title"])}"></video>')
+        return f'<figure class="mock mock--field" data-tilt>{window(v, url)}</figure>'
+    if kind in ("browser", "field"):
+        ip, w, h = web_image(src, slug, max_w=1800, max_h=1800)
+        side = "mock--field" if kind == "field" else ("mock--left" if n % 2 else "mock--right")
+        return f'<figure class="mock {side}" data-tilt>{window(img_tag(ip, w, h, alt), url)}</figure>'
+    if kind == "small":
+        ip, w, h = web_image(src, slug, max_w=1600, max_h=1600)
+        return f'<figure class="small" data-tilt>{img_tag(ip, w, h, alt)}</figure>'
+    if kind == "pair":
+        tags = []
+        for s_ in src:
+            ip, w, h = web_image(s_, slug, max_w=1400, max_h=1400)
+            tags.append(f'<figure data-tilt>{img_tag(ip, w, h, alt)}</figure>')
+        return '<div class="media-pair">' + "".join(tags) + "</div>"
+    raise ValueError(kind)
+
+
 def build_project(i):
     """Stessa impostazione del sito originale: schermo intero, testo grande, galleria, crediti."""
     p = PROJECTS[i]
@@ -237,8 +294,10 @@ def build_project(i):
 
     intro = "\n".join(f'        <p lang="it" data-tilt>{fix(a)}</p>\n        <p lang="en" data-tilt>{fix(b)}</p>' for a, b in zip(t["it"], t["en"]))
 
-    gallery = [result_block(p, layout, imgs) for layout, imgs in p["result"]]
-    gallery += [figure(slug, s, a, b, f"{p['title']}, processo", max_w=2000) for s, a, b in p["process"]]
+    hero_src, items = ORIG[slug]
+    hp, hw, hh = web_image(hero_src, slug, max_w=2400, max_h=2400, suffix="-full")
+    hero = f'<div class="frame bend" data-bend>{img_tag(hp, hw, hh, p["title"], lazy=False)}</div>'
+    gallery = [gallery_block(p, kind, src, n + 1) for n, (kind, src) in enumerate(items)]
 
     team = ("<strong>Team</strong>\n            <ul>" + "".join(f"<li>{E(n)}</li>" for n in p["team"]) + "</ul>") if p["team"] else \
         f'<strong>Team</strong>\n            <p>{bi("Progetto individuale", "Solo project")}</p>'
@@ -253,7 +312,7 @@ def build_project(i):
     <main id="contenuto">
     <header>
         <div class="hero">
-            {media(p, lazy=False, size=2000)}
+            {hero}
         </div>
         <div class="field hero-title">
             <div class="stack label" data-tilt>
