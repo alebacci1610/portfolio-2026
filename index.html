@@ -5,172 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alessandro Bacci, portfolio</title>
     <meta name="description" content="Portfolio di Alessandro Bacci, interaction e communication designer a Milano.">
-    <meta name="theme-color" content="#2f5e4f">
-    <link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    <script src="table.js" defer></script>
+    <script src="fx.js" defer></script>
+    <script type="module" src="scene.js"></script>
 </head>
-<body class="home">
+<body>
     <a class="skip" href="#progetti"><span lang="it">Vai ai progetti</span><span lang="en">Skip to projects</span></a>
-
-    <main class="mat table" id="tavolo">
-        <div class="imprint imprint--name">
-            <h1 class="name">Alessandro Bacci</h1>
-            <p class="role"><span lang="it">Interaction &amp; communication designer, Milano</span><span lang="en">Interaction &amp; communication designer, Milan</span></p>
-        </div>
-
-        <div class="controls">
-            <button type="button" class="tidy-btn" aria-pressed="false"><span class="when-messy"><span lang="it">Metti in ordine</span><span lang="en">Tidy up</span></span><span class="when-tidy" hidden><span lang="it">Spataccia</span><span lang="en">Mess it up</span></span></button>
+    <header class="bar">
+        <a href="index.html">Alessandro Bacci</a>
+        <nav aria-label="Menu">
+            <a href="#progetti"><span lang="it">Progetti</span><span lang="en">Projects</span></a>
+            <a href="#info">Info</a>
             <div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
-        </div>
-
-        <p class="imprint imprint--contacts"><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br><a href="tel:+393346700302">+39 334 670 0302</a><br><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></p>
-
-        <div class="imprint imprint--motto">
-            <p><span lang="it">Sono solo un romagnolo a cui piace <i>spataccare</i>.</span><span lang="en">I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, to make a glorious mess.</span></p>
-            <p class="hint"><span lang="it">Trascina le stampe, lanciale, cliccane una per aprirla.</span><span lang="en">Drag the prints, throw them, click one to open it.</span></p>
-        </div>
-
-        <nav id="progetti" aria-label="Progetti">
-        <a class="print print--project" href="fragma.html" data-drag data-kind="project" data-mx="0.33" data-my="0.4" data-r="-5">
-            <img src="img/fragma/b2-6c6ac0-card.webp" width="900" height="634" alt="">
-            <span class="print-label"><span class="print-title">Fragma</span><span class="print-meta"><span lang="it">Speculative design</span><span lang="en">Speculative design</span>, 2025/26</span></span>
-        </a>
-        <a class="print print--project" href="sound-morphology.html" data-drag data-kind="project" data-mx="0.6" data-my="0.22" data-r="4">
-            <img src="img/sound-morphology/hor-2c3fd3-card.webp" width="900" height="499" alt="">
-            <span class="print-label"><span class="print-title">Sound Morphology</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</span></span>
-        </a>
-        <a class="print print--project" href="futbol.html" data-drag data-kind="project" data-mx="0.9" data-my="0.47" data-r="-3">
-            <img src="img/futbol/screenshot-2026-04-09-alle-12-12-39-75b702-card.webp" width="900" height="500" alt="">
-            <span class="print-label"><span class="print-title">Futbol</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2026</span></span>
-        </a>
-        <a class="print print--project" href="space-debris.html" data-drag data-kind="project" data-mx="0.2" data-my="0.96" data-r="6">
-            <img src="img/space-debris/screenshot-2026-04-07-alle-15-21-09-5f5fa2-card.webp" width="900" height="499" alt="">
-            <span class="print-label"><span class="print-title">Space Debris</span><span class="print-meta"><span lang="it">Data visualization</span><span lang="en">Data visualization</span>, 2024</span></span>
-        </a>
-        <a class="print print--project" href="esplorami.html" data-drag data-kind="project" data-mx="0.5" data-my="0.8" data-r="-7">
-            <img src="img/esplorami/tokyo-subway-poster-mockup-37bfed-card.webp" width="900" height="675" alt="">
-            <span class="print-label"><span class="print-title">EsploraMi</span><span class="print-meta"><span lang="it">Service design</span><span lang="en">Service design</span>, 2025</span></span>
-        </a>
-        <a class="print print--project" href="gestures.html" data-drag data-kind="project" data-mx="0.76" data-my="0.98" data-r="5">
-            <img src="img/gestures/mockup-iphone-301cee-card.webp" width="900" height="675" alt="">
-            <span class="print-label"><span class="print-title">Gestures</span><span class="print-meta"><span lang="it">Web design</span><span lang="en">Web design</span>, 2025</span></span>
-        </a>
         </nav>
+    </header>
 
-        <div class="print print--photo" data-drag data-kind="photo" data-mx="0.985" data-my="0.06" data-r="3">
-            <img src="img/about/img-2347-ef4049.webp" width="600" height="800" alt="Ritratto di Alessandro Bacci">
-            <span class="print-label"><span class="print-title"><span lang="it">Ciao, sono io</span><span lang="en">Hi, that’s me</span></span><span class="print-meta">Riccione, Milano</span></span>
+    <section class="stage" aria-label="Apertura">
+        <canvas id="scene" aria-hidden="true"></canvas>
+        <div class="claim">
+            <h1 class="display" data-swap><span lang="it">Progetto cose che si toccano, si cliccano e ogni tanto si rompono.</span><span lang="en">I design things you can touch, click and occasionally break.</span></h1>
+            <p class="label hint" data-scramble><span lang="it">Trascina per ruotare gli oggetti. Clicca per entrare in un progetto.</span><span lang="en">Drag to rotate the objects. Click one to open a project.</span></p>
+        </div>
+    </section>
+    <div class="pointer-label" id="pointer-label" aria-hidden="true"></div>
+    <script>window.PROJECTS = [{"slug": "fragma", "title": "Fragma", "type": ["Speculative design", "Speculative design"], "accent": "magenta"}, {"slug": "sound-morphology", "title": "Sound Morphology", "type": ["Web design", "Web design"], "accent": "violet"}, {"slug": "futbol", "title": "Futbol", "type": ["Web design", "Web design"], "accent": "lime"}, {"slug": "space-debris", "title": "Space Debris", "type": ["Data visualization", "Data visualization"], "accent": "magenta"}, {"slug": "esplorami", "title": "EsploraMi", "type": ["Service design", "Service design"], "accent": "violet"}, {"slug": "gestures", "title": "Gestures", "type": ["Web design", "Web design"], "accent": "lime"}];</script>
+
+    <main>
+        <div class="section-head" id="progetti">
+            <h2 class="display" data-swap><span lang="it">Progetti</span><span lang="en">Projects</span></h2>
+            <div class="filters" role="group" aria-label="Filtra per disciplina">
+                <button type="button" data-filter="all" aria-pressed="true"><span lang="it">Tutti</span><span lang="en">All</span></button>
+                <button type="button" data-filter="Speculative design" aria-pressed="false"><span lang="it">Speculative design</span><span lang="en">Speculative design</span></button>
+                <button type="button" data-filter="Web design" aria-pressed="false"><span lang="it">Web design</span><span lang="en">Web design</span></button>
+                <button type="button" data-filter="Data visualization" aria-pressed="false"><span lang="it">Data visualization</span><span lang="en">Data visualization</span></button>
+                <button type="button" data-filter="Service design" aria-pressed="false"><span lang="it">Service design</span><span lang="en">Service design</span></button>
+            </div>
+        </div>
+        <div class="works">
+        <a class="work" href="fragma.html" data-type="Speculative design" data-accent="magenta">
+            <div class="frame bend" data-bend><video data-auto src="video/fragma.mp4#t=9" poster="img/fragma/b2-6c6ac0-hero.webp" muted loop playsinline preload="auto" aria-label="Fragma"></video></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>Fragma</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Speculative design</span><span lang="en">Speculative design</span></span>
+                    <p><span lang="it">Una macchina che riscrive le notizie mentre sposti le pedine: un’installazione sul potere delle parole.</span><span lang="en">A machine that rewrites the news as you move the pieces: an installation about the power of words.</span></p>
+                    <span class="label">2025/26, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
+                </div>
+            </div>
+        </a>
+        <a class="work" href="sound-morphology.html" data-type="Web design" data-accent="violet">
+            <div class="frame bend" data-bend><video data-auto src="video/sound-morphology.mp4" poster="video/sound-morphology.webp" muted loop playsinline preload="metadata" aria-label="Sound Morphology"></video></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>Sound Morphology</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                    <p><span lang="it">Un archivio web immersivo per il DJ GNMR, da esplorare dentro una medusa fatta di particelle.</span><span lang="en">An immersive web archive for DJ GNMR, explored inside a jellyfish made of particles.</span></p>
+                    <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
+                </div>
+            </div>
+        </a>
+        <a class="work" href="futbol.html" data-type="Web design" data-accent="lime">
+            <div class="frame bend" data-bend><video data-auto src="video/futbol.mp4" poster="video/futbol.webp" muted loop playsinline preload="metadata" aria-label="Futbol"></video></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>Futbol</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                    <p><span lang="it">Un archivio delle maglie che hanno fatto la storia del calcio, con un quiz per scoprire la tua.</span><span lang="en">An archive of the shirts that made football history, with a quiz to find yours.</span></p>
+                    <span class="label">2026, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
+                </div>
+            </div>
+        </a>
+        <a class="work" href="space-debris.html" data-type="Data visualization" data-accent="magenta">
+            <div class="frame bend" data-bend><video data-auto src="video/space-debris.mp4" poster="video/space-debris.webp" muted loop playsinline preload="metadata" aria-label="Space Debris"></video></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>Space Debris</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Data visualization</span><span lang="en">Data visualization</span></span>
+                    <p><span lang="it">Oltre 15.000 detriti in orbita, resi esplorabili per paese, dimensione e altitudine.</span><span lang="en">More than 15,000 pieces of orbital debris, explorable by country, size and altitude.</span></p>
+                    <span class="label">2024, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
+                </div>
+            </div>
+        </a>
+        <a class="work" href="esplorami.html" data-type="Service design" data-accent="violet">
+            <div class="frame bend slides" data-bend data-slides><img src="img/esplorami/tokyo-subway-poster-mockup-37bfed.webp" width="1600" height="1200" alt="EsploraMi" class="is-on" loading="lazy" decoding="async"><img src="img/esplorami/mockup-instagram-flyer-70cbfb.webp" width="1300" height="975" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-05-12-alle-17-23-21-7b0d4f.webp" width="1524" height="1458" alt="" loading="lazy" decoding="async"><img src="img/esplorami/screenshot-2026-04-10-alle-13-35-55-48cbea.webp" width="1400" height="700" alt="" loading="lazy" decoding="async"></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>EsploraMi</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Service design</span><span lang="en">Service design</span></span>
+                    <p><span lang="it">Un servizio che ti porta nei posti giusti di Milano, all’ora giusta, lontano dalla folla.</span><span lang="en">A service that takes you to the right places in Milan at the right time, away from the crowds.</span></p>
+                    <span class="label">2025, <span lang="it">Politecnico di Milano</span><span lang="en">Politecnico di Milano</span></span>
+                </div>
+            </div>
+        </a>
+        <a class="work" href="gestures.html" data-type="Web design" data-accent="lime">
+            <div class="frame bend slides" data-bend data-slides><img src="img/gestures/mockup-iphone-301cee.webp" width="1600" height="1200" alt="Gestures" class="is-on" loading="lazy" decoding="async"><img src="img/gestures/home-abf15f.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-03-6737cc.webp" width="2000" height="1071" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-05-30-b42a97.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"><img src="img/gestures/screenshot-2026-04-06-alle-21-06-46-c9d24a.webp" width="1300" height="696" alt="" loading="lazy" decoding="async"></div>
+            <div class="work-info">
+                <h3 class="display" data-swap>Gestures</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble><span lang="it">Web design</span><span lang="en">Web design</span></span>
+                    <p><span lang="it">Un’indagine ironica sulle regole non scritte della vita sociale, tutta su una landing page.</span><span lang="en">A tongue-in-cheek investigation into the unwritten rules of social life, on a single landing page.</span></p>
+                    <span class="label">2025, <span lang="it">Progetto personale</span><span lang="en">Personal project</span></span>
+                </div>
+            </div>
+        </a>
         </div>
 
-        <div class="print print--note" data-drag data-kind="note" data-mx="0.0" data-my="0.62" data-r="-2">
-            <p lang="it">Sono Alessandro, ho 22 anni, vengo da Riccione e studio Design della Comunicazione al Politecnico di Milano. Sono un designer guidato da una forte curiosità e dalla ricerca del perfetto equilibrio tra materia fisica ed ecosistemi digitali. Unisco creatività, pensiero critico e precisione per sviluppare concept solidi e trasversali. Il mio approccio è pragmatico: amo risolvere problemi complessi e trasformare un’idea in una soluzione d’impatto visivo e funzionale.</p>
-            <p lang="en">I’m Alessandro, I’m 22, I come from Riccione and I study Communication Design at Politecnico di Milano. I’m a designer driven by strong curiosity and by the search for the right balance between physical matter and digital ecosystems. I combine creativity, critical thinking and precision to develop solid, cross-disciplinary concepts. My approach is pragmatic: I love solving complex problems and turning an idea into a solution with visual and functional impact.</p>
-        </div>
+        <section class="field info" id="info" data-accent="lime">
+            <h2 class="display" data-swap>Info</h2>
+            <div class="bio">
+                <p><span lang="it">Sono Alessandro, ho 22 anni, vengo da Riccione e studio Design della Comunicazione al Politecnico di Milano. Lavoro dove il fisico incontra il digitale: progetto l’idea, poi la costruisco, in codice o con le mani.</span><span lang="en">I’m Alessandro, I’m 22, I come from Riccione and I study Communication Design at Politecnico di Milano. I work where physical meets digital: I design the idea, then I build it, in code or by hand.</span></p>
+                <p><span lang="it">Sono solo un romagnolo a cui piace <i>spataccare</i>: metterci le mani, smontare, provare.</span><span lang="en">I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, take things apart and try.</span></p>
+            </div>
+            <div class="side">
+                <img src="img/about/img-2347-ef4049.webp" width="600" height="800" alt="Ritratto di Alessandro Bacci" loading="lazy" decoding="async">
+                <address>
+                    <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br>
+                    <a href="tel:+393346700302">+39 334 670 0302</a><br>
+                    <a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a>
+                </address>
+                <a class="btn" href="Alessandro-Bacci-CV.pdf" download><span lang="it">Scarica il CV (PDF)</span><span lang="en">Download CV (PDF)</span></a>
+            </div>
+        </section>
     </main>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var mat = document.getElementById('tavolo');
-        var btn = document.querySelector('.tidy-btn');
-        var body = document.body;
-        var mobile = function () { return window.innerWidth < 860; };
-        var snap = function (v, e, g) { return e + Math.round((v - e) / g) * g; };
-
-        // calcola la disposizione ordinata e l'altezza del tavolo
-        function slots(board) {
-            var css = getComputedStyle(document.documentElement);
-            var g = parseFloat(css.getPropertyValue('--grid')), e = parseFloat(css.getPropertyValue('--edge'));
-            var W = mat.clientWidth;
-            var gap = g;
-            var name = document.querySelector('.imprint--name');
-            var y0 = snap(name.offsetTop + name.offsetHeight + 36, e, g);
-            var x0 = snap(e + 8, e, g);
-            var photo = board.items.filter(function (i) { return i.el.dataset.kind === 'photo'; })[0];
-            var note = board.items.filter(function (i) { return i.el.dataset.kind === 'note'; })[0];
-            var projects = board.items.filter(function (i) { return i.el.dataset.kind === 'project'; });
-            var out = new Map(), bottom = 0;
-            if (!mobile()) {
-                out.set(photo, [x0, y0]);
-                out.set(note, [x0, snap(y0 + photo.el.offsetHeight + gap, e, g)]);
-                var gx = snap(x0 + note.el.offsetWidth + g * 3, e, g);
-                var cw = projects[0].el.offsetWidth;
-                var cols = Math.max(1, Math.min(3, Math.floor((W - 28 - gx + gap) / (cw + gap))));
-                var y = y0, rowH = 0;
-                projects.forEach(function (it, i) {
-                    var c = i % cols;
-                    if (c === 0 && i) { y = snap(y + rowH + gap, e, g); rowH = 0; }
-                    out.set(it, [gx + c * (cw + gap), y]);
-                    rowH = Math.max(rowH, it.el.offsetHeight);
-                });
-                bottom = Math.max(y + rowH, out.get(note)[1] + note.el.offsetHeight);
-            } else {
-                // su telefono prima i progetti, poi chi sono
-                var y = y0;
-                var cw = projects[0].el.offsetWidth;
-                var cols = W >= 560 ? 2 : 1, rowH = 0;
-                projects.forEach(function (it, i) {
-                    var c = i % cols;
-                    if (c === 0 && i) { y = snap(y + rowH + gap, e, g); rowH = 0; }
-                    out.set(it, [x0 + c * (cw + gap), y]);
-                    rowH = Math.max(rowH, it.el.offsetHeight);
-                });
-                y = snap(y + rowH + gap * 2, e, g);
-                out.set(photo, [x0, y]); y = snap(y + photo.el.offsetHeight + gap, e, g);
-                out.set(note, [x0, y]);
-                bottom = y + note.el.offsetHeight;
-            }
-            return { map: out, height: bottom + (mobile() ? 170 : 110) };
-        }
-
-        function fitHeight(h) {
-            var scroll = h > window.innerHeight;
-            body.classList.toggle('is-scroll', scroll);
-            mat.style.setProperty('--table-h', Math.max(h, window.innerHeight) + 'px');
-        }
-
-        var board = new Tavolo.Board(mat, {
-            key: 'home',
-            tidy: function (b, sizeOnly) {
-                var s = slots(b);
-                fitHeight(s.height);
-                if (sizeOnly) return;
-                b.items.forEach(function (it) { var p = s.map.get(it); it.x = p[0]; it.y = p[1]; it.r = 0; });
-            },
-            beforeMessy: function (b) { fitHeight(mobile() ? slots(b).height : 0); },
-            onMode: function (mode) {
-                body.classList.toggle('is-tidy', mode === 'tidy');
-                btn.setAttribute('aria-pressed', mode === 'tidy' ? 'true' : 'false');
-                btn.querySelector('.when-messy').hidden = mode === 'tidy';
-                btn.querySelector('.when-tidy').hidden = mode !== 'tidy';
-            }
-        });
-
-        btn.addEventListener('click', function () {
-            var next = board.mode === 'tidy' ? 'messy' : 'tidy';
-            body.classList.toggle('is-tidy', next === 'tidy');
-            board.setMode(next, true);
-            Tavolo.drawRulers(mat);
-        });
-
-        try { var saved = JSON.parse(sessionStorage.getItem('tavolo:home') || 'null'); } catch (err) { var saved = null; }
-        body.classList.toggle('is-tidy', saved ? saved.mode === 'tidy' : mobile());
-        var restored = board.restore();
-        if (restored !== true) {
-            board.setMode(typeof restored === 'string' ? restored : (mobile() ? 'tidy' : 'messy'), false);
-            if (!restored) board.drop();
-        }
-        Tavolo.drawRulers(mat);
-
-        var t;
-        window.addEventListener('resize', function () {
-            clearTimeout(t);
-            t = setTimeout(function () { board.refit(); Tavolo.drawRulers(mat); }, 150);
-        });
-        document.fonts && document.fonts.ready.then(function () { board.refit(); Tavolo.drawRulers(mat); });
-    });
-    </script>
+    <footer class="foot">
+        <span>Alessandro Bacci, 2026</span>
+        <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a>
+        <a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a>
+    </footer>
 </body>
 </html>

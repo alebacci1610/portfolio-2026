@@ -9,10 +9,26 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import BIO, PHOTO, PROJECTS  # noqa: E402
-from images import web_image, web_video  # noqa: E402
+from images import web_image  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEXTS = json.load(open(os.path.join(os.path.dirname(__file__), "testi_originali.json"), encoding="utf-8"))
+FC = "foto copia/"
+
+# colore di ogni progetto (palette: lime, magenta, violet)
+ACCENT = {
+    "fragma": "magenta", "sound-morphology": "violet", "futbol": "lime",
+    "space-debris": "magenta", "esplorami": "violet", "gestures": "lime",
+}
+# video che parte da solo (cartella video/); chi non ce l'ha usa una sequenza di immagini
+VIDEO = {"fragma", "sound-morphology", "futbol", "space-debris"}
+START = {"fragma": "#t=9"}  # il video di Fragma parte da una scena, non dal nero iniziale
+SLIDES = {
+    "esplorami": [FC + "EsploraMI/Tokyo Subway Poster Mockup.jpg", FC + "EsploraMI/mockup instagram flyer.png",
+                  FC + "EsploraMI/Screenshot 2026-05-12 alle 17.23.21.png", FC + "EsploraMI/Screenshot 2026-04-10 alle 13.35.55.png"],
+    "gestures": [FC + "Gestures/mockup iphone.jpg", FC + "Gestures/home.jpg", FC + "Gestures/Screenshot 2026-04-06 alle 21.05.03.png",
+                 FC + "Gestures/Screenshot 2026-04-06 alle 21.05.30.png", FC + "Gestures/Screenshot 2026-04-06 alle 21.06.46.png"],
+}
 
 # piccole correzioni ai testi originali
 FIXES = {
@@ -20,19 +36,16 @@ FIXES = {
     "e ad ogni spostamento, un LLM": "e, a ogni spostamento, un LLM",
 }
 
-E = html.escape
-FONTS = '<link rel="preload" href="fonts/anybody-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>'
-
-CONTACTS = (
-    '<a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br>'
-    '<a href="tel:+393346700302">+39 334 670 0302</a><br>'
-    '<a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a>'
+CLAIM = ("Progetto cose che si toccano, si cliccano e ogni tanto si rompono.",
+         "I design things you can touch, click and occasionally break.")
+BIO_SHORT = (
+    "Sono Alessandro, ho 22 anni, vengo da Riccione e studio Design della Comunicazione al Politecnico di Milano. "
+    "Lavoro dove il fisico incontra il digitale: progetto l’idea, poi la costruisco, in codice o con le mani.",
+    "I’m Alessandro, I’m 22, I come from Riccione and I study Communication Design at Politecnico di Milano. "
+    "I work where physical meets digital: I design the idea, then I build it, in code or by hand.",
 )
 
-LANG_SWITCH = ('<div class="lang-switch" role="group" aria-label="Lingua / Language">'
-               '<button type="button" data-set-lang="it" aria-label="Italiano">IT</button>'
-               '<span class="lang-sep" aria-hidden="true">/</span>'
-               '<button type="button" data-set-lang="en" aria-label="English">EN</button></div>')
+E = html.escape
 
 
 def bi(it, en):
@@ -45,7 +58,14 @@ def fix(t):
     return t
 
 
-def head(title, desc):
+LANG_SWITCH = ('<div class="lang-switch" role="group" aria-label="Lingua / Language">'
+               '<button type="button" data-set-lang="it" aria-label="Italiano">IT</button>'
+               '<span class="lang-sep" aria-hidden="true">/</span>'
+               '<button type="button" data-set-lang="en" aria-label="English">EN</button></div>')
+
+
+def head(title, desc, module=False):
+    extra = '\n    <script type="module" src="scene.js"></script>' if module else ""
     return f"""<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -53,349 +73,235 @@ def head(title, desc):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{E(title)}</title>
     <meta name="description" content="{E(desc)}">
-    <meta name="theme-color" content="#2f5e4f">
-    {FONTS}
+    <link rel="preload" href="fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    <script src="table.js" defer></script>
+    <script src="fx.js" defer></script>{extra}
 </head>"""
 
 
-def img_tag(path, w, h, alt, cls="", lazy=True, extra=""):
+def bar(home=False):
+    left = '<a href="index.html">Alessandro Bacci</a>'
+    pre = "" if home else "index.html"
+    return f"""    <header class="bar">
+        {left}
+        <nav aria-label="Menu">
+            <a href="{pre}#progetti">{bi('Progetti', 'Projects')}</a>
+            <a href="{pre}#info">Info</a>
+            {LANG_SWITCH}
+        </nav>
+    </header>"""
+
+
+def img_tag(path, w, h, alt, cls="", lazy=True):
     c = f' class="{cls}"' if cls else ""
     l = ' loading="lazy" decoding="async"' if lazy else ""
-    return f'<img src="{E(path)}" width="{w}" height="{h}" alt="{E(alt)}"{c}{l}{extra}>'
+    return f'<img src="{E(path)}" width="{w}" height="{h}" alt="{E(alt)}"{c}{l}>'
+
+
+def media(p, lazy=True, size=1600):
+    """Il riquadro principale di un progetto: video oppure sequenza di immagini."""
+    slug = p["slug"]
+    if slug in VIDEO:
+        poster, _, _ = web_image(p["card"], slug, max_w=1600, max_h=1600, suffix="-hero")
+        if slug != "fragma":
+            poster = f"video/{slug}.webp"
+        pre = "metadata" if lazy else "auto"
+        return (f'<div class="frame bend" data-bend><video data-auto src="video/{slug}.mp4{START.get(slug, "")}" poster="{E(poster)}" '
+                f'muted loop playsinline preload="{pre}" aria-label="{E(p["title"])}"></video></div>')
+    tags = []
+    for k, src in enumerate(SLIDES[slug]):
+        ip, iw, ih = web_image(src, slug, max_w=size, max_h=size)
+        tags.append(img_tag(ip, iw, ih, p["title"] if k == 0 else "", cls="is-on" if k == 0 else "", lazy=lazy or k > 0))
+    return f'<div class="frame bend slides" data-bend data-slides>{"".join(tags)}</div>'
 
 
 def figure(slug, src, cap_it, cap_en, alt, max_w=2000):
-    p, w, h = web_image(src, slug, max_w=max_w, max_h=max_w)
-    cap = f"\n            <figcaption>{bi(E(cap_it), E(cap_en))}</figcaption>" if cap_it else ""
-    return f"""<figure>
-            {img_tag(p, w, h, alt)}{cap}
-        </figure>"""
+    ip, w, h = web_image(src, slug, max_w=max_w, max_h=max_w)
+    cap = f"<figcaption>{bi(E(cap_it), E(cap_en))}</figcaption>" if cap_it else ""
+    return f'<figure><div class="bend" data-bend>{img_tag(ip, w, h, alt)}</div>{cap}</figure>'
 
 
-def card(p, extra_attrs="", lazy=False):
-    src, w, h = web_image(p["card"], p["slug"], max_w=900, max_h=900, suffix="-card")
-    return src, w, h
+def foot():
+    return """    <footer class="foot">
+        <span>Alessandro Bacci, 2026</span>
+        <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a>
+        <a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a>
+    </footer>"""
 
 
 # ---------------------------------------------------------------- home
-HOME_LAYOUT = {  # posizione "spataccata" iniziale: frazione dello spazio libero + rotazione
-    "fragma": (0.33, 0.40, -5),
-    "sound-morphology": (0.60, 0.22, 4),
-    "futbol": (0.90, 0.47, -3),
-    "space-debris": (0.20, 0.96, 6),
-    "esplorami": (0.50, 0.80, -7),
-    "gestures": (0.76, 0.98, 5),
-}
-
-
 def build_home():
-    prints = []
+    types = []
+    for p in PROJECTS:
+        if p["type"] not in types:
+            types.append(p["type"])
+    filters = [f'<button type="button" data-filter="all" aria-pressed="true">{bi("Tutti", "All")}</button>']
+    for t in types:
+        filters.append(f'<button type="button" data-filter="{E(t[1])}" aria-pressed="false">{bi(*t)}</button>')
+
+    works = []
     for i, p in enumerate(PROJECTS):
-        src, w, h = card(p)
-        mx, my, r = HOME_LAYOUT[p["slug"]]
-        meta = f'{bi(p["type"][0], p["type"][1])}, {p["year"]}'
-        prints.append(f"""        <a class="print print--project" href="{p['slug']}.html" data-drag data-kind="project" data-mx="{mx}" data-my="{my}" data-r="{r}">
-            {img_tag(src, w, h, '', lazy=False)}
-            <span class="print-label"><span class="print-title">{E(p['title'])}</span><span class="print-meta">{meta}</span></span>
+        works.append(f"""        <a class="work" href="{p['slug']}.html" data-type="{E(p['type'][1])}" data-accent="{ACCENT[p['slug']]}">
+            {media(p, lazy=i > 0)}
+            <div class="work-info">
+                <h3 class="display" data-swap>{E(p['title'])}</h3>
+                <div class="work-meta">
+                    <span class="tag" data-scramble>{bi(*p['type'])}</span>
+                    <p>{bi(E(p['pitch'][0]), E(p['pitch'][1]))}</p>
+                    <span class="label">{p['year']}, {bi(*p['context'])}</span>
+                </div>
+            </div>
         </a>""")
+
     ph, pw, phh = web_image(PHOTO, "about", max_w=600, max_h=800)
-    bio_it, bio_en = BIO
-    html_out = head("Alessandro Bacci, portfolio", "Portfolio di Alessandro Bacci, interaction e communication designer a Milano.") + f"""
-<body class="home">
+    scene_data = json.dumps([{"slug": p["slug"], "title": p["title"], "type": list(p["type"]), "accent": ACCENT[p["slug"]]} for p in PROJECTS],
+                            ensure_ascii=False)
+    page = head("Alessandro Bacci, portfolio", "Portfolio di Alessandro Bacci, interaction e communication designer a Milano.", module=True) + f"""
+<body>
     <a class="skip" href="#progetti">{bi('Vai ai progetti', 'Skip to projects')}</a>
+{bar(home=True)}
 
-    <main class="mat table" id="tavolo">
-        <div class="imprint imprint--name">
-            <h1 class="name">Alessandro Bacci</h1>
-            <p class="role">{bi('Interaction &amp; communication designer, Milano', 'Interaction &amp; communication designer, Milan')}</p>
+    <section class="stage" aria-label="{E('Apertura')}">
+        <canvas id="scene" aria-hidden="true"></canvas>
+        <div class="claim">
+            <h1 class="display" data-swap>{bi(E(CLAIM[0]), E(CLAIM[1]))}</h1>
+            <p class="label hint" data-scramble>{bi('Trascina per ruotare gli oggetti. Clicca per entrare in un progetto.', 'Drag to rotate the objects. Click one to open a project.')}</p>
+        </div>
+    </section>
+    <div class="pointer-label" id="pointer-label" aria-hidden="true"></div>
+    <script>window.PROJECTS = {scene_data};</script>
+
+    <main>
+        <div class="section-head" id="progetti">
+            <h2 class="display" data-swap>{bi('Progetti', 'Projects')}</h2>
+            <div class="filters" role="group" aria-label="{E('Filtra per disciplina')}">
+                {chr(10).join('                ' + f for f in filters).strip()}
+            </div>
+        </div>
+        <div class="works">
+{chr(10).join(works)}
         </div>
 
-        <div class="controls">
-            <button type="button" class="tidy-btn" aria-pressed="false"><span class="when-messy">{bi('Metti in ordine', 'Tidy up')}</span><span class="when-tidy" hidden>{bi('Spataccia', 'Mess it up')}</span></button>
-            {LANG_SWITCH}
-        </div>
-
-        <p class="imprint imprint--contacts">{CONTACTS}</p>
-
-        <div class="imprint imprint--motto">
-            <p>{bi('Sono solo un romagnolo a cui piace <i>spataccare</i>.', 'I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, to make a glorious mess.')}</p>
-            <p class="hint">{bi('Trascina le stampe, lanciale, cliccane una per aprirla.', 'Drag the prints, throw them, click one to open it.')}</p>
-        </div>
-
-        <nav id="progetti" aria-label="{E('Progetti')}">
-{chr(10).join(prints)}
-        </nav>
-
-        <div class="print print--photo" data-drag data-kind="photo" data-mx="0.985" data-my="0.06" data-r="3">
-            {img_tag(ph, pw, phh, 'Ritratto di Alessandro Bacci', cls='', lazy=False)}
-            <span class="print-label"><span class="print-title">{bi('Ciao, sono io', 'Hi, that’s me')}</span><span class="print-meta">Riccione, Milano</span></span>
-        </div>
-
-        <div class="print print--note" data-drag data-kind="note" data-mx="0.0" data-my="0.62" data-r="-2">
-            <p lang="it">{E(bio_it)}</p>
-            <p lang="en">{E(bio_en)}</p>
-        </div>
+        <section class="field info" id="info" data-accent="lime">
+            <h2 class="display" data-swap>Info</h2>
+            <div class="bio">
+                <p>{bi(E(BIO_SHORT[0]), E(BIO_SHORT[1]))}</p>
+                <p>{bi('Sono solo un romagnolo a cui piace <i>spataccare</i>: metterci le mani, smontare, provare.', 'I’m just a guy from Romagna who likes to <i>spataccare</i>: to tinker, take things apart and try.')}</p>
+            </div>
+            <div class="side">
+                {img_tag(ph, pw, phh, 'Ritratto di Alessandro Bacci')}
+                <address>
+                    <a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a><br>
+                    <a href="tel:+393346700302">+39 334 670 0302</a><br>
+                    <a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a>
+                </address>
+                <a class="btn" href="Alessandro-Bacci-CV.pdf" download>{bi('Scarica il CV (PDF)', 'Download CV (PDF)')}</a>
+            </div>
+        </section>
     </main>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {{
-        var mat = document.getElementById('tavolo');
-        var btn = document.querySelector('.tidy-btn');
-        var body = document.body;
-        var mobile = function () {{ return window.innerWidth < 860; }};
-        var snap = function (v, e, g) {{ return e + Math.round((v - e) / g) * g; }};
-
-        // calcola la disposizione ordinata e l'altezza del tavolo
-        function slots(board) {{
-            var css = getComputedStyle(document.documentElement);
-            var g = parseFloat(css.getPropertyValue('--grid')), e = parseFloat(css.getPropertyValue('--edge'));
-            var W = mat.clientWidth;
-            var gap = g;
-            var name = document.querySelector('.imprint--name');
-            var y0 = snap(name.offsetTop + name.offsetHeight + 36, e, g);
-            var x0 = snap(e + 8, e, g);
-            var photo = board.items.filter(function (i) {{ return i.el.dataset.kind === 'photo'; }})[0];
-            var note = board.items.filter(function (i) {{ return i.el.dataset.kind === 'note'; }})[0];
-            var projects = board.items.filter(function (i) {{ return i.el.dataset.kind === 'project'; }});
-            var out = new Map(), bottom = 0;
-            if (!mobile()) {{
-                out.set(photo, [x0, y0]);
-                out.set(note, [x0, snap(y0 + photo.el.offsetHeight + gap, e, g)]);
-                var gx = snap(x0 + note.el.offsetWidth + g * 3, e, g);
-                var cw = projects[0].el.offsetWidth;
-                var cols = Math.max(1, Math.min(3, Math.floor((W - 28 - gx + gap) / (cw + gap))));
-                var y = y0, rowH = 0;
-                projects.forEach(function (it, i) {{
-                    var c = i % cols;
-                    if (c === 0 && i) {{ y = snap(y + rowH + gap, e, g); rowH = 0; }}
-                    out.set(it, [gx + c * (cw + gap), y]);
-                    rowH = Math.max(rowH, it.el.offsetHeight);
-                }});
-                bottom = Math.max(y + rowH, out.get(note)[1] + note.el.offsetHeight);
-            }} else {{
-                // su telefono prima i progetti, poi chi sono
-                var y = y0;
-                var cw = projects[0].el.offsetWidth;
-                var cols = W >= 560 ? 2 : 1, rowH = 0;
-                projects.forEach(function (it, i) {{
-                    var c = i % cols;
-                    if (c === 0 && i) {{ y = snap(y + rowH + gap, e, g); rowH = 0; }}
-                    out.set(it, [x0 + c * (cw + gap), y]);
-                    rowH = Math.max(rowH, it.el.offsetHeight);
-                }});
-                y = snap(y + rowH + gap * 2, e, g);
-                out.set(photo, [x0, y]); y = snap(y + photo.el.offsetHeight + gap, e, g);
-                out.set(note, [x0, y]);
-                bottom = y + note.el.offsetHeight;
-            }}
-            return {{ map: out, height: bottom + (mobile() ? 170 : 110) }};
-        }}
-
-        function fitHeight(h) {{
-            var scroll = h > window.innerHeight;
-            body.classList.toggle('is-scroll', scroll);
-            mat.style.setProperty('--table-h', Math.max(h, window.innerHeight) + 'px');
-        }}
-
-        var board = new Tavolo.Board(mat, {{
-            key: 'home',
-            tidy: function (b, sizeOnly) {{
-                var s = slots(b);
-                fitHeight(s.height);
-                if (sizeOnly) return;
-                b.items.forEach(function (it) {{ var p = s.map.get(it); it.x = p[0]; it.y = p[1]; it.r = 0; }});
-            }},
-            beforeMessy: function (b) {{ fitHeight(mobile() ? slots(b).height : 0); }},
-            onMode: function (mode) {{
-                body.classList.toggle('is-tidy', mode === 'tidy');
-                btn.setAttribute('aria-pressed', mode === 'tidy' ? 'true' : 'false');
-                btn.querySelector('.when-messy').hidden = mode === 'tidy';
-                btn.querySelector('.when-tidy').hidden = mode !== 'tidy';
-            }}
-        }});
-
-        btn.addEventListener('click', function () {{
-            var next = board.mode === 'tidy' ? 'messy' : 'tidy';
-            body.classList.toggle('is-tidy', next === 'tidy');
-            board.setMode(next, true);
-            Tavolo.drawRulers(mat);
-        }});
-
-        try {{ var saved = JSON.parse(sessionStorage.getItem('tavolo:home') || 'null'); }} catch (err) {{ var saved = null; }}
-        body.classList.toggle('is-tidy', saved ? saved.mode === 'tidy' : mobile());
-        var restored = board.restore();
-        if (restored !== true) {{
-            board.setMode(typeof restored === 'string' ? restored : (mobile() ? 'tidy' : 'messy'), false);
-            if (!restored) board.drop();
-        }}
-        Tavolo.drawRulers(mat);
-
-        var t;
-        window.addEventListener('resize', function () {{
-            clearTimeout(t);
-            t = setTimeout(function () {{ board.refit(); Tavolo.drawRulers(mat); }}, 150);
-        }});
-        document.fonts && document.fonts.ready.then(function () {{ board.refit(); Tavolo.drawRulers(mat); }});
-    }});
-    </script>
+{foot()}
 </body>
 </html>
 """
-    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(html_out)
+    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(page)
 
 
 # ---------------------------------------------------------------- pagine progetto
+def result_block(p, layout, imgs):
+    slug = p["slug"]
+    if layout == "wide":
+        s, a, b = imgs[0]
+        return f'<div class="media-wide">{figure(slug, s, a, b, p["title"])}</div>'
+    if layout == "pair":
+        return '<div class="media-pair">' + "".join(figure(slug, s, a, b, p["title"], max_w=1300) for s, a, b in imgs) + "</div>"
+    tags = []
+    for k, (s, _, _) in enumerate(imgs):
+        ip, iw, ih = web_image(s, slug, max_w=1100, max_h=1040)
+        tags.append(img_tag(ip, iw, ih, f"{p['title']}, schermata {k + 1}"))
+    return (f'<div><div class="phones" tabindex="0" aria-label="{E(p["title"])}: schermate del prototipo">{"".join(tags)}</div>'
+            f'<p class="label" style="margin-top:10px">{bi("Il prototipo, schermata per schermata. Trascina o scorri di lato.", "The prototype, screen by screen. Drag or scroll sideways.")}</p></div>')
+
+
 def build_project(i):
     p = PROJECTS[i]
     nxt = PROJECTS[(i + 1) % len(PROJECTS)]
     slug = p["slug"]
     t = TEXTS[slug]
-    hero, hw, hh = web_image(p["card"], slug, max_w=1800, max_h=1800, suffix="-hero")
-    n_src, n_w, n_h = card(nxt)
 
-    # racconto: un titoletto per paragrafo
-    story = []
-    for k, (pit, pen) in enumerate(zip(t["it"], t["en"])):
-        story.append(f"""            <section>
-                <h2>{bi(p['headings'][0][k], p['headings'][1][k])}</h2>
-                <p lang="it">{fix(pit)}</p>
-                <p lang="en">{fix(pen)}</p>
-            </section>""")
-
-    # scheda
-    rows = [
-        (bi("Tipo", "Type"), bi(*p["type"])),
-        (bi("Anno", "Year"), p["year"]),
-        (bi("Contesto", "Context"), bi(*p["context"])),
-    ]
+    rows = []
     if p["team"]:
         rows.append(("Team", "<ul>" + "".join(f"<li>{E(n)}</li>" for n in p["team"]) + "</ul>"))
-    rows.append((bi("Il mio ruolo", "My role"),
-                 "<ul>" + "".join(f'<li class="me">{bi(a, b)}</li>' for a, b in zip(*p["role"])) + "</ul>"))
+    rows.append((bi("Il mio ruolo", "My role"), "<ul>" + "".join(f'<li class="me">{bi(a, b)}</li>' for a, b in zip(*p["role"])) + "</ul>"))
+    rows.append((bi("Contesto", "Context"), f'{bi(*p["context"])}<br>{p["year"]}'))
     if p["link"]:
-        rows.append(("Link", f'<a href="{E(p["link"][0])}" target="_blank" rel="noopener">{E(p["link"][1])}</a>'))
-    facts = "\n".join(f"                <div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows)
+        rows.append((bi("Sito del progetto", "Project website"), f'<a href="{E(p["link"][0])}" target="_blank" rel="noopener">{E(p["link"][1])} ↗</a>'))
+    facts = "\n".join(f"            <div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in rows)
 
-    # dietro le quinte
+    # racconto: testo e immagini si alternano
+    blocks = [result_block(p, layout, imgs) for layout, imgs in p["result"]]
+    story = []
+    for k, (pit, pen) in enumerate(zip(t["it"], t["en"])):
+        story.append(f"""        <div class="story-text">
+            <h2>{bi(p['headings'][0][k], p['headings'][1][k])}</h2>
+            <p lang="it">{fix(pit)}</p>
+            <p lang="en">{fix(pen)}</p>
+        </div>""")
+        if blocks:
+            story.append("        " + blocks.pop(0))
+    story += ["        " + b for b in blocks]
+
     process = ""
     if p["process"]:
         figs = "\n        ".join(figure(slug, s, a, b, f"{p['title']}, processo", max_w=1400) for s, a, b in p["process"])
+        lead = (bi("Ricerca, schizzi e prototipi: come ci siamo arrivati.", "Research, sketches and prototypes: how we got there.") if p["team"]
+                else bi("Ricerca, schizzi e prototipi: come ci sono arrivato.", "Research, sketches and prototypes: how I got there."))
         process = f"""
-    <section class="chapter" aria-labelledby="h-process">
-        <h2 id="h-process">{bi('Dietro le quinte', 'Behind the scenes')}</h2>
-        <p class="lead">{bi('Ricerca, schizzi e prototipi: come ci siamo arrivati.', 'Research, sketches and prototypes: how we got there.') if p['team'] else bi('Ricerca, schizzi e prototipi: come ci sono arrivato.', 'Research, sketches and prototypes: how I got there.')}</p>
-        <div class="process">
+    <div class="chapter-head">
+        <h2 class="display" data-swap>{bi('Dietro le quinte', 'Behind the scenes')}</h2>
+        <p>{lead}</p>
+    </div>
+    <div class="process">
         {figs}
-        </div>
-    </section>"""
-
-    # risultato
-    blocks = []
-    if p.get("video"):
-        v, poster = web_video(p["video"], slug)
-        blocks.append(f"""<figure>
-            <video src="{E(v)}" poster="{E(poster)}" autoplay muted loop playsinline controls preload="metadata" aria-label="{E(p['title'])}, video"></video>
-        </figure>""")
-    for layout, imgs in p["result"]:
-        if layout == "wide":
-            s, a, b = imgs[0]
-            blocks.append(figure(slug, s, a, b, p["title"]))
-        elif layout == "pair":
-            inner = "\n            ".join(figure(slug, s, a, b, p["title"], max_w=1300) for s, a, b in imgs)
-            blocks.append(f'<div class="row-pair">\n            {inner}\n        </div>')
-        elif layout == "phones":
-            tags = []
-            for k, (s, _, _) in enumerate(imgs):
-                ip, iw, ih = web_image(s, slug, max_w=1100, max_h=1040)
-                tags.append(img_tag(ip, iw, ih, f"{p['title']}, schermata {k + 1}"))
-            blocks.append(f"""<div>
-            <div class="phones" tabindex="0" aria-label="{E(p['title'])}: schermate del prototipo">
-                {chr(10).join('                ' + x for x in tags).strip()}
-            </div>
-            <p class="phones-caption"><small>{bi('Il prototipo, schermata per schermata. Trascina o scorri di lato.', 'The prototype, screen by screen. Drag or scroll sideways.')}</small></p>
-        </div>""")
-    gallery = "\n        ".join(blocks)
-
-    visit = ""
-    if p["link"]:
-        visit = f"""
-    <div class="visit">
-        <a href="{E(p['link'][0])}" target="_blank" rel="noopener">{bi('Visita il sito del progetto ↗', 'Visit the project website ↗')}</a>
-        <span>{E(p['link'][1])}</span>
     </div>"""
 
-    type_line = f'{bi(*p["type"])}, {p["year"]}'
     page = head(f"{p['title']}, Alessandro Bacci", p["pitch"][0]) + f"""
-<body class="project">
+<body data-accent="{ACCENT[slug]}">
     <a class="skip" href="#contenuto">{bi('Vai al contenuto', 'Skip to content')}</a>
+{bar()}
 
-    <header class="mat band" id="banco">
-        <div class="topbar">
-            <a href="index.html">{bi('← Torna al tavolo', '← Back to the table')}</a>
-            <div class="right"><span class="nav-name">Alessandro Bacci</span>{LANG_SWITCH}</div>
-        </div>
-        <div class="print print--hero" data-drag data-mx="0.94" data-my="0.3" data-r="-2.5">
-            {img_tag(hero, hw, hh, p['title'], lazy=False, extra=' style="view-transition-name: hero"')}
-        </div>
-        <div class="band-title">
-            <h1>{E(p['title'])}</h1>
-            <p>{type_line}</p>
-        </div>
-    </header>
+    <main id="contenuto">
+    <div class="hero">
+        {media(p, lazy=False, size=2000)}
+    </div>
 
-    <main class="sheet" id="contenuto">
+    <div class="title-block">
+        <div class="stack label">
+            <span data-scramble>{bi(*p['type'])}</span>
+            <span data-scramble>{p['year']}</span>
+            <span data-scramble>{bi(*p['context'])}</span>
+        </div>
+        <h1 class="display" data-swap>{E(p['title'])}</h1>
         <p class="pitch">{bi(E(p['pitch'][0]), E(p['pitch'][1]))}</p>
+    </div>
 
-        <div class="brief">
-            <dl class="facts">
+    <dl class="field facts">
 {facts}
-            </dl>
-            <div class="story">
+    </dl>
+
+    <div class="story">
 {chr(10).join(story)}
-            </div>
-        </div>
+    </div>
 {process}
-    <section class="chapter" aria-labelledby="h-result">
-        <h2 id="h-result">{bi('Il risultato', 'The result')}</h2>
-        <div class="gallery">
-        {gallery}
-        </div>
-    </section>
-{visit}
     </main>
 
-    <a class="mat next" href="{nxt['slug']}.html">
-        <span class="print" style="left: auto; right: max(28px, 10vw); top: 64px;">
-            {img_tag(n_src, n_w, n_h, '')}
-        </span>
-        <span class="band-title">
-            <p>{bi('Prossimo sul tavolo', 'Next on the table')}</p>
-            <h2>{E(nxt['title'])}</h2>
-        </span>
+    <a class="field next" href="{nxt['slug']}.html" data-accent="{ACCENT[nxt['slug']]}">
+        <span class="label" data-scramble>{bi('Progetto successivo', 'Next project')}</span>
+        <strong class="display" data-swap>{E(nxt['title'])}</strong>
     </a>
-    <footer class="footer-line">
-        <span>Alessandro Bacci</span>
-        <span><a href="mailto:alebacci2003@gmail.com">alebacci2003@gmail.com</a></span>
-        <span><a href="https://instagram.com/burdeldesignstudio" target="_blank" rel="noopener">@burdeldesignstudio</a></span>
-    </footer>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {{
-        var band = document.getElementById('banco');
-        var board = new Tavolo.Board(band, {{ key: '{slug}' }});
-        if (board.restore() !== true) board.setMode('messy', false);
-        [band, document.querySelector('.next')].forEach(Tavolo.drawRulers);
-        var t;
-        window.addEventListener('resize', function () {{
-            clearTimeout(t);
-            t = setTimeout(function () {{ board.refit(); [band, document.querySelector('.next')].forEach(Tavolo.drawRulers); }}, 150);
-        }});
-    }});
-    </script>
+{foot()}
 </body>
 </html>
 """
