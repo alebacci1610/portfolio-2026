@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragma | Alessandro Bacci</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lang.css">
+    <script src="lang.js"></script>
+    
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Satoshi', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem var(--padding-page);
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
+            mix-blend-mode: difference;
+            color: #ffffff;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        nav a:hover { opacity: 0.6; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+
+        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
+        .project-hero {
+            width: 100%;
+            height: 100vh; /* 100% dell'altezza dello schermo */
+            overflow: hidden;
+        }
+
+        .project-hero img, 
+        .project-hero video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
+            display: block;
+        }
+
+        /* --- 2. INTRODUZIONE (Testo grande) --- */
+        .project-intro {
+            padding: 15vh var(--padding-page);
+            max-width: 85%; /* Lascia un po' di respiro a destra */
+        }
+
+        .project-intro p {
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
+        .project-gallery {
+            padding: 0 var(--padding-page);
+            display: flex;
+            flex-direction: column;
+            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
+            margin-bottom: 15vh;
+        }
+
+        .project-gallery img, 
+        .project-gallery video {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
+       taglio delle foto in caso di proporzioni leggermente diverse */
+        object-fit: cover; 
+        }
+
+        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
+        .project-credits {
+            padding: 5vh var(--padding-page) 15vh;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
+            gap: 2rem;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10vh;
+        }
+
+        .credit-col {
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            line-height: 1.6;
+        }
+
+        .credit-col strong {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .credit-col p {
+            margin-bottom: 2rem;
+        }
+
+        /* --- FOOTER (Link al progetto successivo) --- */
+        .next-project {
+            padding: 10vh var(--padding-page);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: clamp(2rem, 4vw, 4rem);
+            transition: background-color 0.3s;
+        }
+
+        .next-project:hover {
+            background-color: #333333;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
+            .project-gallery { gap: 5vh; }
+            .project-credits {
+                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
+        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
+    </nav>
+
+    <header class="project-hero">
+        <img src="../foto copia/Gestures/mockup iphone.jpg" alt="Gestures">
+    </header>
+
+    <section class="project-intro">
+        <p lang="it">Nato quasi per gioco, Gestures è un progetto di
+web design che esplora con ironia le “leggi non
+scritte” della società: quei comportamenti taciti
+e universali, come il non sapere dove guardare
+in ascensore per evitare il contatto visivo con
+uno sconosciuto.</p>
+        <p lang="it"> Il tema è affrontato attraverso
+un espediente narrativo inaspettato: una cornice
+fittizia in stile giallo poliziesco, in cui l’utente è
+chiamato a “indagare” sulle dinamiche sociali.</p>
+        <p lang="it">Sviluppato interamente su un’unica landing
+page, il sito detta il ritmo del racconto giocando
+con la navigazione. L’interfaccia alterna infatti
+in modo fluido sezioni a scroll verticale
+e orizzontale, creando un’esperienza dinamica
+che accompagna la lettura e trasforma un
+semplice insight quotidiano in un’interazione
+divertente e memorabile.</p>
+        <p lang="en">Born almost as a game, Gestures is a web design project that ironically explores society’s “unwritten rules”: those tacit, universal behaviors, like not knowing where to look in an elevator to avoid eye contact with a stranger.</p>
+        <p lang="en">The theme is approached through an unexpected narrative device: a fictional detective-story frame in which users are called on to “investigate” social dynamics.</p>
+        <p lang="en">Built entirely on a single landing page, the site sets the pace of the story by playing with navigation. The interface smoothly alternates vertical and horizontal scrolling sections, creating a dynamic experience that accompanies the reading and turns a simple everyday insight into a fun, memorable interaction.</p>
+    </section>
+
+    <section class="project-gallery">
+        <img src="../foto copia/Gestures/Screenshot 2026-04-06 alle 21.04.18.png" alt="Gestures – 1">
+        <img src="../foto copia/Gestures/Screenshot 2026-05-12 alle 17.28.53.png" alt="Gestures – 2">
+    </section>
+
+    <section class="project-credits">
+        <div class="credit-col">
+            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
+            <p>Gestures<br>Web design</p>
+
+            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
+            <p>2025<br><span lang="it">Progetto personale</span><span lang="en">Personal project</span></p>
+        </div>
+
+        <div class="credit-col">
+            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
+            <p>
+                Coding <br>
+                User Interface <br>
+                Photo editing
+            </p>
+        </div>
+        <div class="credit-col">
+    <strong>Link</strong>
+    <p>
+        <a href="https://gestures.webflow.io" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
+            GESTURES WEBSITE
+        </a>
+    </p>
+</div>
+    </section>
+
+    <a href="fragma.html" class="next-project">
+        <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
+        <span>FRAGMA →</span>
+    </a>
+
+</body>
+</html>
