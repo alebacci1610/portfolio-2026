@@ -251,6 +251,7 @@ p, li { text-wrap: pretty; }
 
 .figs { margin-top: 4rem; display: flex; flex-direction: column; gap: 2rem; }
 .figs .narrow { width: 66%; }
+.board img { border: 1px solid var(--rule); }
 .diagram { background: #f4f4f4; padding: clamp(1rem, 3vw, 3rem); }
 .diagram img { margin: 0 auto; mix-blend-mode: multiply; }
 .diagram--small img { max-width: min(720px, 100%); }
