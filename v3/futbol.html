@@ -3,233 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragma | Alessandro Bacci</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Futbol, Alessandro Bacci</title>
+    <meta name="description" content="Futbol: un archivio di 38 maglie storiche del calcio da esplorare trascinando una griglia infinita, con un minigioco per scoprire la tua. Progetto personale di Alessandro Bacci.">
+    <meta property="og:title" content="Futbol, Alessandro Bacci">
+    <meta property="og:description" content="Un archivio di 38 maglie storiche del calcio, da esplorare trascinando una griglia infinita.">
+    <meta property="og:image" content="https://alebacci1610.github.io/portfolio-2026/v3/img/futbol/griglia.webp">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3EAB%3C/text%3E%3C/svg%3E">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem var(--padding-page);
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
-            mix-blend-mode: difference;
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        nav a:hover { opacity: 0.6; }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
-        .project-hero {
-            width: 100%;
-            height: 100vh; /* 100% dell'altezza dello schermo */
-            overflow: hidden;
-        }
-
-        .project-hero img, 
-        .project-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
-            display: block;
-        }
-
-        /* --- 2. INTRODUZIONE (Testo grande) --- */
-        .project-intro {
-            padding: 15vh var(--padding-page);
-            max-width: 85%; /* Lascia un po' di respiro a destra */
-        }
-
-        .project-intro p {
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-        }
-
-        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
-        .project-gallery {
-            padding: 0 var(--padding-page);
-            display: flex;
-            flex-direction: column;
-            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
-            margin-bottom: 15vh;
-        }
-
-        .project-gallery img, 
-        .project-gallery video {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
-       taglio delle foto in caso di proporzioni leggermente diverse */
-        object-fit: cover; 
-        }
-
-        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
-        .project-credits {
-            padding: 5vh var(--padding-page) 15vh;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
-            gap: 2rem;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10vh;
-        }
-
-        .credit-col {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .credit-col strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .credit-col p {
-            margin-bottom: 2rem;
-        }
-
-        /* --- FOOTER (Link al progetto successivo) --- */
-        .next-project {
-            padding: 10vh var(--padding-page);
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(2rem, 4vw, 4rem);
-            transition: background-color 0.3s;
-        }
-
-        .next-project:hover {
-            background-color: #333333;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
-            .project-gallery { gap: 5vh; }
-            .project-credits {
-                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
-                gap: 3rem;
-            }
-        }
-    </style>
 </head>
 <body>
+    <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
 
-    <nav>
-        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
-        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
-    </nav>
-
-    <header class="project-hero">
-        <img src="../foto copia/Futbol/Screenshot 2026-04-09 alle 12.12.39.png" alt="Futbol">
+    <header class="nav">
+        <a href="index.html#progetti"><span lang="it">← Tutti i progetti</span><span lang="en">← All projects</span></a>
+        <nav class="nav-links" aria-label="Menu">
+            <a href="index.html" class="hide-s">Alessandro Bacci</a>
+            <div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
+        </nav>
     </header>
 
-    <section class="project-intro">
-        <p lang="it">Nato da un profondo legame personale
-con la cultura calcistica, Futbol è un
-progetto di web design che celebra
-le maglie più significative della storia
-di questo sport.</p>
-        <p lang="it">L’archivio digitale è
-stato concepito per raccontare come
-questi capi trascendano la loro funzione
-puramente atletica, trasformandosi in
-veri e propri artefatti culturali carichi di
-memoria, identità e valore emotivo.</p>
-        <p lang="it">Sviluppato come un accurato esercizio
-di stile, il sito unisce rigore estetico
-e navigazione fluida. L’esplorazione si
-apre su una homepage strutturata a
-griglia con infinite scroll, studiata per
-massimizzare l’impatto visivo e guidare
-l’utente verso schede tecniche ricche
-di dettagli. </p>
-        <p lang="it">L’esperienza culmina in una
-sezione interattiva “tailor-made”:
-un percorso dinamico che fa scoprire
-all’utente quale, tra i pezzi storici
-dell’archivio, rappresenta al meglio
-la sua anima calcistica e il suo stile
-personale.</p>
-        <p lang="en">Born from a deep personal bond with football culture, Futbol is a web design project celebrating the most significant shirts in the history of the sport.</p>
-        <p lang="en">The digital archive was conceived to show how these garments go beyond their purely athletic function, becoming true cultural artifacts loaded with memory, identity and emotional value.</p>
-        <p lang="en">Developed as a careful exercise in style, the site combines aesthetic rigor with fluid navigation. Exploration opens on an infinite-scroll grid homepage, designed to maximize visual impact and lead users to richly detailed shirt pages.</p>
-        <p lang="en">The experience culminates in an interactive, “tailor-made” section: a dynamic path that reveals which of the archive’s historic pieces best represents the user’s football soul and personal style.</p>
-    </section>
+    <div class="cs-hero">
+        <img src="img/futbol/griglia.webp" alt="La griglia dell’archivio Futbol con le maglie storiche su fondo bianco" width="2400" height="1333">
+    </div>
 
-    <section class="project-gallery">
-        <img src="../foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.51.png" alt="Futbol – 1">
-        <img src="../foto copia/Futbol/Screenshot 2026-04-09 alle 11.52.40.png" alt="Futbol – 2">
-        <img src="../foto copia/Futbol/Screenshot 2026-04-09 alle 11.53.19.png" alt="Futbol – 3">
-        <img src="../foto copia/Futbol/Screenshot 2026-05-12 alle 17.04.26.png" alt="Futbol – 4">
-    </section>
+    <main id="contenuto">
+        <section class="cs-head">
+            <p class="label"><span lang="it">Progetto personale, 2026</span><span lang="en">Personal project, 2026</span></p>
+            <h1>
+                <span lang="it">Futbol: 38 maglie che hanno fatto la storia del calcio, in un archivio da trascinare come un tavolo.</span>
+                <span lang="en">Futbol: 38 shirts that made football history, in an archive you drag around like a table.</span>
+            </h1>
+            <div class="cs-meta">
+                <div>
+                    <h2><span lang="it">Il mio ruolo</span><span lang="en">My role</span></h2>
+                    <ul>
+                        <li><span lang="it">Concept e contenuti</span><span lang="en">Concept and content</span></li>
+                        <li><span lang="it">UX e UI</span><span lang="en">UX and UI</span></li>
+                        <li><span lang="it">Codice</span><span lang="en">Code</span></li>
+                        <li><span lang="it">Fotoritocco</span><span lang="en">Photo editing</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2><span lang="it">Strumenti</span><span lang="en">Tools</span></h2>
+                    <ul>
+                        <li>HTML, CSS</li>
+                        <li><span lang="it">JavaScript, senza librerie</span><span lang="en">JavaScript, no libraries</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Team</h2>
+                    <p><span lang="it">Da solo</span><span lang="en">Solo</span></p>
+                </div>
+                <div>
+                    <h2><span lang="it">Tipo</span><span lang="en">Type</span></h2>
+                    <p><span lang="it">Web design, archivio interattivo</span><span lang="en">Web design, interactive archive</span></p>
+                </div>
+                <div>
+                    <h2>Link</h2>
+                    <p><a href="https://alebacci1610.github.io/futbol/" target="_blank" rel="noopener"><span lang="it">Prova il sito</span><span lang="en">Try the website</span> ↗</a></p>
+                </div>
+            </div>
+        </section>
 
-    <section class="project-credits">
-        <div class="credit-col">
-            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
-            <p>Futbol<br>Web Design</p>
+        <!-- l'idea -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">L’idea</span><span lang="en">The idea</span></p>
+                <h2><span lang="it">Le maglie da calcio sono oggetti di cultura, non solo divise.</span><span lang="en">Football shirts are cultural objects, not just kits.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Futbol nasce dal mio legame con il calcio. Una maglia porta con sé una stagione, un giocatore, una città, a volte un intero decennio: per chi la indossa è memoria e identità, e oggi anche moda.</p>
+                    <p lang="it">Volevo un archivio che le trattasse così: belle da guardare come oggetti, ma ognuna con la sua storia da scoprire. E volevo che fosse divertente da usare, non un catalogo.</p>
+                    <p lang="en">Futbol comes from my bond with football. A shirt carries a season, a player, a city, sometimes a whole decade: for whoever wears it, it’s memory and identity, and today fashion too.</p>
+                    <p lang="en">I wanted an archive that treated them that way: beautiful to look at as objects, each with its own story to discover. And I wanted it to be fun to use, not a catalogue.</p>
+                </div>
+            </div>
+        </section>
 
-            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
-            <p>2026<br><span lang="it">Progetto personale</span><span lang="en">Personal project</span></p>
-        </div>
+        <!-- la struttura -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">La struttura</span><span lang="en">Structure</span></p>
+                <h2><span lang="it">Tre livelli per guardare, approfondire e giocare.</span><span lang="en">Three levels to look, dig deeper and play.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Si entra da una schermata blu con il nome dell’archivio. Poi c’è la griglia con tutte le maglie, da cui si apre la scheda di ognuna. In parallelo, sempre raggiungibile dalla barra in alto, c’è il minigioco “Che maglia sei?”. Un indice a tendina permette di saltare direttamente a una maglia.</p>
+                    <p lang="en">You enter from a blue screen with the archive’s name. Then comes the grid with every shirt, from which each shirt page opens. Alongside, always one click away in the top bar, there’s the “Which shirt are you?” mini-game. A drop-down index lets you jump straight to any shirt.</p>
+                </div>
+            </div>
+            <div class="ia" role="img" aria-label="Schema: ingresso, griglia, scheda della maglia; il minigioco e l’indice sono raggiungibili da ogni punto">
+                <p class="ia-root">Futbol<span><span lang="it">come è organizzato il sito</span><span lang="en">how the site is organised</span></span></p>
+                <div class="ia-cols">
+                    <div>
+                        <h3><span lang="it">Ingresso</span><span lang="en">Entrance</span></h3>
+                        <ul><li><span lang="it">“Entra nell’archivio”</span><span lang="en">“Enter the archive”</span></li></ul>
+                    </div>
+                    <div>
+                        <h3><span lang="it">Griglia</span><span lang="en">Grid</span></h3>
+                        <ul>
+                            <li><span lang="it">Da trascinare in ogni direzione</span><span lang="en">Drag in any direction</span></li>
+                            <li><span lang="it">Filtri per decennio</span><span lang="en">Filters by decade</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3><span lang="it">Scheda</span><span lang="en">Shirt page</span></h3>
+                        <ul>
+                            <li>Iconometro</li>
+                            <li><span lang="it">Buono a sapersi</span><span lang="en">Good to know</span></li>
+                            <li><span lang="it">Segno</span><span lang="en">Sign</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3><span lang="it">Che maglia sei?</span><span lang="en">Which shirt are you?</span></h3>
+                        <ul><li><span lang="it">4 domande, 1 maglia</span><span lang="en">4 questions, 1 shirt</span></li></ul>
+                    </div>
+                    <div>
+                        <h3><span lang="it">Indice</span><span lang="en">Index</span></h3>
+                        <ul><li><span lang="it">Tutte le maglie in un elenco</span><span lang="en">Every shirt in one list</span></li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- la griglia -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">La griglia</span><span lang="en">The grid</span></p>
+                <h2><span lang="it">Una griglia senza bordi, che si trascina e continua all’infinito.</span><span lang="en">A borderless grid that you drag and that never ends.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Le maglie si ripetono in tutte le direzioni: le trascini con il mouse, la griglia continua a scorrere per inerzia quando lasci, e non arrivi mai a un bordo. Il sito disegna solo le maglie che stai guardando, così resta fluido anche se la griglia è infinita.</p>
+                    <p lang="it">Passando sopra una maglia partono in rapida sequenza le foto di quella stagione, come un flipbook. I filtri per decennio non tolgono le altre maglie, le spengono: la griglia resta piena e si vede subito dove sta quello che cerchi.</p>
+                    <p lang="en">The shirts repeat in every direction: you drag them with the mouse, the grid keeps gliding with momentum when you let go, and you never reach an edge. The site only draws the shirts you’re looking at, so it stays smooth even though the grid is infinite.</p>
+                    <p lang="en">Hovering a shirt plays a quick sequence of photos from that season, like a flipbook. Decade filters don’t remove the other shirts, they dim them: the grid stays full and you see at once where what you’re looking for is.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <video src="video/futbol.mp4" poster="video/futbol.webp" muted loop playsinline autoplay preload="metadata" aria-label="Registrazione: la griglia di Futbol trascinata con il mouse"></video>
+                <div class="row">
+                    <figure style="flex-grow:1.8"><img src="img/futbol/hover.webp" alt="Passando sopra una maglia compare una foto della stagione" width="1800" height="1000" loading="lazy"></figure>
+                    <figure style="flex-grow:1.8"><img src="img/futbol/filtro.webp" alt="La griglia con un filtro per decennio attivo" width="1800" height="1000" loading="lazy"></figure>
+                </div>
+                <p class="cap"><span lang="it">A sinistra le foto della stagione al passaggio del mouse; a destra un filtro per decennio.</span><span lang="en">Left, season photos on hover; right, a decade filter.</span></p>
+            </div>
+        </section>
 
-        <div class="credit-col">
-            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
-            <p>
-                Coding <br>
-                User Interface <br>
-                Photo editing
-            </p>
-        </div>
-        <div class="credit-col">
-    <strong>Link</strong>
-    <p>
-        <a href="https://alebacci1610.github.io/futbol/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            FUTBOL WEBSITE
-        </a>
-    </p>
-</div>
-    </section>
+        <!-- la scheda -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">La scheda</span><span lang="en">The shirt page</span></p>
+                <h2><span lang="it">Ogni maglia ha una carta d’identità, che si legge come un oroscopo.</span><span lang="en">Every shirt has an ID card that reads like a horoscope.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">La scheda mette la maglia grande a sinistra e le informazioni a destra, in tre blocchi. L’iconometro dà un voto da uno a tre palloni a stile, nostalgia e hype. “Buono a sapersi” raccoglie competizione, tessuto e vestibilità. Infine il segno: una descrizione di chi è fatto per quella maglia, scritta come un oroscopo.</p>
+                    <p lang="it">Ho scelto questo tono per rendere leggibili anche dati tecnici che da soli non interesserebbero a nessuno.</p>
+                    <p lang="en">The shirt page puts the shirt large on the left and the information on the right, in three blocks. The “iconometer” rates style, nostalgia and hype from one to three balls. “Good to know” covers competition, fabric and fit. Last comes the sign: a description of who that shirt is made for, written like a horoscope.</p>
+                    <p lang="en">I chose this tone to make even technical data readable, data nobody would care about on its own.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <figure><img src="img/futbol/argentina.webp" alt="La scheda della maglia dell’Argentina 1986 con iconometro, buono a sapersi e segno" width="1800" height="1000" loading="lazy"></figure>
+                <div class="row">
+                    <figure style="flex-grow:1.8"><img src="img/futbol/roma.webp" alt="La scheda della maglia della Roma 2000/01" width="1800" height="1000" loading="lazy"></figure>
+                    <figure style="flex-grow:1.8"><img src="img/futbol/inter.webp" alt="La scheda della maglia dell’Inter 2009/10" width="1800" height="1000" loading="lazy"></figure>
+                </div>
+                <p class="cap"><span lang="it">Le schede di Argentina 1986, Roma 2000/01 e Inter 2009/10: il colore dei testi segue quello della maglia.</span><span lang="en">The pages for Argentina 1986, Roma 2000/01 and Inter 2009/10: the text colour follows the shirt’s.</span></p>
+            </div>
+        </section>
+
+        <!-- il minigioco -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Il minigioco</span><span lang="en">The mini-game</span></p>
+                <h2><span lang="it">Quattro domande per scoprire quale maglia storica ti somiglia.</span><span lang="en">Four questions to find out which historic shirt is like you.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">“Che maglia sei?” chiede il tuo decennio preferito, il ruolo che avresti in campo, il dettaglio a cui non rinunci e dove ti piace indossare i tuoi colori: campetto, curva, divano o aperitivo. Alla fine ti assegna una delle maglie dell’archivio e ti porta alla sua scheda.</p>
+                    <p lang="it">Per le domande ho usato un fondo blu pieno e risposte a pillola, così il minigioco si stacca dall’archivio bianco ma ne mantiene gli stessi elementi.</p>
+                    <p lang="en">“Which shirt are you?” asks your favourite decade, the role you’d play on the pitch, the detail you can’t do without and where you like wearing your colours: street pitch, stands, sofa or aperitivo. At the end it assigns you one of the archive’s shirts and takes you to its page.</p>
+                    <p lang="en">For the questions I used a solid blue background and pill-shaped answers, so the game stands apart from the white archive while keeping the same elements.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <div class="row">
+                    <figure style="flex-grow:1.8"><img src="img/futbol/quiz-1.webp" alt="Domanda: scegli il decennio perfetto" width="1400" height="778" loading="lazy"></figure>
+                    <figure style="flex-grow:1.8"><img src="img/futbol/quiz-2.webp" alt="Domanda: in campo, chi saresti?" width="1400" height="778" loading="lazy"></figure>
+                    <figure style="flex-grow:1.8"><img src="img/futbol/quiz-4.webp" alt="Domanda: il tuo habitat naturale?" width="1400" height="778" loading="lazy"></figure>
+                </div>
+                <figure><img src="img/futbol/risultato.webp" alt="Il risultato del minigioco: la maglia del Napoli" width="1800" height="1000" loading="lazy"></figure>
+                <p class="cap"><span lang="it">Tre delle domande e un risultato: la maglia del Napoli 1986/87.</span><span lang="en">Three of the questions and a result: the Napoli 1986/87 shirt.</span></p>
+            </div>
+        </section>
+
+        <!-- cosa migliorerei -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Cosa migliorerei</span><span lang="en">What I’d improve</span></p>
+                <h2><span lang="it">Un minigioco che usi davvero tutto l’archivio.</span><span lang="en">A mini-game that really uses the whole archive.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Oggi il risultato nasce dalla somma delle risposte, quindi può uscire solo una parte delle 38 maglie. Nella prossima versione ogni risposta darà punti alle maglie che le somigliano: decennio, ruolo, dettagli e stile, così ogni maglia può essere il risultato di qualcuno. Voglio anche portare la griglia da trascinare sul telefono.</p>
+                    <p lang="en">Right now the result comes from the sum of the answers, so only some of the 38 shirts can come up. In the next version each answer will score the shirts that match it, by decade, role, details and style, so every shirt can be someone’s result. I also want to bring the draggable grid to phones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="credits">
+            <div>
+                <h2><span lang="it">Progetto</span><span lang="en">Project</span></h2>
+                <p>Futbol<br><span lang="it">Web design</span><span lang="en">Web design</span></p>
+                <h2><span lang="it">Contesto</span><span lang="en">Context</span></h2>
+                <p><span lang="it">Progetto personale, 2026</span><span lang="en">Personal project, 2026</span></p>
+            </div>
+            <div>
+                <h2><span lang="it">Progettazione e sviluppo</span><span lang="en">Design and development</span></h2>
+                <p>Alessandro Bacci</p>
+            </div>
+            <div>
+                <h2>Link</h2>
+                <p><a href="https://alebacci1610.github.io/futbol/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px"><span lang="it">Prova il sito</span><span lang="en">Try the website</span> ↗</a></p>
+            </div>
+        </section>
+    </main>
 
     <a href="space-debris.html" class="next-project">
         <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
         <span>Space Debris →</span>
     </a>
-
 </body>
 </html>
