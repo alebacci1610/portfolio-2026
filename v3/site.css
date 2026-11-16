@@ -273,6 +273,21 @@ figcaption, .figs-cap, .cap { margin-top: 0.8rem; font-size: 0.95rem; color: var
 .ia-cols li { font-size: 0.98rem; line-height: 1.55; color: #3d3d3d; }
 .ia-cols li li { color: var(--muted); padding-left: 0.9rem; }
 
+
+/* composizione del dataset: barre proporzionali */
+.bars { margin-top: 4rem; background: #f4f4f4; padding: clamp(1.2rem, 3vw, 3rem); display: grid; gap: 2.4rem; }
+.bars h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.9rem; }
+.bar { display: flex; height: 2.6rem; background: var(--bg); }
+.bar span { display: block; height: 100%; border-right: 2px solid #f4f4f4; }
+.bar span:last-child { border-right: 0; }
+.bar .b1 { background: var(--ink); }
+.bar .b2 { background: #555; }
+.bar .b3 { background: #999; }
+.bar .b4 { background: #cfcfcf; }
+.bar-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin-top: 0.8rem; font-size: 0.98rem; }
+.bar-legend i { display: inline-block; width: 0.8rem; height: 0.8rem; margin-right: 0.45rem; vertical-align: -0.05rem; }
+.bar-legend b { font-weight: 700; margin-left: 0.3rem; }
+
 /* immagini affiancate: stessa altezza, larghezza in proporzione (flex = rapporto larghezza/altezza) */
 .row { display: flex; gap: 2rem; align-items: stretch; }
 .row > * { flex-basis: 0; min-width: 0; }
