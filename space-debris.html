@@ -3,239 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fragma | Alessandro Bacci</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+    <title>Space Debris, Alessandro Bacci</title>
+    <meta name="description" content="Space Debris: oltre 14.000 rifiuti in orbita attorno alla Terra, divisi per paese e anno di lancio. Case study di data visualization in p5.js di Alessandro Bacci.">
+    <meta property="og:title" content="Space Debris, Alessandro Bacci">
+    <meta property="og:description" content="Oltre 14.000 rifiuti in orbita attorno alla Terra, divisi per paese e anno di lancio.">
+    <meta property="og:image" content="https://alebacci1610.github.io/portfolio-2026/img/space-debris/paese.webp">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3EAB%3C/text%3E%3C/svg%3E">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="lang.css">
     <script src="lang.js"></script>
-    
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --padding-page: 5vw; /* Usiamo i vw per mantenere le proporzioni sui lati */
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Satoshi', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem var(--padding-page);
-            display: flex;
-            justify-content: space-between;
-            z-index: 100;
-            /* Questo effetto fa diventare il testo bianco su sfondi scuri e nero su sfondi chiari */
-            mix-blend-mode: difference;
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        nav a:hover { opacity: 0.6; }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* --- 1. HERO (Immagine/Video a tutto schermo) --- */
-        .project-hero {
-            width: 100%;
-            height: 100vh; /* 100% dell'altezza dello schermo */
-            overflow: hidden;
-        }
-
-        .project-hero img, 
-        .project-hero video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Riempie tutto lo spazio senza deformarsi */
-            display: block;
-        }
-
-        /* --- 2. INTRODUZIONE (Testo grande) --- */
-        .project-intro {
-            padding: 15vh var(--padding-page);
-            max-width: 85%; /* Lascia un po' di respiro a destra */
-        }
-
-        .project-intro p {
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 2rem;
-        }
-
-        /* --- 3. GALLERIA (Foto scorrevoli in basso) --- */
-        .project-gallery {
-            padding: 0 var(--padding-page);
-            display: flex;
-            flex-direction: column;
-            gap: 10vh; /* Spazio verticale tra una foto e l'altra */
-            margin-bottom: 15vh;
-        }
-
-        .project-gallery img, 
-        .project-gallery video {
-        width: 100%;
-        height: auto;
-        display: block;
-        /* Opzionale: aggiungi questo se vuoi che i video abbiano lo stesso 
-       taglio delle foto in caso di proporzioni leggermente diverse */
-        object-fit: cover; 
-        }
-
-        /* --- 4. CREDITI (Stile Screenshot Dotdotdot) --- */
-        .project-credits {
-            padding: 5vh var(--padding-page) 15vh;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
-            gap: 2rem;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10vh;
-        }
-
-        .credit-col {
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .credit-col strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .credit-col p {
-            margin-bottom: 2rem;
-        }
-
-        /* --- FOOTER (Link al progetto successivo) --- */
-        .next-project {
-            padding: 10vh var(--padding-page);
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(2rem, 4vw, 4rem);
-            transition: background-color 0.3s;
-        }
-
-        .next-project:hover {
-            background-color: #333333;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .project-intro { max-width: 100%; padding: 10vh var(--padding-page); }
-            .project-gallery { gap: 5vh; }
-            .project-credits {
-                grid-template-columns: 1fr; /* Colonna singola per i crediti su cellulare */
-                gap: 3rem;
-            }
-        }
-    </style>
 </head>
 <body>
+    <a class="skip" href="#contenuto"><span lang="it">Vai al contenuto</span><span lang="en">Skip to content</span></a>
 
-    <nav>
-        <a href="index.html"><span lang="it">← Torna all'indice</span><span lang="en">← Back to index</span></a>
-        <div class="nav-right"><span class="nav-name">Alessandro Bacci</span><div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div></div>
-    </nav>
-
-    <header class="project-hero">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.09.png" alt="Space Debris">
+    <header class="nav">
+        <a href="index.html#progetti"><span lang="it">← Tutti i progetti</span><span lang="en">← All projects</span></a>
+        <nav class="nav-links" aria-label="Menu">
+            <a href="index.html" class="hide-s">Alessandro Bacci</a>
+            <div class="lang-switch" role="group" aria-label="Lingua / Language"><button type="button" data-set-lang="it" aria-label="Italiano">IT</button><span class="lang-sep" aria-hidden="true">/</span><button type="button" data-set-lang="en" aria-label="English">EN</button></div>
+        </nav>
     </header>
 
-    <section class="project-intro">
-        <p lang="it">Space Debris è un progetto di data
-visualization interattiva che porta
-alla luce il silenzioso ma allarmante
-accumulo di rifiuti nell’orbita terrestre.
-Elaborando un massiccio dataset
-di oltre 15.000 record, il progetto
-mappa l’origine, la tipologia (dai
-frammenti di razzi ai satelliti inattivi) e
-il volume dei detriti.</p>
-        <p lang="it">Questo enorme
-flusso di dati prende forma all’interno
-di un’interfaccia web esplorativa,
-caratterizzata da un’estetica illustrativa in
-bianco e nero dal forte impatto grafico.</p>
-        <p lang="it">Attraverso una navigazione dinamica,
-l’utente può interagire direttamente con
-i dati, filtrandoli per nazione, dimensione
-e altitudine. Scorrendo la linea del
-tempo interattiva, il progetto denuncia
-visivamente l’inesorabile aumento dei
-rifiuti spaziali e le precise responsabilità
-geopolitiche, trasformando numeri
-complessi in una presa
-di coscienza tangibile.</p>
-        <p lang="en">Space Debris is an interactive data visualization project that brings to light the silent yet alarming build-up of waste in Earth’s orbit. Processing a dataset of more than 15,000 records, the project maps the origin, type (from rocket fragments to inactive satellites) and volume of the debris.</p>
-        <p lang="en">This huge flow of data takes shape in an exploratory web interface with a bold, black-and-white illustrative style.</p>
-        <p lang="en">Through dynamic navigation, users can interact directly with the data, filtering it by country, size and altitude. Scrolling along the interactive timeline, the project visually exposes the relentless growth of space debris and the precise geopolitical responsibilities behind it, turning complex numbers into tangible awareness.</p>
-    </section>
+    <div class="cs-hero">
+        <img src="img/space-debris/paese.webp" alt="La vista degli Stati Uniti: i rifiuti spaziali attorno alla Terra, disposti per anno di lancio" width="2000" height="1108">
+    </div>
 
-    <section class="project-gallery">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.20.08.png" alt="Space Debris – 1">
-        <img src="foto copia/Space Debrys/Screenshot 2026-04-07 alle 15.21.51.png" alt="Space Debris – 2">
-        <img src="foto copia/Space Debrys/Screenshot 2026-05-12 alle 17.14.40.png" alt="Space Debris – 3">
-    </section>
+    <main id="contenuto">
+        <section class="cs-head">
+            <p class="label">Politecnico di Milano, 2024/25</p>
+            <h1>
+                <span lang="it">Space Debris: oltre 14.000 rifiuti in orbita attorno alla Terra, e chi li ha lasciati lì.</span>
+                <span lang="en">Space Debris: more than 14,000 pieces of junk orbiting the Earth, and who left them there.</span>
+            </h1>
+            <div class="cs-meta">
+                <div>
+                    <h2><span lang="it">Il mio ruolo</span><span lang="en">My role</span></h2>
+                    <ul>
+                        <li><span lang="it">Costruzione del dataset</span><span lang="en">Dataset building</span></li>
+                        <li>UI</li>
+                        <li>Coding</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2><span lang="it">Strumenti</span><span lang="en">Tools</span></h2>
+                    <ul>
+                        <li>p5.js</li>
+                        <li>JavaScript, HTML, CSS</li>
+                        <li>GitHub</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Team</h2>
+                    <p><span lang="it">6 designer</span><span lang="en">6 designers</span></p>
+                </div>
+                <div>
+                    <h2><span lang="it">Tipo</span><span lang="en">Type</span></h2>
+                    <p><span lang="it">Data visualization interattiva</span><span lang="en">Interactive data visualization</span></p>
+                </div>
+                <div>
+                    <h2>Link</h2>
+                    <p><a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener"><span lang="it">Prova il sito</span><span lang="en">Try the website</span> ↗</a></p>
+                </div>
+            </div>
+        </section>
 
-    <section class="project-credits">
-        <div class="credit-col">
-            <strong><span lang="it">Progetto</span><span lang="en">Project</span></strong>
-            <p>Space Debris<br>Infographic</p>
+        <!-- il tema -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Il tema</span><span lang="en">The topic</span></p>
+                <h2><span lang="it">Sopra di noi c’è una discarica che nessuno vede.</span><span lang="en">Above us there’s a landfill nobody can see.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Dal lancio dello Sputnik nel 1957, ogni missione ha lasciato qualcosa in orbita: satelliti spenti, pezzi di razzi, frammenti di collisioni. Si stima che oggi ci siano oltre 36.000 detriti più grandi di 10 cm. Anche i più piccoli viaggiano fino a 28.000 km/h e possono innescare una reazione a catena di collisioni, la sindrome di Kessler, che renderebbe alcune orbite inutilizzabili.</p>
+                    <p lang="it">Il corso chiedeva di trasformare un dataset in una visualizzazione interattiva. Volevamo rendere visibile il problema e anche le responsabilità: quanto è cresciuto negli anni e quali paesi lo hanno prodotto.</p>
+                    <p lang="en">Since Sputnik’s launch in 1957, every mission has left something in orbit: dead satellites, rocket parts, collision fragments. There are now estimated to be more than 36,000 pieces of debris larger than 10 cm. Even the smallest travel at up to 28,000 km/h and can trigger a chain reaction of collisions, Kessler syndrome, that would make some orbits unusable.</p>
+                    <p lang="en">The course asked us to turn a dataset into an interactive visualization. We wanted to make the problem visible, and the responsibilities too: how much it has grown over the years and which countries produced it.</p>
+                </div>
+            </div>
+        </section>
 
-            <strong><span lang="it">Anno / Luogo</span><span lang="en">Year / Place</span></strong>
-            <p>2024<br>Politecnico di Milano</p>
-        </div>
+        <!-- il mio contributo -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Il mio contributo</span><span lang="en">My contribution</span></p>
+                <h2><span lang="it">Ho lavorato sui dati e sulle parti che li rendono navigabili.</span><span lang="en">I worked on the data and on the parts that make it navigable.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <ul class="bullets" lang="it">
+                        <li>Ho preparato il dataset con il gruppo: pulizia delle colonne e nomi dei paesi al posto delle sigle.</li>
+                        <li>Ho programmato in p5.js la barra del tempo che fa avanzare gli anni.</li>
+                        <li>Ho costruito gli spicchi dei paesi attorno alla Terra e il menù a tendina con tutti i paesi.</li>
+                        <li>Ho collegato la vista generale alle viste dei singoli paesi.</li>
+                    </ul>
+                    <ul class="bullets" lang="en">
+                        <li>I prepared the dataset with the team: cleaning the columns and replacing country codes with names.</li>
+                        <li>I coded the timeline bar in p5.js that moves through the years.</li>
+                        <li>I built the country sectors around the Earth and the drop-down menu with every country.</li>
+                        <li>I linked the overview to each country’s view.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <div class="credit-col">
-            <strong>Team</strong>
-            <p>
-                Frigeni Lara <br>
-                Leonardi Jacopo <br>
-                Raimondo Sofia <br>
-                Villa Eleonora <br>
-                Zanchetta Francesco
-            </p>
-        </div>
+        <!-- il dataset -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Il dataset</span><span lang="en">The dataset</span></p>
+                <h2><span lang="it">14.371 oggetti tracciati dalla rete di sorveglianza spaziale degli Stati Uniti.</span><span lang="en">14,371 objects tracked by the US Space Surveillance Network.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Siamo partiti da un dataset su Kaggle e lo abbiamo seguito fino alla fonte: i dati vengono dall’API di Space-Track.org, basata sulla United States Space Surveillance Network, che rileva, traccia e cataloga gli oggetti artificiali in orbita.</p>
+                    <p lang="it">Per ogni oggetto abbiamo tenuto solo ciò che serviva al racconto: codice identificativo, paese, anno e sito di lancio, tipo di oggetto, dimensione del segnale radar e perigeo, cioè il punto dell’orbita più vicino alla Terra. Abbiamo tolto le altre colonne e sostituito le sigle con i nomi dei paesi, così da poterli mostrare direttamente nell’interfaccia.</p>
+                    <p lang="it">Già nei numeri si vede la storia: quasi sei oggetti su dieci sono detriti, e tre soli paesi ne hanno prodotto l’85%.</p>
+                    <p lang="en">We started from a dataset on Kaggle and traced it back to its source: the data comes from the Space-Track.org API, based on the United States Space Surveillance Network, which detects, tracks and catalogues artificial objects in orbit.</p>
+                    <p lang="en">For each object we kept only what the story needed: ID, country, launch year and site, object type, radar signal size and perigee, the point of the orbit closest to Earth. We dropped the other columns and replaced country codes with names, so they could be shown directly in the interface.</p>
+                    <p lang="en">The story is already in the numbers: almost six objects in ten are debris, and just three countries produced 85% of them.</p>
+                </div>
+            </div>
+            <div class="bars">
+                <div>
+                    <h3><span lang="it">Per tipo di oggetto</span><span lang="en">By object type</span></h3>
+                    <div class="bar" role="img" aria-label="Detriti 58,7%, payload 34,4%, corpi di razzo 5,2%, non identificati 1,7%">
+                        <span class="b1" style="width:58.7%"></span><span class="b2" style="width:34.4%"></span><span class="b3" style="width:5.2%"></span><span class="b4" style="width:1.7%"></span>
+                    </div>
+                    <p class="bar-legend">
+                        <span><i class="b1" style="background:#111"></i><span lang="it">Detriti</span><span lang="en">Debris</span><b><span lang="it">8.431</span><span lang="en">8,431</span></b></span>
+                        <span><i style="background:#555"></i>Payload<b><span lang="it">4.950</span><span lang="en">4,950</span></b></span>
+                        <span><i style="background:#999"></i><span lang="it">Corpi di razzo</span><span lang="en">Rocket bodies</span><b>744</b></span>
+                        <span><i style="background:#cfcfcf"></i><span lang="it">Da identificare</span><span lang="en">To be assigned</span><b>247</b></span>
+                    </p>
+                </div>
+                <div>
+                    <h3><span lang="it">Per paese</span><span lang="en">By country</span></h3>
+                    <div class="bar" role="img" aria-label="Stati Uniti 35,1%, Cina 27,3%, ex URSS 22,3%, altri 95 paesi e organizzazioni 15,3%">
+                        <span class="b1" style="width:35.1%"></span><span class="b2" style="width:27.3%"></span><span class="b3" style="width:22.3%"></span><span class="b4" style="width:15.3%"></span>
+                    </div>
+                    <p class="bar-legend">
+                        <span><i style="background:#111"></i><span lang="it">Stati Uniti</span><span lang="en">United States</span><b><span lang="it">5.045</span><span lang="en">5,045</span></b></span>
+                        <span><i style="background:#555"></i><span lang="it">Cina</span><span lang="en">China</span><b><span lang="it">3.924</span><span lang="en">3,924</span></b></span>
+                        <span><i style="background:#999"></i><span lang="it">Ex URSS</span><span lang="en">Former USSR</span><b><span lang="it">3.210</span><span lang="en">3,210</span></b></span>
+                        <span><i style="background:#cfcfcf"></i><span lang="it">Altri 95 paesi e organizzazioni</span><span lang="en">95 other countries and organisations</span><b><span lang="it">2.192</span><span lang="en">2,192</span></b></span>
+                    </p>
+                </div>
+            </div>
+            <div class="figs">
+                <figure><img src="img/space-debris/dataset.webp" alt="Il file space_decay.csv aperto nell’editor, con le colonne del dataset" width="1800" height="987" loading="lazy"></figure>
+                <p class="cap"><span lang="it">Il dataset pulito: una riga per ogni oggetto in orbita.</span><span lang="en">The cleaned dataset: one row per object in orbit.</span></p>
+            </div>
+        </section>
 
-        <div class="credit-col">
-            <strong><span lang="it">Ruolo</span><span lang="en">Role</span></strong>
-            <p>
-                <span lang="it">Costruzione del dataset</span><span lang="en">Dataset building</span> <br>
-                User Interface <br>
-                Coding 
-            </p>
-        </div>
-         <div class="credit-col">
-    <strong>Link</strong>
-    <p>
-        <a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">
-            SPACE DEBRIS INFOGRAPHIC
-        </a>
-    </p>
-</div>
-    </section>
+        <!-- la visualizzazione -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">La visualizzazione</span><span lang="en">The visualization</span></p>
+                <h2><span lang="it">La Terra al centro, uno spicchio per ogni paese, e il tempo che riempie il cielo.</span><span lang="en">The Earth at the centre, one sector per country, and time filling the sky.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Nella vista generale lo spazio attorno alla Terra è diviso in 98 spicchi, uno per ogni paese o organizzazione. Ogni rifiuto è un punto dentro lo spicchio di chi l’ha lanciato, e la sua distanza dalla Terra dipende dal perigeo. Facendo scorrere la barra del tempo dal 1960 al 2020 i punti compaiono anno dopo anno, e accanto escono le notizie che hanno segnato la storia dei detriti, come l’esplosione di un satellite o un test missilistico.</p>
+                    <p lang="en">In the overview, the space around the Earth is split into 98 sectors, one for each country or organisation. Each piece of junk is a dot inside the sector of whoever launched it, and its distance from the Earth depends on its perigee. Moving the timeline from 1960 to 2020, dots appear year by year, and alongside come the news stories that shaped the history of debris, like a satellite explosion or a missile test.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <div class="row">
+                    <figure style="flex-grow:0.811"><img src="img/space-debris/1960.webp" alt="La vista generale nel 1960, quasi vuota" width="811" height="1000" loading="lazy"></figure>
+                    <figure style="flex-grow:0.811"><img src="img/space-debris/1991.webp" alt="La vista generale nel 1991, con i primi anelli di detriti" width="811" height="1000" loading="lazy"></figure>
+                    <figure style="flex-grow:0.811"><img src="img/space-debris/2019.webp" alt="La vista generale nel 2019, con l’orbita piena di detriti" width="811" height="1000" loading="lazy"></figure>
+                </div>
+                <p class="cap"><span lang="it">La stessa vista, ingrandita sulla Terra, nel 1960, nel 1991 e nel 2019.</span><span lang="en">The same view, zoomed on the Earth, in 1960, 1991 and 2019.</span></p>
+            </div>
+        </section>
 
-    <a href="esplorami.html" class="next-project">
+        <!-- i paesi -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Le viste dei paesi</span><span lang="en">Country views</span></p>
+                <h2><span lang="it">Si clicca su uno spicchio e si entra nei rifiuti di un solo paese.</span><span lang="en">Click a sector and you enter one country’s junk.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Al caricamento uno spicchio si illumina per far capire che si possono cliccare. Entrando in un paese, i rifiuti non sono più punti ma icone che ne indicano il tipo: payload, corpo di razzo, detrito o oggetto da identificare. Sono disposti in cerchi per decennio attorno alla Terra, e passando sopra un’icona si leggono identificativo, sito di lancio, tipo, dimensione e perigeo. Dal menù a tendina si passa da un paese all’altro.</p>
+                    <p lang="it">Tutto è in bianco e nero, con illustrazioni a tratto: lo spazio vuoto e il colore lasciano parlare la quantità dei punti.</p>
+                    <p lang="en">On load, one sector lights up to show they can be clicked. Inside a country, the debris is no longer dots but icons showing its type: payload, rocket body, debris or object to be assigned. They sit in rings by decade around the Earth, and hovering an icon shows its ID, launch site, type, size and perigee. The drop-down menu switches from one country to another.</p>
+                    <p lang="en">Everything is black and white, with line illustrations: the empty space and the lack of colour let the sheer number of dots do the talking.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <video src="video/space-debris.mp4" poster="video/space-debris.webp" muted loop playsinline autoplay preload="metadata" aria-label="Registrazione di Space Debris durante l’uso"></video>
+                <figure><img src="img/space-debris/spicchio.webp" alt="La vista generale con lo spicchio degli Stati Uniti evidenziato" width="1800" height="998" loading="lazy"></figure>
+                <p class="cap"><span lang="it">Lo spicchio degli Stati Uniti evidenziato nella vista generale.</span><span lang="en">The United States sector highlighted in the overview.</span></p>
+            </div>
+        </section>
+
+        <!-- le pagine di contesto -->
+        <section class="chapter">
+            <div class="chapter-head">
+                <p class="label"><span lang="it">Il contesto</span><span lang="en">Context</span></p>
+                <h2><span lang="it">Tre pagine per chi arriva senza sapere niente di detriti.</span><span lang="en">Three pages for people who know nothing about debris.</span></h2>
+            </div>
+            <div class="chapter-body">
+                <div class="text">
+                    <p lang="it">Accanto al grafico ci sono le pagine “Cosa sono” e “Chi siamo”: spiegano cosa sono i rifiuti spaziali, quanti ce ne sono e da dove vengono i dati, e presentano il gruppo. Un pulsante fa partire un suono che arriva dallo spazio e accompagna tutte le pagine.</p>
+                    <p lang="en">Next to the chart are the “What they are” and “About us” pages: they explain what space junk is, how much of it there is and where the data comes from, and introduce the team. A button plays a sound from space that carries across every page.</p>
+                </div>
+            </div>
+            <div class="figs">
+                <div class="row">
+                    <figure style="flex-grow:1.804"><img src="img/space-debris/cosa-sono.webp" alt="La pagina Cosa sono i rifiuti spaziali?" width="1400" height="776" loading="lazy"></figure>
+                    <figure style="flex-grow:1.804"><img src="img/space-debris/dati.webp" alt="La pagina Da dove vengono i dati?" width="1400" height="776" loading="lazy"></figure>
+                    <figure style="flex-grow:1.800"><img src="img/space-debris/quanta.webp" alt="La pagina Quanta spazzatura spaziale c’è?" width="1400" height="778" loading="lazy"></figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="credits">
+            <div>
+                <h2><span lang="it">Progetto</span><span lang="en">Project</span></h2>
+                <p>Space Debris<br><span lang="it">Data visualization</span><span lang="en">Data visualization</span></p>
+                <h2><span lang="it">Contesto</span><span lang="en">Context</span></h2>
+                <p><span lang="it">Laboratorio di Computer Grafica, sezione C2, Design della Comunicazione, Politecnico di Milano, 2024/25</span><span lang="en">Computer Graphics Studio, section C2, Communication Design, Politecnico di Milano, 2024/25</span></p>
+            </div>
+            <div>
+                <h2>Team</h2>
+                <ul>
+                    <li><strong>Alessandro Bacci</strong></li>
+                    <li>Lara Frigeni</li>
+                    <li>Jacopo Leonardi</li>
+                    <li>Sofia Raimondo</li>
+                    <li>Eleonora Villa</li>
+                    <li>Francesco Zanchetta</li>
+                </ul>
+            </div>
+            <div>
+                <h2><span lang="it">Fonte dei dati</span><span lang="en">Data source</span></h2>
+                <p>Space-Track.org, United States Space Surveillance Network</p>
+                <h2 style="margin-top:2rem">Link</h2>
+                <p><a href="https://lcg-infodesign.github.io/lavoro-di-gruppo-gruppo-2/" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px"><span lang="it">Prova il sito</span><span lang="en">Try the website</span> ↗</a></p>
+            </div>
+        </section>
+    </main>
+
+    <a href="gestures.html" class="next-project">
         <span><span lang="it">Progetto successivo</span><span lang="en">Next project</span></span>
-        <span>EsploraMi →</span>
+        <span>Gestures →</span>
     </a>
-
 </body>
 </html>
