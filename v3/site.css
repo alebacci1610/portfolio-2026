@@ -218,7 +218,7 @@ p, li { text-wrap: pretty; }
     padding-top: 1.6rem;
     border-top: 1px solid var(--rule);
 }
-.cs-meta > div { flex: 0 0 auto; }
+.cs-meta > div { flex: 0 1 auto; min-width: 0; max-width: 100%; }
 .cs-meta h2 { font-size: 0.85rem; font-weight: 400; color: var(--muted); margin-bottom: 0.6rem; letter-spacing: 0.02em; }
 .cs-meta li, .cs-meta p { font-size: clamp(0.95rem, 1.1vw, 1.1rem); line-height: 1.5; }
 .cs-meta a { text-decoration: underline; text-underline-offset: 4px; }
@@ -344,6 +344,7 @@ figcaption, .figs-cap, .cap { margin-top: 0.8rem; font-size: 0.95rem; color: var
     .cursor-image { display: none !important; }
 
     .skills { grid-template-columns: 1fr 1fr; row-gap: 2.5rem; }
+    .about { grid-template-columns: 1fr; }
     .about-photo { grid-column: 1 / -1; max-width: 260px; }
     .about-text { grid-column: 1 / -1; }
 
@@ -357,7 +358,9 @@ figcaption, .figs-cap, .cap { margin-top: 0.8rem; font-size: 0.95rem; color: var
     .row img, .row .diagram img { height: auto; }
     .stack { gap: 1rem; }
     .cs-meta { gap: 1.6rem 2.5rem; justify-content: flex-start; }
-    .term .tip { right: auto; left: 0; }
+    .hero-foot p { position: relative; }
+    .term { position: static; }
+    .term .tip { left: 0; right: 0; width: auto; max-width: none; }
     .attempts { grid-template-columns: 1fr 1fr; }
     .figs { gap: 1rem; margin-top: 2.5rem; }
     .figs .narrow { width: 100%; }
@@ -370,6 +373,21 @@ figcaption, .figs-cap, .cap { margin-top: 0.8rem; font-size: 0.95rem; color: var
     .skills, .attempts, .about-cols { grid-template-columns: 1fr; }
     .footer { flex-direction: column; }
 }
+
+/* telefoni piccoli e aree di tocco */
+.about-text, .about-cols > div { min-width: 0; }
+.contact-list a { overflow-wrap: anywhere; }
+.footer a { display: inline-block; padding-block: 0.35rem; }
+h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
+.nav-links a, .nav .lang-switch button, .contact-list a, .cs-meta a, .credits a, .hero-foot a { display: inline-block; padding-block: 0.35rem; }
+.nav > a { padding-block: 0.35rem; }
+@media (max-width: 400px) {
+    :root { --pad: 1rem; }
+    .nav { font-size: 0.82rem; }
+    .nav-links { gap: 0.7rem; }
+    .nav .lang-switch { font-size: 0.82rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
